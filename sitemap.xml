@@ -4,7 +4,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tutorial/example/</loc>
+      <loc>/tutorial/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -12,7 +12,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tutorial/</loc>
+      <loc>/tutorial/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -20,7 +20,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/talk/example/</loc>
+      <loc>/privacy/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -28,7 +28,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/</loc>
+      <loc>/talk/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -36,7 +36,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/</loc>
+      <loc>/post/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -44,7 +44,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/talk/</loc>
+      <loc>/publication/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -52,7 +52,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/external-project/</loc>
+      <loc>/talk/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -60,7 +60,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/internal-project/</loc>
+      <loc>/project/external-project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -68,7 +68,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/getting-started/</loc>
+      <loc>/project/internal-project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -76,7 +76,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/person-re-id/</loc>
+      <loc>/post/getting-started/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -84,7 +84,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</loc>
+      <loc>/publication/person-re-id/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -92,7 +92,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/clothing-search/</loc>
+      <loc>/post/2015-07-23-r-rmarkdown/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -100,25 +100,15 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/1/</loc>
+      <loc>/publication/clothing-search/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
     </url>
     
   
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/2/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/academic/</loc>
+      <loc>/publication_types/1/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -127,15 +117,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/categories/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/deep-learning/</loc>
+      <loc>/publication_types/2/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -144,7 +126,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/demo/</loc>
+      <loc>/tags/academic/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -153,7 +135,15 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/</loc>
+      <loc>/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/deep-learning/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -162,7 +152,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/</loc>
+      <loc>/tags/demo/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -171,7 +161,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/</loc>
+      <loc>/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -180,7 +170,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/categories/r/</loc>
+      <loc>/project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -189,7 +179,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/r-markdown/</loc>
+      <loc>/publication_types/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -198,7 +188,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/slides/</loc>
+      <loc>/categories/r/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -207,15 +197,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/slides/example-slides/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/</loc>
+      <loc>/tags/r-markdown/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -224,7 +206,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/plot/</loc>
+      <loc>/slides/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -233,7 +215,33 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/regression/</loc>
+      <loc>/slides/example-slides/</loc>
+      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/</loc>
+      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/plot/</loc>
+      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/regression/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
