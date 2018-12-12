@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-uk">
 <head>
@@ -17,10 +15,11 @@
   
     
   
-  <meta name="description" content="Post-doctoral researcher in microbial ecology">
+  <meta name="description" content="This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using Qiime, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!
+But what to do if you haven’t/don’t want to use Qiime to cluster OTUs?">
 
   
-  <link rel="alternate" hreflang="en-uk" href="/tags/r-markdown/">
+  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/">
 
   
 
@@ -80,15 +79,15 @@
   
 
   
-  <link rel="alternate" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Microbial Ecologist">
-  <link rel="feed" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Microbial Ecologist">
+  <link rel="alternate" href="https://Dave-Clark.github.io/index.xml" type="application/rss+xml" title="Microbial Ecologist">
+  <link rel="feed" href="https://Dave-Clark.github.io/index.xml" type="application/rss+xml" title="Microbial Ecologist">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/tags/r-markdown/">
+  <link rel="canonical" href="https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -96,23 +95,26 @@
   <meta property="twitter:creator" content="@microbeEcology">
   
   <meta property="og:site_name" content="Microbial Ecologist">
-  <meta property="og:url" content="/tags/r-markdown/">
-  <meta property="og:title" content="R Markdown | Microbial Ecologist">
-  <meta property="og:description" content="Post-doctoral researcher in microbial ecology">
+  <meta property="og:url" content="https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/">
+  <meta property="og:title" content="Merging Taxonomy With Non-Qiime OTU Tables | Microbial Ecologist">
+  <meta property="og:description" content="This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using Qiime, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!
+But what to do if you haven’t/don’t want to use Qiime to cluster OTUs?">
   
   
     
-  <meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:image" content="https://Dave-Clark.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-uk">
   
-  <meta property="og:updated_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-12-12T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-12-12T00:00:00&#43;00:00">
   
 
   
 
   
 
-  <title>R Markdown | Microbial Ecologist</title>
+  <title>Merging Taxonomy With Non-Qiime OTU Tables | Microbial Ecologist</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" class="dark">
@@ -300,7 +302,9 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
+  
 
 
 
@@ -317,45 +321,267 @@
 
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Merging Taxonomy With Non-Qiime OTU Tables</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">R Markdown</h1>
+
+<div class="article-metadata">
 
   
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Dave Clark">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 12, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Dave Clark">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Merging%20Taxonomy%20With%20Non-Qiime%20OTU%20Tables&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fmerging-taxonomy-with-non-qiime-otu-tables%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fmerging-taxonomy-with-non-qiime-otu-tables%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fmerging-taxonomy-with-non-qiime-otu-tables%2f&amp;title=Merging%20Taxonomy%20With%20Non-Qiime%20OTU%20Tables"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fmerging-taxonomy-with-non-qiime-otu-tables%2f&amp;title=Merging%20Taxonomy%20With%20Non-Qiime%20OTU%20Tables"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Merging%20Taxonomy%20With%20Non-Qiime%20OTU%20Tables&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fmerging-taxonomy-with-non-qiime-otu-tables%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  
-  
-  <div>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
-    <div class="article-style">
+    <div class="article-style" itemprop="articleBody">
       
-      R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
-      
+
+
+<p>This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using <code>Qiime</code>, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!</p>
+<p>But what to do if you haven’t/don’t want to use <code>Qiime</code> to cluster OTUs? For example, I often use <code>Vsearch</code> to cluster my OTUs and then may use <code>Qiime</code> to assign taxonomy via the RDP classifier. This means we need some way of uniting our already constructed OTU table with our taxonomy file.</p>
+<p>Here is a short piece of <code>R</code> code which will do the job nicely.</p>
+<pre class="r"><code># First, let&#39;s read in our OTU table
+otuTable &lt;- read.delim(&quot;archOtuTab.txt&quot;, header = T)
+
+# now to read in the taxonomy file generated by the RDP classifier in Qiime
+taxa &lt;- read.table(&quot;archaeaCentroids_tax_assignments.txt&quot;,
+    header = F, col.names= c(&quot;OTUId&quot;, &quot;taxonomy&quot;, &quot;confidence&quot;),
+    stringsAsFactors = F, sep = &quot;\t&quot;)
+
+otuTable &lt;- merge(otuTable, taxa[, -3], by = &quot;OTUId&quot;)
+# this line then merges the OTU table with taxonomy. Order of OTUs/taxonomy is
+# not important, R will correctly match OTUs with their taxonomy string
+# Note that this line will not print the confidence column in the final OTU
+# table as it is often not that useful...
+
+# now we just need to write our completed OTU table to a file
+write.table(otuTable, &quot;archaeaOtuTableTaxonomy.txt&quot;,
+    sep = &quot;\t&quot;, quote = F, row.names = F)</code></pre>
+<p>Done! A simple way of uniting taxonomy information with a standalone OTU table without using <code>Qiime</code>.</p>
+
     </div>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/portrait.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Dave Clark</a></h5>
+    <h6 class="card-subtitle">Post-doctoral researcher in microbial ecology</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/microbeEcology" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=fFhbgeAAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/dave-clark" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/static/files/David_Clark_CV.pdf" >
+          <i class="ai ai-cv"></i>
+        </a>
+      </li>
+      
+    </ul>
   </div>
-  
-
-  
-
 </div>
+
+
+
+
+    
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
 <div class="container">
   <footer class="site-footer">
-  
-  <p class="powered-by">
-    <a href="/privacy/">Privacy Policy</a>
-  </p>
   
 
   <p class="powered-by">
@@ -500,6 +726,4 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   </body>
 </html>
-
-
 

@@ -11,6 +11,158 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
+      <link>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
+      <description>
+
+
+&lt;p&gt;I was recently asked by one of my PhD supervisors to help out on a paper by doing some metagenomic analyses. My mission was essentially to perform some taxonomic analyses of metagenomes and show how a metagenome generated in our lab related to these. So, naturally, I said yes, carried out the necessary analyses and proceeded to design a figure to show the result. I figured a dendrogram would be a nice way of showing compositional similarity between the community we studied and other communities. First of all, I set about creating a distance matrix and plotting the dendrogram like so:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(vegan)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: permute&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Loading required package: lattice&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-3&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(dune)  # load some dummy data
+commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # calculate the community similarity distance matrix
+plot(hclust(commDist))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There you go. It’s easy to generate a basic dendrogram using any sort of distance matrix. So I then started tidying it up to make it a bit more presentable.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;siteLabels &amp;lt;- paste(&amp;quot;Sample &amp;quot;, rownames(dune), sep = &amp;quot;&amp;quot;)  # create some sample labels
+plot(hclust(commDist), labels = siteLabels, main = &amp;quot;&amp;quot;, sub = &amp;quot;&amp;quot;, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Much nicer! We’ve gotten rid of the nonsense at the bottom, given a more informative y axis label and generally made things ‘nicer’. Except, when I saw the first draft, I saw my supervisor had rotated the plot so that the leaf tips pointed to the left. For some reason this just looked wrong to my eyes and so I opted to replot the dendrogram, in a more sensible orientation.&lt;/p&gt;
+&lt;p&gt;Note that to do this, we have to change our approach slightly. For some stupid reason, when we want to plot a dendrogram horizontally, we have to coerce the hclust output to dendrogram class. Additionally, the ‘plot’ method for a dendrogram class object no longer accepts the labels parameter, so we must rename the rows of our dataframe and recalculate the distance matrix instead.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rownames(dune) &amp;lt;- siteLabels  # rename rows of dataframe with our sample labels created earlier
+
+commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # recalculate the distance matrix so that it features our new sample names
+
+par(mar = c(5, 1, 1, 5))  # adjust margins to make room for tip labels
+
+# replot the dendrogram, note that we can now remove the &amp;quot;main =&amp;quot; and &amp;quot;sub =&amp;quot; arguments
+# also remember to switch the x and y labels!
+plot(as.dendrogram(hclust(commDist)), xlab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2, horiz = T)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Perfect! Or at least I thought so. Turns out my supervisor liked the improved orientation but didn’t like the way the branches all ended at the same point. That should be easy to correct right? Wrong!&lt;/p&gt;
+&lt;p&gt;I spent near enough an entire day trying to get this plot perfect without success. I went as far as exploring the &lt;code&gt;ggdendro&lt;/code&gt; package which allows plotting of dendrograms in a ggplot-esque manner.&lt;/p&gt;
+&lt;p&gt;Then I stumbled on a solution, enter &lt;code&gt;dendextend&lt;/code&gt;! A quick peek of the package manual reveals some really awesome capabilities, I really urge you to take a &lt;a href=&#34;https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html&#34;&gt;look&lt;/a&gt; as some of the figures you can create are amazing. For my humble needs, this package solved all my problems easily, and in a couple of lines I’d created exactly the figure my supervisor wanted.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ifelse(&amp;quot;dendextend&amp;quot; %in% rownames(installed.packages()) == T, library(dendextend), install.packages(dendextend))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## ---------------------
+## Welcome to dendextend version 1.9.0
+## Type citation(&amp;#39;dendextend&amp;#39;) for how to cite the package.
+## 
+## Type browseVignettes(package = &amp;#39;dendextend&amp;#39;) for the package vignette.
+## The github page is: https://github.com/talgalili/dendextend/
+## 
+## Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues
+## Or contact: &amp;lt;tal.galili@gmail.com&amp;gt;
+## 
+##  To suppress this message use:  suppressPackageStartupMessages(library(dendextend))
+## ---------------------&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;dendextend&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:permute&amp;#39;:
+## 
+##     shuffle&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
+## 
+##     cutree&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;dendextend&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# uncomment following line if this is the fist time you&amp;#39;ve installed this package!
+# library(dendextend)
+dend1 &amp;lt;- as.dendrogram(hclust(commDist))
+wellHung &amp;lt;- hang.dendrogram(dend1)  # the cheeky variable names are absolutely essential!
+plot_horiz.dendrogram(wellHung, side = F, xlab = &amp;quot;Jaccard Dissimilarity&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There you go, an awesome package which save me from wasting too many more days of work!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Does the Adonis test really exist?</title>
+      <link>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</guid>
+      <description>
+
+
+&lt;p&gt;I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, &lt;code&gt;adonis&lt;/code&gt; is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).&lt;/p&gt;
+&lt;p&gt;A quick google search appears to suggest that one potential difference might be that the statistical test carried out by the &lt;code&gt;adonis()&lt;/code&gt; function is capable of handling both categoric and continuous predictors. In contrast, non-parametric MANOVA is only able to handle categoric predictors. This difference sort of makes sense, but I’m still not convinced that we should be using the term “adonis test”.&lt;/p&gt;
+&lt;p&gt;I was also interested to see how many microbial ecology studies actually refer to this so called “adonis test” to see whether we are to blame for this confusion. I conducted a highly rigorous and robust google scholar search (yep, really!) on the terms “adonis test” and “adonis test” + microb* and limited results from 2001-present.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-does-the-adonis-test-really-exist_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;As it turns out, 84% of the studies that mention “adonis test” also feature the word “microb*“, suggesting that we might be to blame! Also, only 11 of these studies used the term”MANOVA“, suggesting that the vast majority did not elaborate on the statistical procedure initiated by the &lt;code&gt;adonis&lt;/code&gt; function.&lt;/p&gt;
+&lt;p&gt;If I’m completely wrong on this and there is such a thing as an adonis test then please do tell me. But it seems to be that we need to be a little more careful when describing the statistical methods we use…&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier</title>
+      <link>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
+      <description>
+
+
+&lt;p&gt;As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline &lt;code&gt;Qiime&lt;/code&gt;, making it nice and easy to apply to your own data.&lt;/p&gt;
+&lt;p&gt;But what if you are for dealing with fungal ITS sequences instead? Well a recent paper from &lt;a href=&#34;http://www.mycologia.org/content/early/2015/10/28/14-293.abstract&#34;&gt;Deshpande et al&lt;/a&gt; piqued my interest for several reasons. The paper describes a new curated database of fungal ITS sequences and demonstrates that the RDP naive Bayesian classifier does a decent job of classifying ITS sequences when trained on this database.&lt;/p&gt;
+&lt;p&gt;Unfortunately, using the RDP classifier on ITS sequences means going off piste so to speak and using the standalone classifier outside of &lt;code&gt;Qiime&lt;/code&gt;. Given that most people never use the classifier outside of &lt;code&gt;Qiime&lt;/code&gt;, I thought a brief demonstration might be useful. For all of the following, I’m assuming you’re using BioLinux and are at least somewhat familiar with the Linux terminal.&lt;/p&gt;
+&lt;p&gt;First of all, clone the RDPtools github repo like so:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git clone https://github.com/rdpstaff/RDPTools.git&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Then, enter the newly created directory and set up the RDPtools software:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd RDPTools
+git submodule init
+git submodule updat
+make&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You’ll get a lot of text whizzing through the terminal, don’t worry, you haven’t yet entered the Matrix! Once these processes finish the classifier has installed and is ready for use. However, we must now download some additional files which will allow the classifier to classify our fungal ITS sequences. To download these files, type:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;wget &amp;quot;http://rdp.cme.msu.edu/download/rdpclassifiertraindata/data.tgz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This may take a few minutes depending on your connection speed. The files are packaged in what we call a tarball (kind of like a windows zip folder). To unpack them:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;tar -zxvf data.tgz&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now when we list the contents of our directory, we can see a new directory, “data”, has been created. This folder contains all the files we need to use the Warcup based classifier (and also the UNITE and LSU data handily).&lt;/p&gt;
+&lt;p&gt;I’m going to assume you’ve already clustered your ITS sequences into operational taxonomic units and picked a representative sequence for each OTU using &lt;a href=&#34;http://qiime.org/scripts/pick_rep_set.html&#34;&gt;Qiime&lt;/a&gt; or other means.&lt;/p&gt;
+&lt;p&gt;Now we simply call the classifier, tell it to use the Warcup classification files, and tell it where out data is. Simple:&lt;/p&gt;
+&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;java -Xmx1g -jar classifier.jar classify -t data/classifier/fungalits_warcup/rRNAClassifier.properties -o classifiedFungi.txt /path/to/data/fungalITS_repSet.fasta&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;A new file (“classifiedFungi.txt”) will have been created, containing the taxonomic assignments of each fungal sequence, complete with confidence values, pretty cool! You can of course train the classifier yourself on a custom database, in which case, follow the steps &lt;a href=&#34;https://github.com/rdpstaff/classifier&#34;&gt;here&lt;/a&gt; Anyway, I hope this was useful and demonstrates that venturing outside of &lt;code&gt;Qiime&lt;/code&gt; is not necessarily that difficult!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Merging Taxonomy With Non-Qiime OTU Tables</title>
+      <link>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
+      <description>
+
+
+&lt;p&gt;This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using &lt;code&gt;Qiime&lt;/code&gt;, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!&lt;/p&gt;
+&lt;p&gt;But what to do if you haven’t/don’t want to use &lt;code&gt;Qiime&lt;/code&gt; to cluster OTUs? For example, I often use &lt;code&gt;Vsearch&lt;/code&gt; to cluster my OTUs and then may use &lt;code&gt;Qiime&lt;/code&gt; to assign taxonomy via the RDP classifier. This means we need some way of uniting our already constructed OTU table with our taxonomy file.&lt;/p&gt;
+&lt;p&gt;Here is a short piece of &lt;code&gt;R&lt;/code&gt; code which will do the job nicely.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# First, let&amp;#39;s read in our OTU table
+otuTable &amp;lt;- read.delim(&amp;quot;archOtuTab.txt&amp;quot;, header = T)
+
+# now to read in the taxonomy file generated by the RDP classifier in Qiime
+taxa &amp;lt;- read.table(&amp;quot;archaeaCentroids_tax_assignments.txt&amp;quot;,
+    header = F, col.names= c(&amp;quot;OTUId&amp;quot;, &amp;quot;taxonomy&amp;quot;, &amp;quot;confidence&amp;quot;),
+    stringsAsFactors = F, sep = &amp;quot;\t&amp;quot;)
+
+otuTable &amp;lt;- merge(otuTable, taxa[, -3], by = &amp;quot;OTUId&amp;quot;)
+# this line then merges the OTU table with taxonomy. Order of OTUs/taxonomy is
+# not important, R will correctly match OTUs with their taxonomy string
+# Note that this line will not print the confidence column in the final OTU
+# table as it is often not that useful...
+
+# now we just need to write our completed OTU table to a file
+write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
+    sep = &amp;quot;\t&amp;quot;, quote = F, row.names = F)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Done! A simple way of uniting taxonomy information with a standalone OTU table without using &lt;code&gt;Qiime&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Example Page</title>
       <link>https://Dave-Clark.github.io/tutorial/example/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0100</pubDate>
@@ -82,435 +234,12 @@
     </item>
     
     <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>https://Dave-Clark.github.io/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0100</pubDate>
-      
-      <guid>https://Dave-Clark.github.io/post/getting-started/</guid>
-      <description>
-
-&lt;p&gt;&lt;strong&gt;Academic&lt;/strong&gt; makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.&lt;/p&gt;
-
-&lt;p&gt;Follow our easy &lt;a href=&#34;https://sourcethemes.com/academic/docs/install/&#34; target=&#34;_blank&#34;&gt;step by step guide&lt;/a&gt; to learn how to build your own free website with Academic. &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Check out the personal demo&lt;/a&gt; or the &lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;business demo&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes.&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;View the documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://discuss.gohugo.io/&#34; target=&#34;_blank&#34;&gt;Ask a question&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;Request a feature or report a bug&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Updating? View the &lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Update Guide&lt;/a&gt; and &lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Support development of Academic:
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://paypal.me/cushen&#34; target=&#34;_blank&#34;&gt;Donate a coffee&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.patreon.com/cushen&#34; target=&#34;_blank&#34;&gt;Become a backer on Patreon&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.redbubble.com/people/neutreno/works/34387919-academic&#34; target=&#34;_blank&#34;&gt;Decorate your laptop or journal with an Academic sticker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://academic.threadless.com/&#34; target=&#34;_blank&#34;&gt;Wear the T-shirt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;Screenshot&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Key features:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easily manage various content including homepage, blog posts, publications, talks, and projects&lt;/li&gt;
-&lt;li&gt;Extensible via &lt;strong&gt;color themes&lt;/strong&gt; and &lt;strong&gt;widgets/plugins&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Write in &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;Markdown&lt;/a&gt; for easy formatting and code highlighting, with &lt;a href=&#34;https://en.wikibooks.org/wiki/LaTeX/Mathematics&#34; target=&#34;_blank&#34;&gt;LaTeX&lt;/a&gt; for mathematical expressions&lt;/li&gt;
-&lt;li&gt;Social/academic network linking, &lt;a href=&#34;https://analytics.google.com&#34; target=&#34;_blank&#34;&gt;Google Analytics&lt;/a&gt;, and &lt;a href=&#34;https://disqus.com&#34; target=&#34;_blank&#34;&gt;Disqus&lt;/a&gt; comments&lt;/li&gt;
-&lt;li&gt;Responsive and mobile friendly&lt;/li&gt;
-&lt;li&gt;Simple and refreshing one page design&lt;/li&gt;
-&lt;li&gt;Multilingual and easy to customize&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;color-themes&#34;&gt;Color Themes&lt;/h2&gt;
-
-&lt;p&gt;Academic is available in different color themes and font themes.&lt;/p&gt;
-
-
-
-&lt;div class=&#34;gallery&#34;&gt;
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-1950s.png&#34; data-caption=&#34;1950s&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-1950s.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-apogee.png&#34; data-caption=&#34;Apogee&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-apogee.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-coffee-playfair.png&#34; data-caption=&#34;Coffee theme with Playfair font&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-coffee-playfair.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-cupcake.png&#34; data-caption=&#34;Cupcake&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-cupcake.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-dark.png&#34; data-caption=&#34;Dark&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-dark.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-default.png&#34; data-caption=&#34;Default&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-default.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-forest.png&#34; data-caption=&#34;Forest&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-forest.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  &lt;a data-fancybox=&#34;gallery-gallery&#34; href=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-ocean.png&#34; data-caption=&#34;Ocean&#34;&gt;
-  &lt;img src=&#34;https://Dave-Clark.github.io/post/getting-started/gallery/theme-ocean.png&#34; alt=&#34;&#34;&gt;
-  &lt;/a&gt;
-  
-
-  
-&lt;/div&gt;
-
-&lt;h2 id=&#34;ecosystem&#34;&gt;Ecosystem&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-admin&#34; target=&#34;_blank&#34;&gt;Academic Admin&lt;/a&gt;:&lt;/strong&gt; An admin tool to import publications from BibTeX or import assets for an offline site&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-scripts&#34; target=&#34;_blank&#34;&gt;Academic Scripts&lt;/a&gt;:&lt;/strong&gt; Scripts to help migrate content to new versions of Academic&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&#34;install&#34;&gt;Install&lt;/h2&gt;
-
-&lt;p&gt;You can choose from one of the following four methods to install:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;one-click install using your web browser (recommended)&lt;/li&gt;
-&lt;li&gt;install on your computer using Git with the Command Prompt/Terminal app&lt;/li&gt;
-&lt;li&gt;install on your computer by downloading the ZIP files&lt;/li&gt;
-&lt;li&gt;install on your computer with RStudio&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;quick-install-using-your-web-browser&#34;&gt;Quick install using your web browser&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://app.netlify.com/start/deploy?repository=https://github.com/sourcethemes/academic-kickstart&#34; target=&#34;_blank&#34;&gt;Install Academic with Netlify&lt;/a&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Netlify will provide you with a customizable URL to access your new site&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;li&gt;On GitHub, go to your newly created &lt;code&gt;academic-kickstart&lt;/code&gt; repository and edit &lt;code&gt;config.toml&lt;/code&gt; to personalize your site. Shortly after saving the file, your site will automatically update&lt;/li&gt;
-&lt;li&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-git&#34;&gt;Install with Git&lt;/h3&gt;
-
-&lt;p&gt;Prerequisites:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://git-scm.com/downloads&#34; target=&#34;_blank&#34;&gt;Download and install Git&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://gohugo.io/getting-started/installing/#quick-install&#34; target=&#34;_blank&#34;&gt;Download and install Hugo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart#fork-destination-box&#34; target=&#34;_blank&#34;&gt;Fork&lt;/a&gt; the &lt;em&gt;Academic Kickstart&lt;/em&gt; repository and clone your fork with Git:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;git clone https://github.com/sourcethemes/academic-kickstart.git My_Website
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;em&gt;Note that if you forked Academic Kickstart, the above command should be edited to clone your fork, i.e. replace &lt;code&gt;sourcethemes&lt;/code&gt; with your GitHub username.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Initialize the theme:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd My_Website
-git submodule update --init --recursive
-&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-zip&#34;&gt;Install with ZIP&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/sourcethemes/academic-kickstart/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract &lt;em&gt;Academic Kickstart&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/archive/master.zip&#34; target=&#34;_blank&#34;&gt;Download&lt;/a&gt; and extract the &lt;em&gt;Academic theme&lt;/em&gt; to the &lt;code&gt;themes/academic/&lt;/code&gt; folder from the above step&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&#34;install-with-rstudio&#34;&gt;Install with RStudio&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/install/#install-with-rstudio&#34; target=&#34;_blank&#34;&gt;View the guide to installing Academic with RStudio&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;quick-start&#34;&gt;Quick start&lt;/h2&gt;
-
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;If you installed on your computer, view your new website by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;hugo server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Now visit &lt;a href=&#34;http://localhost:1313&#34; target=&#34;_blank&#34;&gt;localhost:1313&lt;/a&gt; and your new Academic powered website will appear. Otherwise, if using Netlify, they will provide you with your URL.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Read the &lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Quick Start Guide&lt;/a&gt; to learn how to add Markdown content, customize your site, and deploy it. For inspiration, refer to the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/tree/master/exampleSite&#34; target=&#34;_blank&#34;&gt;Markdown content&lt;/a&gt; which powers the &lt;a href=&#34;https://themes.gohugo.io/theme/academic/&#34; target=&#34;_blank&#34;&gt;Demo&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Build your site by running the &lt;code&gt;hugo&lt;/code&gt; command. Then &lt;a href=&#34;https://georgecushen.com/create-your-website-with-hugo/&#34; target=&#34;_blank&#34;&gt;host it for free using Github Pages&lt;/a&gt; or Netlify (refer to the first installation method). Alternatively, copy the generated &lt;code&gt;public/&lt;/code&gt; directory (by FTP, Rsync, etc.) to your production web server (such as a university&amp;rsquo;s hosting service).&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&#34;updating&#34;&gt;Updating&lt;/h2&gt;
-
-&lt;p&gt;Feel free to &lt;em&gt;star&lt;/em&gt; the project on &lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;Github&lt;/a&gt; to help keep track of updates and check out the &lt;a href=&#34;https://sourcethemes.com/academic/updates&#34; target=&#34;_blank&#34;&gt;release notes&lt;/a&gt; prior to updating your site.&lt;/p&gt;
-
-&lt;p&gt;Before updating the framework, it is recommended to make a backup of your entire website directory (or at least your &lt;code&gt;themes/academic&lt;/code&gt; directory) and record your current version number.&lt;/p&gt;
-
-&lt;p&gt;By default, Academic is installed as a Git submodule which can be updated by running the following command:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;git submodule update --remote --merge
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Check out the update guide&lt;/a&gt; for full instructions and alternative methods.&lt;/p&gt;
-
-&lt;h2 id=&#34;feedback-contributing&#34;&gt;Feedback &amp;amp; Contributing&lt;/h2&gt;
-
-&lt;p&gt;Please use the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;issue tracker&lt;/a&gt; to let me know about any bugs or feature requests, or alternatively make a pull request.&lt;/p&gt;
-
-&lt;p&gt;For support, head over to the &lt;a href=&#34;http://discuss.gohugo.io&#34; target=&#34;_blank&#34;&gt;Hugo discussion forum&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
-
-&lt;p&gt;Copyright 2016-present &lt;a href=&#34;https://georgecushen.com&#34; target=&#34;_blank&#34;&gt;George Cushen&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;Released under the &lt;a href=&#34;https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md&#34; target=&#34;_blank&#34;&gt;MIT&lt;/a&gt; license.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>A Person Re-Identification System For Mobile Devices</title>
       <link>https://Dave-Clark.github.io/publication/person-re-id/</link>
       <pubDate>Tue, 01 Sep 2015 00:00:00 +0100</pubDate>
       
       <guid>https://Dave-Clark.github.io/publication/person-re-id/</guid>
       <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Hello R Markdown</title>
-      <link>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
-      <guid>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</guid>
-      <description>
-
-
-&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;R Markdown&lt;/h1&gt;
-&lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;You can embed an R code chunk like this:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &amp;lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div id=&#34;including-plots&#34; class=&#34;section level1&#34;&gt;
-&lt;h1&gt;Including Plots&lt;/h1&gt;
-&lt;p&gt;You can also embed plots. See Figure &lt;a href=&#34;#fig:pie&#34;&gt;1&lt;/a&gt; for example:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&amp;#39;Sky&amp;#39;, &amp;#39;Sunny side of pyramid&amp;#39;, &amp;#39;Shady side of pyramid&amp;#39;),
-  col = c(&amp;#39;#0292D8&amp;#39;, &amp;#39;#F7EA39&amp;#39;, &amp;#39;#C4B632&amp;#39;),
-  init.angle = -50, border = NA
-)&lt;/code&gt;&lt;/pre&gt;
-&lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
-&lt;p class=&#34;caption&#34;&gt;
-Figure 1: A fancy pie chart.
-&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 </description>
     </item>
     

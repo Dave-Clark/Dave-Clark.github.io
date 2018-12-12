@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en-uk">
 <head>
@@ -17,10 +15,10 @@
   
     
   
-  <meta name="description" content="Post-doctoral researcher in microbial ecology">
+  <meta name="description" content="I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, adonis is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).">
 
   
-  <link rel="alternate" hreflang="en-uk" href="/tags/r-markdown/">
+  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/">
 
   
 
@@ -80,15 +78,15 @@
   
 
   
-  <link rel="alternate" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Microbial Ecologist">
-  <link rel="feed" href="/tags/r-markdown/index.xml" type="application/rss+xml" title="Microbial Ecologist">
+  <link rel="alternate" href="https://Dave-Clark.github.io/index.xml" type="application/rss+xml" title="Microbial Ecologist">
+  <link rel="feed" href="https://Dave-Clark.github.io/index.xml" type="application/rss+xml" title="Microbial Ecologist">
   
 
   <link rel="manifest" href="/site.webmanifest">
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/tags/r-markdown/">
+  <link rel="canonical" href="https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -96,23 +94,25 @@
   <meta property="twitter:creator" content="@microbeEcology">
   
   <meta property="og:site_name" content="Microbial Ecologist">
-  <meta property="og:url" content="/tags/r-markdown/">
-  <meta property="og:title" content="R Markdown | Microbial Ecologist">
-  <meta property="og:description" content="Post-doctoral researcher in microbial ecology">
+  <meta property="og:url" content="https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/">
+  <meta property="og:title" content="Does the Adonis test really exist? | Microbial Ecologist">
+  <meta property="og:description" content="I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, adonis is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).">
   
   
     
-  <meta property="og:image" content="/img/icon-192.png">
+  <meta property="og:image" content="https://Dave-Clark.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-uk">
   
-  <meta property="og:updated_time" content="2015-07-23T21:13:14-05:00">
+  <meta property="article:published_time" content="2018-12-12T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2018-12-12T00:00:00&#43;00:00">
   
 
   
 
   
 
-  <title>R Markdown | Microbial Ecologist</title>
+  <title>Does the Adonis test really exist? | Microbial Ecologist</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" class="dark">
@@ -300,7 +300,9 @@
 </nav>
 
 
+<article class="article" itemscope itemtype="http://schema.org/Article">
 
+  
 
 
 
@@ -317,45 +319,252 @@
 
   
   
+  
+<div class="article-container pt-3">
+  <h1 itemprop="name">Does the Adonis test really exist?</h1>
+
+  
+
   
     
-  
-<div class="universal-wrapper pt-3">
-  <h1 itemprop="name">R Markdown</h1>
+
+<div class="article-metadata">
 
   
+  
+  <span itemscope itemprop="author" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Dave Clark">
+  </span>
+  
+
+  <span class="article-date">
+    
+    <meta content="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 12, 2018
+    </time>
+  </span>
+  <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Dave Clark">
+  </span>
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+
+  
+
+  
+  
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    <li>
+      <a class="twitter"
+         href="https://twitter.com/intent/tweet?text=Does%20the%20Adonis%20test%20really%20exist%3f&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fdoes-the-adonis-test-really-exist%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+    <li>
+      <a class="facebook"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fdoes-the-adonis-test-really-exist%2f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+    </li>
+    <li>
+      <a class="linkedin"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fdoes-the-adonis-test-really-exist%2f&amp;title=Does%20the%20Adonis%20test%20really%20exist%3f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </li>
+    <li>
+      <a class="weibo"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fdoes-the-adonis-test-really-exist%2f&amp;title=Does%20the%20Adonis%20test%20really%20exist%3f"
+         target="_blank" rel="noopener">
+        <i class="fab fa-weibo"></i>
+      </a>
+    </li>
+    <li>
+      <a class="email"
+         href="mailto:?subject=Does%20the%20Adonis%20test%20really%20exist%3f&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fdoes-the-adonis-test-really-exist%2f">
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   
 </div>
 
 
 
-<div class="universal-wrapper">
-  
+  <div class="article-container">
 
-  
-  
-  <div>
-    <h2><a href="/post/2015-07-23-r-rmarkdown/">Hello R Markdown</a></h2>
-    <div class="article-style">
+    <div class="article-style" itemprop="articleBody">
       
-      R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.
-      
+
+
+<p>I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, <code>adonis</code> is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).</p>
+<p>A quick google search appears to suggest that one potential difference might be that the statistical test carried out by the <code>adonis()</code> function is capable of handling both categoric and continuous predictors. In contrast, non-parametric MANOVA is only able to handle categoric predictors. This difference sort of makes sense, but I’m still not convinced that we should be using the term “adonis test”.</p>
+<p>I was also interested to see how many microbial ecology studies actually refer to this so called “adonis test” to see whether we are to blame for this confusion. I conducted a highly rigorous and robust google scholar search (yep, really!) on the terms “adonis test” and “adonis test” + microb* and limited results from 2001-present.</p>
+<p><img src="/post/2018-12-12-does-the-adonis-test-really-exist_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>As it turns out, 84% of the studies that mention “adonis test” also feature the word “microb*“, suggesting that we might be to blame! Also, only 11 of these studies used the term”MANOVA“, suggesting that the vast majority did not elaborate on the statistical procedure initiated by the <code>adonis</code> function.</p>
+<p>If I’m completely wrong on this and there is such a thing as an adonis test then please do tell me. But it seems to be that we need to be a little more careful when describing the statistical methods we use…</p>
+
     </div>
+
+    
+
+
+
+
+    
+
+
+
+
+
+
+<div class="media author-card" itemscope itemtype="http://schema.org/Person">
+  
+  <img class="portrait mr-3" src="/img/portrait.jpg" itemprop="image" alt="Avatar">
+  
+  <div class="media-body">
+    <h5 class="card-title" itemprop="name"><a href="/">Dave Clark</a></h5>
+    <h6 class="card-subtitle">Post-doctoral researcher in microbial ecology</h6>
+    
+    <ul class="network-icon" aria-hidden="true">
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/#contact" >
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://twitter.com/microbeEcology" target="_blank" rel="noopener">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://scholar.google.co.uk/citations?user=fFhbgeAAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+          <i class="ai ai-google-scholar"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+        
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="https://github.com/dave-clark" target="_blank" rel="noopener">
+          <i class="fab fa-github"></i>
+        </a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a itemprop="sameAs" href="/static/files/David_Clark_CV.pdf" >
+          <i class="ai ai-cv"></i>
+        </a>
+      </li>
+      
+    </ul>
   </div>
-  
-
-  
-
 </div>
+
+
+
+
+    
+    
+
+    
+
+    
+
+
+  </div>
+</article>
+
 <div class="container">
   <footer class="site-footer">
-  
-  <p class="powered-by">
-    <a href="/privacy/">Privacy Policy</a>
-  </p>
   
 
   <p class="powered-by">
@@ -500,6 +709,4 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   </body>
 </html>
-
-
 

@@ -4,6 +4,38 @@
     
     <url>
     
+      <loc>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</loc>
+      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</loc>
+      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</loc>
+      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</loc>
+      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>https://Dave-Clark.github.io/tutorial/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
@@ -68,23 +100,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/getting-started/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>https://Dave-Clark.github.io/publication/person-re-id/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -110,15 +126,6 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/publication_types/2/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/academic/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -154,7 +161,7 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <lastmod>2018-12-10T20:46:02+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -172,24 +179,6 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/publication_types/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/categories/r/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/r-markdown/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -216,24 +205,6 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/tags/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/plot/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/regression/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>

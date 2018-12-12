@@ -13,25 +13,40 @@
     
     
     <item>
-      <title>Academic: the website designer for Hugo</title>
-      <link>https://Dave-Clark.github.io/post/getting-started/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0100</pubDate>
+      <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
+      <link>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/getting-started/</guid>
-      <description>Academic makes it easy to create a beautiful website for free using Markdown. Customize anything on your site with widgets, themes, and language packs.
-Follow our easy step by step guide to learn how to build your own free website with Academic. Check out the personal demo or the business demo of what you&amp;rsquo;ll get in less than 10 minutes.
- View the documentation Ask a question Request a feature or report a bug Updating?</description>
+      <guid>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
+      <description>I was recently asked by one of my PhD supervisors to help out on a paper by doing some metagenomic analyses. My mission was essentially to perform some taxonomic analyses of metagenomes and show how a metagenome generated in our lab related to these. So, naturally, I said yes, carried out the necessary analyses and proceeded to design a figure to show the result. I figured a dendrogram would be a nice way of showing compositional similarity between the community we studied and other communities.</description>
     </item>
     
     <item>
-      <title>Hello R Markdown</title>
-      <link>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</link>
-      <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
+      <title>Does the Adonis test really exist?</title>
+      <link>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/2015-07-23-r-rmarkdown/</guid>
-      <description>R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
+      <guid>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</guid>
+      <description>I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, adonis is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).</description>
+    </item>
+    
+    <item>
+      <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier</title>
+      <link>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
+      <description>As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.</description>
+    </item>
+    
+    <item>
+      <title>Merging Taxonomy With Non-Qiime OTU Tables</title>
+      <link>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
+      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
+      <description>This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using Qiime, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!
+But what to do if you haven’t/don’t want to use Qiime to cluster OTUs?</description>
     </item>
     
   </channel>
