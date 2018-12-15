@@ -15,10 +15,11 @@
   
     
   
-  <meta name="description" content="As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.">
+  <meta name="description" content="I was recently asked via twitter to share some code on how I implemented the facet_zoom() function, from the newly released ggforce package, to zoom in on a particular region of a map. I’ve no idea if this is the “best” way of creating these sorts of maps, but anyway, here goes…
+This way of making maps requires a number of packages, so make sure you have these installed first, then load them like so…">
 
   
-  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
+  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/">
 
   
 
@@ -86,7 +87,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
+  <link rel="canonical" href="https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -94,25 +95,26 @@
   <meta property="twitter:creator" content="@microbeEcology">
   
   <meta property="og:site_name" content="Microbial Ecologist">
-  <meta property="og:url" content="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
-  <meta property="og:title" content="Know Your Fungi: A Brief Demo Of The New Fungal Classifier | Microbial Ecologist">
-  <meta property="og:description" content="As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.">
+  <meta property="og:url" content="https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/">
+  <meta property="og:title" content="Zoomed maps with ggforce! | Microbial Ecologist">
+  <meta property="og:description" content="I was recently asked via twitter to share some code on how I implemented the facet_zoom() function, from the newly released ggforce package, to zoom in on a particular region of a map. I’ve no idea if this is the “best” way of creating these sorts of maps, but anyway, here goes…
+This way of making maps requires a number of packages, so make sure you have these installed first, then load them like so…">
   
   
     
   <meta property="og:image" content="https://Dave-Clark.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-uk">
   
-  <meta property="article:published_time" content="2018-12-12T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-12-15T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-12-12T15:14:08&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2018-12-15T00:00:00&#43;00:00">
   
 
   
 
-  <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier | Microbial Ecologist</title>
+  
+
+  <title>Zoomed maps with ggforce! | Microbial Ecologist</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" class="dark">
@@ -321,7 +323,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Know Your Fungi: A Brief Demo Of The New Fungal Classifier</h1>
+  <h1 itemprop="name">Zoomed maps with ggforce!</h1>
 
   
 
@@ -339,11 +341,9 @@
 
   <span class="article-date">
     
-        Last updated on
-    
-    <meta content="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-12-12 15:14:08 &#43;0000 GMT" itemprop="dateModified">
-      Dec 12, 2018
+    <meta content="2018-12-15 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-15 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 15, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -353,7 +353,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 min read
   </span>
   
 
@@ -368,35 +368,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f"
+         href="https://twitter.com/intent/tweet?text=Zoomed%20maps%20with%20ggforce%21&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fzoomed-maps-with-ggforce%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fzoomed-maps-with-ggforce%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f&amp;title=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fzoomed-maps-with-ggforce%2f&amp;title=Zoomed%20maps%20with%20ggforce%21"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f&amp;title=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fzoomed-maps-with-ggforce%2f&amp;title=Zoomed%20maps%20with%20ggforce%21"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f">
+         href="mailto:?subject=Zoomed%20maps%20with%20ggforce%21&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fzoomed-maps-with-ggforce%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -435,25 +435,68 @@
       
 
 
-<p>As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline <code>Qiime</code>, making it nice and easy to apply to your own data.</p>
-<p>But what if you are for dealing with fungal ITS sequences instead? Well a recent paper from <a href="http://www.mycologia.org/content/early/2015/10/28/14-293.abstract">Deshpande et al</a> piqued my interest for several reasons. The paper describes a new curated database of fungal ITS sequences and demonstrates that the RDP naive Bayesian classifier does a decent job of classifying ITS sequences when trained on this database.</p>
-<p>Unfortunately, using the RDP classifier on ITS sequences means going off piste so to speak and using the standalone classifier outside of <code>Qiime</code>. Given that most people never use the classifier outside of <code>Qiime</code>, I thought a brief demonstration might be useful. For all of the following, I’m assuming you’re using BioLinux and are at least somewhat familiar with the Linux terminal.</p>
-<p>First of all, clone the RDPtools github repo like so:</p>
-<pre class="bash"><code>git clone https://github.com/rdpstaff/RDPTools.git</code></pre>
-<p>Then, enter the newly created directory and set up the RDPtools software:</p>
-<pre class="bash"><code>cd RDPTools
-git submodule init
-git submodule updat
-make</code></pre>
-<p>You’ll get a lot of text whizzing through the terminal, don’t worry, you haven’t yet entered the Matrix! Once these processes finish the classifier has installed and is ready for use. However, we must now download some additional files which will allow the classifier to classify our fungal ITS sequences. To download these files, type:</p>
-<pre class="bash"><code>wget &quot;http://rdp.cme.msu.edu/download/rdpclassifiertraindata/data.tgz&quot;</code></pre>
-<p>This may take a few minutes depending on your connection speed. The files are packaged in what we call a tarball (kind of like a windows zip folder). To unpack them:</p>
-<pre class="bash"><code>tar -zxvf data.tgz</code></pre>
-<p>Now when we list the contents of our directory, we can see a new directory, “data”, has been created. This folder contains all the files we need to use the Warcup based classifier (and also the UNITE and LSU data handily).</p>
-<p>I’m going to assume you’ve already clustered your ITS sequences into operational taxonomic units and picked a representative sequence for each OTU using <a href="http://qiime.org/scripts/pick_rep_set.html">Qiime</a> or other means.</p>
-<p>Now we simply call the classifier, tell it to use the Warcup classification files, and tell it where out data is. Simple:</p>
-<pre class="bash"><code>java -Xmx1g -jar classifier.jar classify -t data/classifier/fungalits_warcup/rRNAClassifier.properties -o classifiedFungi.txt /path/to/data/fungalITS_repSet.fasta</code></pre>
-<p>A new file (“classifiedFungi.txt”) will have been created, containing the taxonomic assignments of each fungal sequence, complete with confidence values, pretty cool! You can of course train the classifier yourself on a custom database, in which case, follow the steps <a href="https://github.com/rdpstaff/classifier">here</a> Anyway, I hope this was useful and demonstrates that venturing outside of <code>Qiime</code> is not necessarily that difficult!</p>
+<p>I was recently asked via twitter to share some code on how I implemented the <code>facet_zoom</code>() function, from the newly released <code>ggforce</code> package, to zoom in on a particular region of a map. I’ve no idea if this is the “best” way of creating these sorts of maps, but anyway, here goes…</p>
+<p>This way of making maps requires a number of packages, so make sure you have these installed first, then load them like so…</p>
+<pre class="r"><code>library(mapdata)
+library(maptools)
+library(raster)
+library(rgeos)
+library(ggplot2)
+library(ggforce)
+library(ggsn)</code></pre>
+<p>Our first step is to source the data that will form our map’s base layer. This comes from the <code>mapdata</code> package, and we will need the <code>worldHires</code> data. You’ll get an automatic graphical output which should be a map of the world.</p>
+<pre class="r"><code>mapBase &lt;- map(&quot;worldHires&quot;, fill = T)</code></pre>
+<p><img src="/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We now need to manipulate these data a bit to go from a <code>map</code> class object, to a <code>SpatialPolygons</code> object, which we can use with <code>R</code>’s GIS capabilities.</p>
+<pre class="r"><code># first extract the IDs of what will be each spatial polygon
+ids &lt;- sapply(strsplit(mapBase$names, &quot;:&quot;), function(x) tail(x, n = 1))
+
+# then, coerce map to spatial polygons object
+mapPoly &lt;- map2SpatialPolygons(mapBase, IDs = ids,
+    proj4string = CRS(&quot;+proj=longlat +datum=WGS84&quot;))</code></pre>
+<p>Next, we need to create an extent object to limit the spatial polygons to the region we are interested in plotting. The extent object will also need to share the same projection as the spatial polygons object. The coordinates in the extent call are given in the form Xmin, Xmax, Ymin, Ymax.</p>
+<pre class="r"><code># create an extent and coerce to spatial polygon class
+mapExtent &lt;- as(extent(-20, 60, -40, 60), &quot;SpatialPolygons&quot;)
+
+# change projection to match the spatial polygon map
+proj4string(mapExtent) &lt;- CRS(proj4string(mapPoly))</code></pre>
+<p>Now we use the <code>gBuffer</code> and <code>gIntersection</code> functions to clip the spatial polygon map down to our region of interest. The 0 width buffer applied helps mop up topology errors with polygons self-intersecting.</p>
+<pre class="r"><code>buffMap &lt;- gBuffer(mapPoly, byid = TRUE, width = 0)
+cropMap &lt;- gIntersection(buffMap, mapExtent, byid = TRUE)</code></pre>
+<p>Phew, that’s all the nasty GIS stuff dealt with. The rest is fairly standard data manipulation, then making the map look pretty and informative.</p>
+<p><code>ggplot</code> is unable to deal with many spatial data formats, so we need to turn it into something it can read, a <code>data.frame</code>.</p>
+<pre class="r"><code>mapDf &lt;- fortify(cropMap, region = &quot;id&quot;)</code></pre>
+<p>Now let’s simulate some points to plot onto our map.</p>
+<pre class="r"><code>locations &lt;- data.frame(lat = runif(25, -40, 60),
+  long = runif(25, -20, 60))</code></pre>
+<p>We now have enough to make a basic, but effective map.</p>
+<pre class="r"><code>ggplot() +
+  geom_map(map = mapDf, data = mapDf, aes(x = long, y = lat, map_id = id),
+    fill = &quot;lightgrey&quot;, color = &quot;lightgrey&quot;) +
+  geom_point(data = locations, aes(x = long, y = lat, group = NULL))</code></pre>
+<p><img src="/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>Not bad, but we can do better. The background is annoying and needs to go, the points could be made bigger and clearer, and don’t forget to add a scalebar! Also, say there are lots of points in one region that we want to zoom in on, we could use the <code>facet_zoom</code> function to get a closer look at those points.</p>
+<p>In order to use <code>facet_zoom</code>, we need to create a factor level in the <code>locations</code> data that we can use to subset the data. Here, I want to zoom in on all points with a longitude and latitude greater than 20, so I need to create a factor which reflects this.</p>
+<pre class="r"><code>locations$region &lt;- ifelse(locations$lat &gt; 20 &amp; locations$long &gt; 20, 1, 2)
+# this designates all points in my region of interest as 1&#39;s, and
+# points outside the region are 2&#39;s</code></pre>
+<p>Now to tidy up our map.</p>
+<pre class="r"><code>ggplot() +
+  geom_map(map = mapDf, data = mapDf, aes(x = long, y = lat, map_id = id),
+    fill = &quot;lightgrey&quot;, color = &quot;lightgrey&quot;) +
+  geom_point(data = locations, aes(x = long, y = lat, group = NULL),
+    size = 2.5) +
+  ggsn:::scalebar(mapDf, dist = 2000, location = &quot;bottomright&quot;, model = &quot;WGS84&quot;,
+    dd2km = T, st.size = 5, anchor = c(x = 55, y = -40)) +
+  facet_zoom(xy = region == 1, zoom.size = 1) +
+  labs(x = &quot;Latitude (decimal degrees)&quot;, y = &quot;Longitude (decimal degrees)&quot;) +
+  theme_bw() +
+  theme(axis.text = element_text(size = 16),
+    axis.title = element_text(size = 18),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank())</code></pre>
+<p><img src="/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Depending on the dimensions of your zoomed in region, you may want to play around with the <code>zoom.size</code> parameter to get the right aspect ratio. But there you have it, combining <code>ggforce</code> with <code>ggplot2</code> to make lovely looking maps!</p>
 
     </div>
 

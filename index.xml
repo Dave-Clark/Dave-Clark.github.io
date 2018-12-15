@@ -11,6 +11,235 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Speeding up rarefaction curves for microbial community ecology</title>
+      <link>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
+      <description>
+
+
+&lt;p&gt;When beginning analyses on microbial community data, it is often helpful to compute rarefaction curves. A rarefaction curve tells you about the rate at which new species/OTUs are detected as you increase the number of individuals/sequences sampled. It does this by taking random subsamples from 1, up to the size of your sample, and computing the number of species present in each subsample. Ideally, you want your rarefaction curves to be relatively flat, as this indicates that additional sampling would not likely yield further species.&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;vegan&lt;/code&gt; package in &lt;code&gt;R&lt;/code&gt; has a nice function for computing rarefaction curves for species by site abundance tables. However, for microbial datasets this function is often prohibitively slow. This is due to the fact that we often have large numbers of samples, and each sample may contain several thousand sequences, meaning that a large number of random subsamples are taken.&lt;/p&gt;
+&lt;p&gt;Part of the problem is that the original function only makes use of a single processing core, meaning that random subsamples are computed serially, and each sample is processed serially. This means we could speed the function up by splitting samples across multiple cores. In short, we are parallelising the function.&lt;/p&gt;
+&lt;p&gt;Below is my attempt to modify the original code into a function that can use multiple processor cores to speed up the calculations.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# you will need to install the parallel package before hand
+# and the vegan package if you dont have it
+library(vegan)
+quickRareCurve &amp;lt;- function (x, step = 1, sample, xlab = &amp;quot;Sample Size&amp;quot;,
+  ylab = &amp;quot;Species&amp;quot;, label = TRUE, col, lty, max.cores = T, nCores = 1, ...)
+{
+    require(parallel)
+    x &amp;lt;- as.matrix(x)
+    if (!identical(all.equal(x, round(x)), TRUE))
+        stop(&amp;quot;function accepts only integers (counts)&amp;quot;)
+    if (missing(col))
+        col &amp;lt;- par(&amp;quot;col&amp;quot;)
+    if (missing(lty))
+        lty &amp;lt;- par(&amp;quot;lty&amp;quot;)
+    tot &amp;lt;- rowSums(x) # calculates library sizes
+    S &amp;lt;- specnumber(x) # calculates n species for each sample
+    if (any(S &amp;lt;= 0)) {
+        message(&amp;quot;empty rows removed&amp;quot;)
+        x &amp;lt;- x[S &amp;gt; 0, , drop = FALSE]
+        tot &amp;lt;- tot[S &amp;gt; 0]
+        S &amp;lt;- S[S &amp;gt; 0]
+    } # removes any empty rows
+    nr &amp;lt;- nrow(x) # number of samples
+    col &amp;lt;- rep(col, length.out = nr)
+    lty &amp;lt;- rep(lty, length.out = nr)
+    # parallel mclapply
+    # set number of cores
+    mc &amp;lt;- getOption(&amp;quot;mc.cores&amp;quot;, ifelse(max.cores, detectCores(), nCores))
+    message(paste(&amp;quot;Using &amp;quot;, mc, &amp;quot; cores&amp;quot;))
+    out &amp;lt;- mclapply(seq_len(nr), mc.cores = mc, function(i) {
+        n &amp;lt;- seq(1, tot[i], by = step)
+        if (n[length(n)] != tot[i])
+            n &amp;lt;- c(n, tot[i])
+        drop(rarefy(x[i, ], n))
+    })
+    Nmax &amp;lt;- sapply(out, function(x) max(attr(x, &amp;quot;Subsample&amp;quot;)))
+    Smax &amp;lt;- sapply(out, max)
+     plot(c(1, max(Nmax)), c(1, max(Smax)), xlab = xlab, ylab = ylab,
+       type = &amp;quot;n&amp;quot;, ...)
+    if (!missing(sample)) {
+      abline(v = sample)
+      rare &amp;lt;- sapply(out, function(z) approx(x = attr(z, &amp;quot;Subsample&amp;quot;),
+         y = z, xout = sample, rule = 1)$y)
+      abline(h = rare, lwd = 0.5)
+      }
+    for (ln in seq_along(out)) {
+      N &amp;lt;- attr(out[[ln]], &amp;quot;Subsample&amp;quot;)
+      lines(N, out[[ln]], col = col[ln], lty = lty[ln], ...)
+      }
+    if (label) {
+      ordilabel(cbind(tot, S), labels = rownames(x), ...)
+      }
+    invisible(out)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Most of the code is verbatim to the original, but you’ll notice a few extra arguments to specify, and a few extra lines that determine how many cores the function will use.&lt;/p&gt;
+&lt;p&gt;Essentially, if you do not specify a number of cores, the function will default to using all available cores, which will allow the quickest calculation. Otherwise, you can specify &lt;code&gt;max.cores = F&lt;/code&gt;, which will allow you to specify the number of cores using &lt;code&gt;nCores&lt;/code&gt;. This is handy if you need some cores to remain usable whilst running the function.&lt;/p&gt;
+&lt;p&gt;Below is a usage example.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load some dummy data
+data(dune)
+
+quickRareCurve(dune) # will use all cores and print how many cores you have
+
+quickRareCurve(dune, max.cores = F, nCores = 2) # use only 2 cores&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We can compare the new function’s performance to the original using the &lt;code&gt;microbenchmark&lt;/code&gt; package, as below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
+
+microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;## Unit: milliseconds
+##                  expr      min       lq      mean    median       uq
+##       rarecurve(dune) 35.18197 81.57729  79.22478  82.75713  84.7925
+##  quickRareCurve(dune) 98.19293 99.29134 101.25665 100.35054 102.2720
+##        max neval
+##   90.18635    10
+##  107.72471    10&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&amp;gt; 50 samples, ~ 15,000 sequences per sample), &lt;code&gt;quickRareCurve&lt;/code&gt; can be around 3 times faster.&lt;/p&gt;
+&lt;p&gt;Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Zoomed maps with ggforce!</title>
+      <link>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</guid>
+      <description>
+
+
+&lt;p&gt;I was recently asked via twitter to share some code on how I implemented the &lt;code&gt;facet_zoom&lt;/code&gt;() function, from the newly released &lt;code&gt;ggforce&lt;/code&gt; package, to zoom in on a particular region of a map. I’ve no idea if this is the “best” way of creating these sorts of maps, but anyway, here goes…&lt;/p&gt;
+&lt;p&gt;This way of making maps requires a number of packages, so make sure you have these installed first, then load them like so…&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(mapdata)
+library(maptools)
+library(raster)
+library(rgeos)
+library(ggplot2)
+library(ggforce)
+library(ggsn)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Our first step is to source the data that will form our map’s base layer. This comes from the &lt;code&gt;mapdata&lt;/code&gt; package, and we will need the &lt;code&gt;worldHires&lt;/code&gt; data. You’ll get an automatic graphical output which should be a map of the world.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapBase &amp;lt;- map(&amp;quot;worldHires&amp;quot;, fill = T)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We now need to manipulate these data a bit to go from a &lt;code&gt;map&lt;/code&gt; class object, to a &lt;code&gt;SpatialPolygons&lt;/code&gt; object, which we can use with &lt;code&gt;R&lt;/code&gt;’s GIS capabilities.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first extract the IDs of what will be each spatial polygon
+ids &amp;lt;- sapply(strsplit(mapBase$names, &amp;quot;:&amp;quot;), function(x) tail(x, n = 1))
+
+# then, coerce map to spatial polygons object
+mapPoly &amp;lt;- map2SpatialPolygons(mapBase, IDs = ids,
+    proj4string = CRS(&amp;quot;+proj=longlat +datum=WGS84&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Next, we need to create an extent object to limit the spatial polygons to the region we are interested in plotting. The extent object will also need to share the same projection as the spatial polygons object. The coordinates in the extent call are given in the form Xmin, Xmax, Ymin, Ymax.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# create an extent and coerce to spatial polygon class
+mapExtent &amp;lt;- as(extent(-20, 60, -40, 60), &amp;quot;SpatialPolygons&amp;quot;)
+
+# change projection to match the spatial polygon map
+proj4string(mapExtent) &amp;lt;- CRS(proj4string(mapPoly))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we use the &lt;code&gt;gBuffer&lt;/code&gt; and &lt;code&gt;gIntersection&lt;/code&gt; functions to clip the spatial polygon map down to our region of interest. The 0 width buffer applied helps mop up topology errors with polygons self-intersecting.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;buffMap &amp;lt;- gBuffer(mapPoly, byid = TRUE, width = 0)
+cropMap &amp;lt;- gIntersection(buffMap, mapExtent, byid = TRUE)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Phew, that’s all the nasty GIS stuff dealt with. The rest is fairly standard data manipulation, then making the map look pretty and informative.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ggplot&lt;/code&gt; is unable to deal with many spatial data formats, so we need to turn it into something it can read, a &lt;code&gt;data.frame&lt;/code&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapDf &amp;lt;- fortify(cropMap, region = &amp;quot;id&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now let’s simulate some points to plot onto our map.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;locations &amp;lt;- data.frame(lat = runif(25, -40, 60),
+  long = runif(25, -20, 60))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We now have enough to make a basic, but effective map.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot() +
+  geom_map(map = mapDf, data = mapDf, aes(x = long, y = lat, map_id = id),
+    fill = &amp;quot;lightgrey&amp;quot;, color = &amp;quot;lightgrey&amp;quot;) +
+  geom_point(data = locations, aes(x = long, y = lat, group = NULL))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Not bad, but we can do better. The background is annoying and needs to go, the points could be made bigger and clearer, and don’t forget to add a scalebar! Also, say there are lots of points in one region that we want to zoom in on, we could use the &lt;code&gt;facet_zoom&lt;/code&gt; function to get a closer look at those points.&lt;/p&gt;
+&lt;p&gt;In order to use &lt;code&gt;facet_zoom&lt;/code&gt;, we need to create a factor level in the &lt;code&gt;locations&lt;/code&gt; data that we can use to subset the data. Here, I want to zoom in on all points with a longitude and latitude greater than 20, so I need to create a factor which reflects this.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;locations$region &amp;lt;- ifelse(locations$lat &amp;gt; 20 &amp;amp; locations$long &amp;gt; 20, 1, 2)
+# this designates all points in my region of interest as 1&amp;#39;s, and
+# points outside the region are 2&amp;#39;s&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now to tidy up our map.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot() +
+  geom_map(map = mapDf, data = mapDf, aes(x = long, y = lat, map_id = id),
+    fill = &amp;quot;lightgrey&amp;quot;, color = &amp;quot;lightgrey&amp;quot;) +
+  geom_point(data = locations, aes(x = long, y = lat, group = NULL),
+    size = 2.5) +
+  ggsn:::scalebar(mapDf, dist = 2000, location = &amp;quot;bottomright&amp;quot;, model = &amp;quot;WGS84&amp;quot;,
+    dd2km = T, st.size = 5, anchor = c(x = 55, y = -40)) +
+  facet_zoom(xy = region == 1, zoom.size = 1) +
+  labs(x = &amp;quot;Latitude (decimal degrees)&amp;quot;, y = &amp;quot;Longitude (decimal degrees)&amp;quot;) +
+  theme_bw() +
+  theme(axis.text = element_text(size = 16),
+    axis.title = element_text(size = 18),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_blank())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Depending on the dimensions of your zoomed in region, you may want to play around with the &lt;code&gt;zoom.size&lt;/code&gt; parameter to get the right aspect ratio. But there you have it, combining &lt;code&gt;ggforce&lt;/code&gt; with &lt;code&gt;ggplot2&lt;/code&gt; to make lovely looking maps!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>ggplot2; From default to delightful</title>
+      <link>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</link>
+      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</guid>
+      <description>
+
+
+&lt;p&gt;If you use &lt;code&gt;R&lt;/code&gt; to analyse and plot your data, then you’ve probably heard of and used the &lt;code&gt;ggplot2&lt;/code&gt; package, written by Hadley Wickham. &lt;code&gt;ggplot2&lt;/code&gt; is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.&lt;/p&gt;
+&lt;p&gt;However, &lt;code&gt;ggplot2&lt;/code&gt; is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!). Therefore, it can seem like a lot of work to go from a basic plot to something that is approaching publication quality. Whilst there are many excellent guides out there to help with this process, I thought I’d weigh in with a few tips and personal preferences which have helped me to elevate my plots to another level.&lt;/p&gt;
+&lt;p&gt;Let’s begin by loading the package and simulating some data to play around with.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+
+myData &amp;lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10, 10),
+  catVar = rep(c(1:4), times = 250))
+
+head(myData)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##       var1      var2 catVar
+## 1 94.23994 -1.937782      1
+## 2 55.38800  3.144662      2
+## 3 47.82335 -2.186647      3
+## 4 26.30024 -4.740056      4
+## 5 58.41232 -8.794706      1
+## 6 46.38606 -6.323146      2&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.&lt;/p&gt;
+&lt;p&gt;Now let’s create the most basic scatter plot possible with this data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
+plot1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; That looks ok, but it’s not perfect. The text and points are quite small, the black points are bit abrasive on the eye and the grey background is a little distracting. Additionally, the axis labels are not informative and we are also obscuring potentially interesting trends by plotting all of the data from our different groups together. So, lets set about fixing those things.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
+  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
+  facet_wrap(~catVar)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So now the points are a little bigger and grey, which makes them easier to look at and with an aesthetically nicer muted contrast. We’ve also split the data into 4 separate panels, so that we can seen any group specific trends far easier, and without the visual clutter of lots of different colour points (ideal when there is a monetary cost to publishing color figures). But that grey background is now obscuring things, and our axis labels are still hard to read and uninformative. Let’s fix those.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
+  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
+  facet_wrap(~catVar) +
+  labs(x = &amp;quot;Variable 1&amp;quot;, y = &amp;quot;Variable 2&amp;quot;) +
+  theme_bw()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;We’re starting to look quite good now, the points are now much more visible, yet not too harsh against the white background, and our axis labels now tell us something about the data (if it were real!). Now we can apply some final polish to really get this looking great!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) +
+  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
+  facet_wrap(~catVar) +
+  labs(x = &amp;quot;Variable 1&amp;quot;, y = &amp;quot;Variable 2&amp;quot;) +
+  theme_bw() +
+  theme(axis.text = element_text(size = 16),
+    axis.title = element_text(size = 18),
+    strip.text.x = element_text(size = 16),
+    panel.grid.major = element_blank())&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Done! The text around the plot is now much easier to see, and we’ve removed the major gridlines which means less distraction from the data. Everything is far clearer and easier to read.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;One final tip, save your graphs as pdfs. PDFs are known as vector based graphics and maintain resolution far better than bitmap based graphics such as PNGs, JPEGs or TIFs. The added bonus is that many journals also request your figures to be in a vector based format, so you’re also helping your figures become published.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;myPlot.pdf&amp;quot;, finalPlot, width = 8, height = 8, device = &amp;quot;pdf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
       <link>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>

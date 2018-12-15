@@ -15,10 +15,10 @@
   
     
   
-  <meta name="description" content="As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.">
+  <meta name="description" content="When beginning analyses on microbial community data, it is often helpful to compute rarefaction curves. A rarefaction curve tells you about the rate at which new species/OTUs are detected as you increase the number of individuals/sequences sampled. It does this by taking random subsamples from 1, up to the size of your sample, and computing the number of species present in each subsample. Ideally, you want your rarefaction curves to be relatively flat, as this indicates that additional sampling would not likely yield further species.">
 
   
-  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
+  <link rel="alternate" hreflang="en-uk" href="https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/">
 
   
 
@@ -86,7 +86,7 @@
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
+  <link rel="canonical" href="https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -94,25 +94,25 @@
   <meta property="twitter:creator" content="@microbeEcology">
   
   <meta property="og:site_name" content="Microbial Ecologist">
-  <meta property="og:url" content="https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/">
-  <meta property="og:title" content="Know Your Fungi: A Brief Demo Of The New Fungal Classifier | Microbial Ecologist">
-  <meta property="og:description" content="As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.">
+  <meta property="og:url" content="https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/">
+  <meta property="og:title" content="Speeding up rarefaction curves for microbial community ecology | Microbial Ecologist">
+  <meta property="og:description" content="When beginning analyses on microbial community data, it is often helpful to compute rarefaction curves. A rarefaction curve tells you about the rate at which new species/OTUs are detected as you increase the number of individuals/sequences sampled. It does this by taking random subsamples from 1, up to the size of your sample, and computing the number of species present in each subsample. Ideally, you want your rarefaction curves to be relatively flat, as this indicates that additional sampling would not likely yield further species.">
   
   
     
   <meta property="og:image" content="https://Dave-Clark.github.io/img/icon-192.png">
   <meta property="og:locale" content="en-uk">
   
-  <meta property="article:published_time" content="2018-12-12T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2018-12-15T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2018-12-12T15:14:08&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2018-12-15T00:00:00&#43;00:00">
   
 
   
 
-  <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier | Microbial Ecologist</title>
+  
+
+  <title>Speeding up rarefaction curves for microbial community ecology | Microbial Ecologist</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" class="dark">
@@ -321,7 +321,7 @@
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">Know Your Fungi: A Brief Demo Of The New Fungal Classifier</h1>
+  <h1 itemprop="name">Speeding up rarefaction curves for microbial community ecology</h1>
 
   
 
@@ -339,11 +339,9 @@
 
   <span class="article-date">
     
-        Last updated on
-    
-    <meta content="2018-12-12 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2018-12-12 15:14:08 &#43;0000 GMT" itemprop="dateModified">
-      Dec 12, 2018
+    <meta content="2018-12-15 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2018-12-15 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Dec 15, 2018
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -353,7 +351,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    3 min read
+    4 min read
   </span>
   
 
@@ -368,35 +366,35 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f"
+         href="https://twitter.com/intent/tweet?text=Speeding%20up%20rarefaction%20curves%20for%20microbial%20community%20ecology&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fspeeding-up-rarefaction-curves-for-microbial-community-ecology%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f"
+         href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fDave-Clark.github.io%2fpost%2fspeeding-up-rarefaction-curves-for-microbial-community-ecology%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f&amp;title=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fspeeding-up-rarefaction-curves-for-microbial-community-ecology%2f&amp;title=Speeding%20up%20rarefaction%20curves%20for%20microbial%20community%20ecology"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f&amp;title=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier"
+         href="http://service.weibo.com/share/share.php?url=https%3a%2f%2fDave-Clark.github.io%2fpost%2fspeeding-up-rarefaction-curves-for-microbial-community-ecology%2f&amp;title=Speeding%20up%20rarefaction%20curves%20for%20microbial%20community%20ecology"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Know%20Your%20Fungi%3a%20A%20Brief%20Demo%20Of%20The%20New%20Fungal%20Classifier&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fknow-your-fungi-a-brief-demo-of-the-new-fungal-classifier%2f">
+         href="mailto:?subject=Speeding%20up%20rarefaction%20curves%20for%20microbial%20community%20ecology&amp;body=https%3a%2f%2fDave-Clark.github.io%2fpost%2fspeeding-up-rarefaction-curves-for-microbial-community-ecology%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -435,25 +433,88 @@
       
 
 
-<p>As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline <code>Qiime</code>, making it nice and easy to apply to your own data.</p>
-<p>But what if you are for dealing with fungal ITS sequences instead? Well a recent paper from <a href="http://www.mycologia.org/content/early/2015/10/28/14-293.abstract">Deshpande et al</a> piqued my interest for several reasons. The paper describes a new curated database of fungal ITS sequences and demonstrates that the RDP naive Bayesian classifier does a decent job of classifying ITS sequences when trained on this database.</p>
-<p>Unfortunately, using the RDP classifier on ITS sequences means going off piste so to speak and using the standalone classifier outside of <code>Qiime</code>. Given that most people never use the classifier outside of <code>Qiime</code>, I thought a brief demonstration might be useful. For all of the following, I’m assuming you’re using BioLinux and are at least somewhat familiar with the Linux terminal.</p>
-<p>First of all, clone the RDPtools github repo like so:</p>
-<pre class="bash"><code>git clone https://github.com/rdpstaff/RDPTools.git</code></pre>
-<p>Then, enter the newly created directory and set up the RDPtools software:</p>
-<pre class="bash"><code>cd RDPTools
-git submodule init
-git submodule updat
-make</code></pre>
-<p>You’ll get a lot of text whizzing through the terminal, don’t worry, you haven’t yet entered the Matrix! Once these processes finish the classifier has installed and is ready for use. However, we must now download some additional files which will allow the classifier to classify our fungal ITS sequences. To download these files, type:</p>
-<pre class="bash"><code>wget &quot;http://rdp.cme.msu.edu/download/rdpclassifiertraindata/data.tgz&quot;</code></pre>
-<p>This may take a few minutes depending on your connection speed. The files are packaged in what we call a tarball (kind of like a windows zip folder). To unpack them:</p>
-<pre class="bash"><code>tar -zxvf data.tgz</code></pre>
-<p>Now when we list the contents of our directory, we can see a new directory, “data”, has been created. This folder contains all the files we need to use the Warcup based classifier (and also the UNITE and LSU data handily).</p>
-<p>I’m going to assume you’ve already clustered your ITS sequences into operational taxonomic units and picked a representative sequence for each OTU using <a href="http://qiime.org/scripts/pick_rep_set.html">Qiime</a> or other means.</p>
-<p>Now we simply call the classifier, tell it to use the Warcup classification files, and tell it where out data is. Simple:</p>
-<pre class="bash"><code>java -Xmx1g -jar classifier.jar classify -t data/classifier/fungalits_warcup/rRNAClassifier.properties -o classifiedFungi.txt /path/to/data/fungalITS_repSet.fasta</code></pre>
-<p>A new file (“classifiedFungi.txt”) will have been created, containing the taxonomic assignments of each fungal sequence, complete with confidence values, pretty cool! You can of course train the classifier yourself on a custom database, in which case, follow the steps <a href="https://github.com/rdpstaff/classifier">here</a> Anyway, I hope this was useful and demonstrates that venturing outside of <code>Qiime</code> is not necessarily that difficult!</p>
+<p>When beginning analyses on microbial community data, it is often helpful to compute rarefaction curves. A rarefaction curve tells you about the rate at which new species/OTUs are detected as you increase the number of individuals/sequences sampled. It does this by taking random subsamples from 1, up to the size of your sample, and computing the number of species present in each subsample. Ideally, you want your rarefaction curves to be relatively flat, as this indicates that additional sampling would not likely yield further species.</p>
+<p>The <code>vegan</code> package in <code>R</code> has a nice function for computing rarefaction curves for species by site abundance tables. However, for microbial datasets this function is often prohibitively slow. This is due to the fact that we often have large numbers of samples, and each sample may contain several thousand sequences, meaning that a large number of random subsamples are taken.</p>
+<p>Part of the problem is that the original function only makes use of a single processing core, meaning that random subsamples are computed serially, and each sample is processed serially. This means we could speed the function up by splitting samples across multiple cores. In short, we are parallelising the function.</p>
+<p>Below is my attempt to modify the original code into a function that can use multiple processor cores to speed up the calculations.</p>
+<pre class="r"><code># you will need to install the parallel package before hand
+# and the vegan package if you dont have it
+library(vegan)
+quickRareCurve &lt;- function (x, step = 1, sample, xlab = &quot;Sample Size&quot;,
+  ylab = &quot;Species&quot;, label = TRUE, col, lty, max.cores = T, nCores = 1, ...)
+{
+    require(parallel)
+    x &lt;- as.matrix(x)
+    if (!identical(all.equal(x, round(x)), TRUE))
+        stop(&quot;function accepts only integers (counts)&quot;)
+    if (missing(col))
+        col &lt;- par(&quot;col&quot;)
+    if (missing(lty))
+        lty &lt;- par(&quot;lty&quot;)
+    tot &lt;- rowSums(x) # calculates library sizes
+    S &lt;- specnumber(x) # calculates n species for each sample
+    if (any(S &lt;= 0)) {
+        message(&quot;empty rows removed&quot;)
+        x &lt;- x[S &gt; 0, , drop = FALSE]
+        tot &lt;- tot[S &gt; 0]
+        S &lt;- S[S &gt; 0]
+    } # removes any empty rows
+    nr &lt;- nrow(x) # number of samples
+    col &lt;- rep(col, length.out = nr)
+    lty &lt;- rep(lty, length.out = nr)
+    # parallel mclapply
+    # set number of cores
+    mc &lt;- getOption(&quot;mc.cores&quot;, ifelse(max.cores, detectCores(), nCores))
+    message(paste(&quot;Using &quot;, mc, &quot; cores&quot;))
+    out &lt;- mclapply(seq_len(nr), mc.cores = mc, function(i) {
+        n &lt;- seq(1, tot[i], by = step)
+        if (n[length(n)] != tot[i])
+            n &lt;- c(n, tot[i])
+        drop(rarefy(x[i, ], n))
+    })
+    Nmax &lt;- sapply(out, function(x) max(attr(x, &quot;Subsample&quot;)))
+    Smax &lt;- sapply(out, max)
+     plot(c(1, max(Nmax)), c(1, max(Smax)), xlab = xlab, ylab = ylab,
+       type = &quot;n&quot;, ...)
+    if (!missing(sample)) {
+      abline(v = sample)
+      rare &lt;- sapply(out, function(z) approx(x = attr(z, &quot;Subsample&quot;),
+         y = z, xout = sample, rule = 1)$y)
+      abline(h = rare, lwd = 0.5)
+      }
+    for (ln in seq_along(out)) {
+      N &lt;- attr(out[[ln]], &quot;Subsample&quot;)
+      lines(N, out[[ln]], col = col[ln], lty = lty[ln], ...)
+      }
+    if (label) {
+      ordilabel(cbind(tot, S), labels = rownames(x), ...)
+      }
+    invisible(out)
+}</code></pre>
+<p>Most of the code is verbatim to the original, but you’ll notice a few extra arguments to specify, and a few extra lines that determine how many cores the function will use.</p>
+<p>Essentially, if you do not specify a number of cores, the function will default to using all available cores, which will allow the quickest calculation. Otherwise, you can specify <code>max.cores = F</code>, which will allow you to specify the number of cores using <code>nCores</code>. This is handy if you need some cores to remain usable whilst running the function.</p>
+<p>Below is a usage example.</p>
+<pre class="r"><code># load some dummy data
+data(dune)
+
+quickRareCurve(dune) # will use all cores and print how many cores you have
+
+quickRareCurve(dune, max.cores = F, nCores = 2) # use only 2 cores</code></pre>
+<p><img src="/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>We can compare the new function’s performance to the original using the <code>microbenchmark</code> package, as below.</p>
+<pre class="r"><code>library(microbenchmark)
+
+microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)</code></pre>
+<p><img src="/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre><code>## Unit: milliseconds
+##                  expr      min       lq      mean    median       uq
+##       rarecurve(dune) 35.18197 81.57729  79.22478  82.75713  84.7925
+##  quickRareCurve(dune) 98.19293 99.29134 101.25665 100.35054 102.2720
+##        max neval
+##   90.18635    10
+##  107.72471    10</code></pre>
+<p>As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&gt; 50 samples, ~ 15,000 sequences per sample), <code>quickRareCurve</code> can be around 3 times faster.</p>
+<p>Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.</p>
 
     </div>
 

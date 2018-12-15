@@ -4,8 +4,32 @@
     
     <url>
     
+      <loc>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</loc>
+      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</loc>
+      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</loc>
+      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</loc>
-      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
   
@@ -13,7 +37,7 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</loc>
-      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
   
@@ -21,7 +45,7 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</loc>
-      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
   
@@ -29,7 +53,7 @@
     <url>
     
       <loc>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</loc>
-      <lastmod>2018-12-12T00:00:00+00:00</lastmod>
+      <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
   
