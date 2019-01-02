@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microbial Ecologist on Microbial Ecologist</title>
-    <link>https://Dave-Clark.github.io/</link>
+    <link>/</link>
     <description>Recent content in Microbial Ecologist on Microbial Ecologist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
@@ -11,11 +11,186 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Further testing of quickRareCurve</title>
+      <link>/post/further-testing-of-quickrarecurve/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/further-testing-of-quickrarecurve/</guid>
+      <description>
+
+
+&lt;p&gt;After my post yesterday, documenting a faster parallelised version of the &lt;code&gt;rarecurve&lt;/code&gt; function (&lt;code&gt;quickRareCurve&lt;/code&gt;), I realised it’d be good to show a real world example using it on a reasonably large OTU table, to prove that it is indeed quicker than the original function. So, here we go.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Starting with an OTU table in which rows are samples,
+# Cols are OTUs/species
+dim(otuTable)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]   48 5382&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# the first column of my data is the sample names
+# so remember [, -1] to not include it
+# Lets inspect sample sizes with a simple histogram
+hist(rowSums(otuTable[, -1]), xlab = &amp;quot;Sample sizes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;In this example, our OTU table contains 48 samples and 5381 OTUs, plus a column with the sample names in.&lt;/p&gt;
+&lt;p&gt;Now we can use &lt;code&gt;microbenchmark&lt;/code&gt; again to compare the performance of the original &lt;code&gt;rarecurve&lt;/code&gt; function to our faster parallel version, &lt;code&gt;quickRareCurve&lt;/code&gt;. We will then plot the results using &lt;code&gt;ggplot2&lt;/code&gt;. Warning: the code below will take some time to run!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
+library(ggplot2)
+
+# benchmark the two functions with 3 replicates
+testResult &amp;lt;- microbenchmark(
+  rarecurve(otuTable[, -1]),
+  quickRareCurve(otuTable[, -1]),
+  times = 3)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# convert from nanoseconds to minutes by dividing
+# time by 6e+10
+ggplot(testResult, aes(x = expr, y = time/6e+10)) +
+  geom_boxplot() +
+  labs(x = &amp;quot;Function&amp;quot;, y = &amp;quot;Time (minutes)&amp;quot;) +
+  theme(axis.text = element_text(size = 16),
+    axis.title = element_text(size = 18))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-4-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There you go, on a typical OTU table, the &lt;code&gt;quickRareCurve&lt;/code&gt; function is far quicker, reducing the processing time from ~25 minutes to &amp;lt; 5 minutes. The more samples in your OTU table, and the more CPU cores available, the greater the increase in performance.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Making maps with ggplot2 and sf</title>
+      <link>/post/making-maps-with-ggplot2-and-sf/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/making-maps-with-ggplot2-and-sf/</guid>
+      <description>
+
+
+&lt;p&gt;Recently, the newest version of the popular &lt;code&gt;ggplot2&lt;/code&gt; graphics package was announced, and it has some nifty mapping features that I was keen to try out (read more &lt;a href=&#34;https://www.tidyverse.org/articles/2018/07/ggplot2-3-0-0/&#34;&gt;here&lt;/a&gt;). Mainly, I was interested in the support for &lt;code&gt;sf&lt;/code&gt;, or “simple features”, objects. This class of objects were created as part of a wider &lt;code&gt;R&lt;/code&gt; package designed to make mapping and spatial analyses far easier.&lt;/p&gt;
+&lt;p&gt;The latest update of &lt;code&gt;ggplot2&lt;/code&gt; not only makes plotting from &lt;code&gt;sf&lt;/code&gt; objects trivial, but also means that some quite nice map figures can be made with relatively little effort, as you’ll hopefully see below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first you&amp;#39;ll need to update your version of ggplot to the latest version
+# install.packages(&amp;quot;ggplot2&amp;quot;)
+library(ggplot2)
+
+# now lets load some other packages that we&amp;#39;ll need to load and manipulate
+# spatial data in R
+library(mapdata)
+library(sf)
+library(lwgeom)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Assuming you managed to get those packages installed and loaded ok (if you didn’t, you almost certainly have encountered some dependency issues), we can now start playing with some data. To begin, let’s load a world map to play with.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapBase &amp;lt;- map(&amp;quot;worldHires&amp;quot;, fill = T, plot = F)
+
+# now we need to coerce it to an &amp;quot;sf&amp;quot; object, and fix any
+mapBase &amp;lt;- st_as_sf(mapBase)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# now let&amp;#39;s try cropping it to a region of Europe
+cropMap &amp;lt;- st_crop(mapBase, xmin = -15, xmax = 30, ymin = 30, ymax = 60)
+
+# note we get an error message about Self-intersection...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# we can fix this using the lwgeom library...
+mapBase &amp;lt;- st_make_valid(mapBase)
+cropMap &amp;lt;- st_crop(mapBase, xmin = -15, xmax = 30, ymin = 30, ymax = 60)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## although coordinates are longitude/latitude, st_intersection assumes that they are planar&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Warning: attribute variables are assumed to be spatially constant
+## throughout all geometries&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# now it works fine...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now that we have a valid &lt;code&gt;sf&lt;/code&gt; object to plot, we can start using the &lt;code&gt;geom_sf&lt;/code&gt; function to start making some nice maps.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# basic map to start with
+ggplot(cropMap) + geom_sf()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Cool right? Notice a few neat things? Firstly, &lt;code&gt;ggplot&lt;/code&gt; draws a nice graticule for you, complete with the correct “degrees” symbol and N, S, E, or W to denote the correct hemisphere. Secondly, go ahead and resize the map… What do you notice? Hopefully, you’ll see that the aspect ratio of the map has been fixed so that your map always projects correctly. This is a great feature and saves you some time faffing around trying to manually correct the aspect ratio.&lt;/p&gt;
+&lt;p&gt;Having explored some basic features, we can now start to tailor our map and add features to it using other packages, or data.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# let&amp;#39;s say we want to highlight the location of Spain, clarify the axes,
+# and remove those annoying grid lines
+spainMap &amp;lt;- ggplot(cropMap,
+    aes(fill = factor(ifelse(cropMap$ID == &amp;quot;Spain&amp;quot;, 1, 2)))) +
+  geom_sf() +
+  labs(x = &amp;quot;Longitude&amp;quot;, y = &amp;quot;Latitude&amp;quot;, fill = &amp;quot;&amp;quot;) +
+  scale_fill_manual(values = c(&amp;quot;darkgrey&amp;quot;, &amp;quot;lightgrey&amp;quot;),
+    labels = c(&amp;quot;Spain&amp;quot;, &amp;quot;Not Spain&amp;quot;)) +
+  theme_bw() +
+  theme(panel.grid = element_line(colour = &amp;quot;transparent&amp;quot;),
+    axis.title = element_text(size = 18),
+    axis.text = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    legend.title = element_text(size = 14))
+
+spainMap&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Pretty easy so far right? But what if we want to add some points to the map, for example to highlight sampling locations? Well, this is really easy too!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# simulate some random coordinates within the limits of our map
+locations &amp;lt;- data.frame(lat = runif(25, 30, 60), long = runif(25, -15, 30))
+
+# now convert this dataframe into an sf dataframe
+sfPoints &amp;lt;- st_as_sf(locations, coords = c(&amp;quot;long&amp;quot;, &amp;quot;lat&amp;quot;), crs = 4326)
+
+# and simply add another geom_sf layer to the plot to include the points
+pointsMap &amp;lt;- ggplot() +
+  geom_sf(data = cropMap,
+    aes(fill = factor(ifelse(cropMap$ID == &amp;quot;Spain&amp;quot;, 1, 2)))) +
+  geom_sf(data = sfPoints, col = &amp;quot;red&amp;quot;, size = 3) +
+  labs(x = &amp;quot;Longitude&amp;quot;, y = &amp;quot;Latitude&amp;quot;, fill = &amp;quot;&amp;quot;) +
+  scale_fill_manual(values = c(&amp;quot;darkgrey&amp;quot;, &amp;quot;lightgrey&amp;quot;),
+    labels = c(&amp;quot;Spain&amp;quot;, &amp;quot;Not Spain&amp;quot;)) +
+  theme_bw() +
+  theme(panel.grid = element_line(colour = &amp;quot;transparent&amp;quot;),
+    axis.title = element_text(size = 18),
+    axis.text = element_text(size = 16),
+    legend.text = element_text(size = 14),
+    legend.title = element_text(size = 14))
+
+pointsMap&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Again, super simple. Now, I’d like to create a smaller map, that just shows Spain and any points inside it, so I can make a nice panel figure with the two maps side by side. Also, don’t forget a scale bar, which we can add using the &lt;code&gt;ggspatial&lt;/code&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggspatial)
+
+# work out which points are in the polygon of interest
+spainPoints &amp;lt;- st_join(sfPoints, cropMap[cropMap$ID == &amp;quot;Spain&amp;quot;, ],
+  join = st_intersects)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## although coordinates are longitude/latitude, st_intersects assumes that they are planar&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;spainZoom &amp;lt;- ggplot() +
+  geom_sf(data = cropMap[cropMap$ID == &amp;quot;Spain&amp;quot;, ]) +
+  annotation_scale(location = &amp;quot;br&amp;quot;, text_cex = 2) +
+  geom_sf(data = spainPoints[spainPoints$ID == &amp;quot;Spain&amp;quot;, ], colour = &amp;quot;red&amp;quot;,
+    size = 3) +
+  theme_void() +
+  theme(panel.grid = element_line(colour = &amp;quot;transparent&amp;quot;))
+
+spainZoom&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Scale on map varies by more than 10%, scale bar may be inaccurate&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So, now we have our two maps sorted, we can arrange them side by side using the &lt;code&gt;cowplot&lt;/code&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(cowplot)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Attaching package: &amp;#39;cowplot&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     ggsave&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_grid(spainZoom, pointsMap, labels = &amp;quot;AUTO&amp;quot;, rel_widths = c(0.6, 1))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Scale on map varies by more than 10%, scale bar may be inaccurate&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;There you have it, combining the &lt;code&gt;sf&lt;/code&gt; and newest &lt;code&gt;ggplot2&lt;/code&gt; packages allows you quickly and easily make some neat looking map figures!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The future of USEARCH: A closed source software in an open source world</title>
+      <link>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</guid>
+      <description>
+
+
+&lt;p&gt;Let me start off by stating that I have enormous respect for &lt;a href=&#34;http://drive5.com/index.htm&#34;&gt;Rob Edgar&lt;/a&gt; (creator of USEARCH, UPARSE etc.). His contributions to the field of bioinformatics, and indirectly to the fields of molecular and microbial ecology have been huge, you only need to look at his citation rates to see that! So this post is not intended as a criticism of him or his work in any way.&lt;/p&gt;
+&lt;p&gt;That said, I’ve recently been thinking about the deluge of new algorithms for picking Operational Taxonomic Units (OTUs) from molecular sequence datasets and wondering where, and how, USEARCH, UCLUST &lt;em&gt;et al.&lt;/em&gt; will fit in.&lt;/p&gt;
+&lt;p&gt;Rob Edgar only made 32-bit versions of all his software freely available for users, with users having to pay $885 for a 64-bit license. A 32-bit license essentially limits the amount of RAM your computer can access whilst using this software to 4gb. So even if you had a cluster computer at your disposal, you’d still be shackled by the 4gb limit. A few years ago, when 454 pyrosequencing was the predominant sequencing platform, this wasn’t so much of a problem because the datasets were big, but not huge. However, with the rise of Illumina’s platforms such as the HiSeq and MiSeq, molecular datasets are becoming truly enormous, meaning more RAM is needed to work with them.&lt;/p&gt;
+&lt;p&gt;Furthermore, the arrival of &lt;a href=&#34;https://github.com/torognes/vsearch&#34;&gt;VSEARCH&lt;/a&gt;, a 64-bit open source work-alike of USEARCH, has meant that you now don’t need to shell out for an expensive 64-bit license to get USEARCH-esque results. This leads me to wonder, what is the future of USEARCH now that there are good, free, and open-source alternatives?&lt;/p&gt;
+&lt;p&gt;Looking at the citation rates of Edgar’s papers, there are no obvious signs of it losing popularity… Data on the plot below were downloaded using Web of Science. It will be interesting to see if the popularity of this classic piece of bioinformatics software ever declines.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-the-future-of-usearch-a-closed-source-software-in-an-open-source-world_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Speeding up rarefaction curves for microbial community ecology</title>
-      <link>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
+      <link>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
+      <guid>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
       <description>
 
 
@@ -86,19 +261,19 @@ data(dune)
 quickRareCurve(dune) # will use all cores and print how many cores you have
 
 quickRareCurve(dune, max.cores = F, nCores = 2) # use only 2 cores&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can compare the new function’s performance to the original using the &lt;code&gt;microbenchmark&lt;/code&gt; package, as below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
 
 microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
-##                  expr      min       lq      mean    median       uq
-##       rarecurve(dune) 35.18197 81.57729  79.22478  82.75713  84.7925
-##  quickRareCurve(dune) 98.19293 99.29134 101.25665 100.35054 102.2720
-##        max neval
-##   90.18635    10
-##  107.72471    10&lt;/code&gt;&lt;/pre&gt;
+##                  expr      min       lq     mean   median       uq
+##       rarecurve(dune) 34.71771 77.90474 79.12968 80.79578 88.26615
+##  quickRareCurve(dune) 80.64867 81.29090 82.88654 82.78781 83.91697
+##       max neval
+##  98.14384    10
+##  85.82301    10&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&amp;gt; 50 samples, ~ 15,000 sequences per sample), &lt;code&gt;quickRareCurve&lt;/code&gt; can be around 3 times faster.&lt;/p&gt;
 &lt;p&gt;Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.&lt;/p&gt;
 </description>
@@ -106,10 +281,10 @@ microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&l
     
     <item>
       <title>Zoomed maps with ggforce!</title>
-      <link>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</link>
+      <link>/post/zoomed-maps-with-ggforce/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</guid>
+      <guid>/post/zoomed-maps-with-ggforce/</guid>
       <description>
 
 
@@ -124,7 +299,7 @@ library(ggforce)
 library(ggsn)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Our first step is to source the data that will form our map’s base layer. This comes from the &lt;code&gt;mapdata&lt;/code&gt; package, and we will need the &lt;code&gt;worldHires&lt;/code&gt; data. You’ll get an automatic graphical output which should be a map of the world.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mapBase &amp;lt;- map(&amp;quot;worldHires&amp;quot;, fill = T)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We now need to manipulate these data a bit to go from a &lt;code&gt;map&lt;/code&gt; class object, to a &lt;code&gt;SpatialPolygons&lt;/code&gt; object, which we can use with &lt;code&gt;R&lt;/code&gt;’s GIS capabilities.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first extract the IDs of what will be each spatial polygon
 ids &amp;lt;- sapply(strsplit(mapBase$names, &amp;quot;:&amp;quot;), function(x) tail(x, n = 1))
@@ -152,7 +327,7 @@ cropMap &amp;lt;- gIntersection(buffMap, mapExtent, byid = TRUE)&lt;/code&gt;&lt
   geom_map(map = mapDf, data = mapDf, aes(x = long, y = lat, map_id = id),
     fill = &amp;quot;lightgrey&amp;quot;, color = &amp;quot;lightgrey&amp;quot;) +
   geom_point(data = locations, aes(x = long, y = lat, group = NULL))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Not bad, but we can do better. The background is annoying and needs to go, the points could be made bigger and clearer, and don’t forget to add a scalebar! Also, say there are lots of points in one region that we want to zoom in on, we could use the &lt;code&gt;facet_zoom&lt;/code&gt; function to get a closer look at those points.&lt;/p&gt;
 &lt;p&gt;In order to use &lt;code&gt;facet_zoom&lt;/code&gt;, we need to create a factor level in the &lt;code&gt;locations&lt;/code&gt; data that we can use to subset the data. Here, I want to zoom in on all points with a longitude and latitude greater than 20, so I need to create a factor which reflects this.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;locations$region &amp;lt;- ifelse(locations$lat &amp;gt; 20 &amp;amp; locations$long &amp;gt; 20, 1, 2)
@@ -173,17 +348,17 @@ cropMap &amp;lt;- gIntersection(buffMap, mapExtent, byid = TRUE)&lt;/code&gt;&lt
     axis.title = element_text(size = 18),
     panel.grid.minor = element_blank(),
     panel.grid.major = element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-zoomed-maps-with-ggforce_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Depending on the dimensions of your zoomed in region, you may want to play around with the &lt;code&gt;zoom.size&lt;/code&gt; parameter to get the right aspect ratio. But there you have it, combining &lt;code&gt;ggforce&lt;/code&gt; with &lt;code&gt;ggplot2&lt;/code&gt; to make lovely looking maps!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>ggplot2; From default to delightful</title>
-      <link>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</link>
+      <link>/post/ggplot2-from-default-to-delightful/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</guid>
+      <guid>/post/ggplot2-from-default-to-delightful/</guid>
       <description>
 
 
@@ -196,29 +371,29 @@ myData &amp;lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10,
   catVar = rep(c(1:4), times = 250))
 
 head(myData)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       var1      var2 catVar
-## 1 94.23994 -1.937782      1
-## 2 55.38800  3.144662      2
-## 3 47.82335 -2.186647      3
-## 4 26.30024 -4.740056      4
-## 5 58.41232 -8.794706      1
-## 6 46.38606 -6.323146      2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##         var1      var2 catVar
+## 1 54.5336339  2.175505      1
+## 2  0.9328997  9.131121      2
+## 3 61.5198253  9.506731      3
+## 4 82.6896989  7.119838      4
+## 5 29.8747321 -4.059640      1
+## 6 68.0296077  7.957926      2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.&lt;/p&gt;
 &lt;p&gt;Now let’s create the most basic scatter plot possible with this data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
 plot1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; That looks ok, but it’s not perfect. The text and points are quite small, the black points are bit abrasive on the eye and the grey background is a little distracting. Additionally, the axis labels are not informative and we are also obscuring potentially interesting trends by plotting all of the data from our different groups together. So, lets set about fixing those things.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; That looks ok, but it’s not perfect. The text and points are quite small, the black points are bit abrasive on the eye and the grey background is a little distracting. Additionally, the axis labels are not informative and we are also obscuring potentially interesting trends by plotting all of the data from our different groups together. So, lets set about fixing those things.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
   geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
   facet_wrap(~catVar)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;So now the points are a little bigger and grey, which makes them easier to look at and with an aesthetically nicer muted contrast. We’ve also split the data into 4 separate panels, so that we can seen any group specific trends far easier, and without the visual clutter of lots of different colour points (ideal when there is a monetary cost to publishing color figures). But that grey background is now obscuring things, and our axis labels are still hard to read and uninformative. Let’s fix those.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
   geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
   facet_wrap(~catVar) +
   labs(x = &amp;quot;Variable 1&amp;quot;, y = &amp;quot;Variable 2&amp;quot;) +
   theme_bw()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We’re starting to look quite good now, the points are now much more visible, yet not too harsh against the white background, and our axis labels now tell us something about the data (if it were real!). Now we can apply some final polish to really get this looking great!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) +
   geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
@@ -231,9 +406,9 @@ plot1&lt;/code&gt;&lt;/pre&gt;
     panel.grid.major = element_blank())&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Done! The text around the plot is now much easier to see, and we’ve removed the major gridlines which means less distraction from the data. Everything is far clearer and easier to read.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One final tip, save your graphs as pdfs. PDFs are known as vector based graphics and maintain resolution far better than bitmap based graphics such as PNGs, JPEGs or TIFs. The added bonus is that many journals also request your figures to be in a vector based format, so you’re also helping your figures become published.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;myPlot.pdf&amp;quot;, finalPlot, width = 8, height = 8, device = &amp;quot;pdf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 </description>
@@ -241,10 +416,10 @@ plot1&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
-      <link>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
+      <link>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
+      <guid>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
       <description>
 
 
@@ -256,11 +431,11 @@ plot1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(dune)  # load some dummy data
 commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # calculate the community similarity distance matrix
 plot(hclust(commDist))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There you go. It’s easy to generate a basic dendrogram using any sort of distance matrix. So I then started tidying it up to make it a bit more presentable.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;siteLabels &amp;lt;- paste(&amp;quot;Sample &amp;quot;, rownames(dune), sep = &amp;quot;&amp;quot;)  # create some sample labels
 plot(hclust(commDist), labels = siteLabels, main = &amp;quot;&amp;quot;, sub = &amp;quot;&amp;quot;, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Much nicer! We’ve gotten rid of the nonsense at the bottom, given a more informative y axis label and generally made things ‘nicer’. Except, when I saw the first draft, I saw my supervisor had rotated the plot so that the leaf tips pointed to the left. For some reason this just looked wrong to my eyes and so I opted to replot the dendrogram, in a more sensible orientation.&lt;/p&gt;
 &lt;p&gt;Note that to do this, we have to change our approach slightly. For some stupid reason, when we want to plot a dendrogram horizontally, we have to coerce the hclust output to dendrogram class. Additionally, the ‘plot’ method for a dendrogram class object no longer accepts the labels parameter, so we must rename the rows of our dataframe and recalculate the distance matrix instead.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rownames(dune) &amp;lt;- siteLabels  # rename rows of dataframe with our sample labels created earlier
@@ -272,7 +447,7 @@ par(mar = c(5, 1, 1, 5))  # adjust margins to make room for tip labels
 # replot the dendrogram, note that we can now remove the &amp;quot;main =&amp;quot; and &amp;quot;sub =&amp;quot; arguments
 # also remember to switch the x and y labels!
 plot(as.dendrogram(hclust(commDist)), xlab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2, horiz = T)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Perfect! Or at least I thought so. Turns out my supervisor liked the improved orientation but didn’t like the way the branches all ended at the same point. That should be easy to correct right? Wrong!&lt;/p&gt;
 &lt;p&gt;I spent near enough an entire day trying to get this plot perfect without success. I went as far as exploring the &lt;code&gt;ggdendro&lt;/code&gt; package which allows plotting of dendrograms in a ggplot-esque manner.&lt;/p&gt;
 &lt;p&gt;Then I stumbled on a solution, enter &lt;code&gt;dendextend&lt;/code&gt;! A quick peek of the package manual reveals some really awesome capabilities, I really urge you to take a &lt;a href=&#34;https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html&#34;&gt;look&lt;/a&gt; as some of the figures you can create are amazing. For my humble needs, this package solved all my problems easily, and in a couple of lines I’d created exactly the figure my supervisor wanted.&lt;/p&gt;
@@ -304,24 +479,24 @@ plot(as.dendrogram(hclust(commDist)), xlab = &amp;quot;Jaccard Similarity&amp;qu
 dend1 &amp;lt;- as.dendrogram(hclust(commDist))
 wellHung &amp;lt;- hang.dendrogram(dend1)  # the cheeky variable names are absolutely essential!
 plot_horiz.dendrogram(wellHung, side = F, xlab = &amp;quot;Jaccard Dissimilarity&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There you go, an awesome package which save me from wasting too many more days of work!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Does the Adonis test really exist?</title>
-      <link>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</link>
+      <link>/post/does-the-adonis-test-really-exist/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</guid>
+      <guid>/post/does-the-adonis-test-really-exist/</guid>
       <description>
 
 
 &lt;p&gt;I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, &lt;code&gt;adonis&lt;/code&gt; is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).&lt;/p&gt;
 &lt;p&gt;A quick google search appears to suggest that one potential difference might be that the statistical test carried out by the &lt;code&gt;adonis()&lt;/code&gt; function is capable of handling both categoric and continuous predictors. In contrast, non-parametric MANOVA is only able to handle categoric predictors. This difference sort of makes sense, but I’m still not convinced that we should be using the term “adonis test”.&lt;/p&gt;
 &lt;p&gt;I was also interested to see how many microbial ecology studies actually refer to this so called “adonis test” to see whether we are to blame for this confusion. I conducted a highly rigorous and robust google scholar search (yep, really!) on the terms “adonis test” and “adonis test” + microb* and limited results from 2001-present.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-12-does-the-adonis-test-really-exist_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-does-the-adonis-test-really-exist_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As it turns out, 84% of the studies that mention “adonis test” also feature the word “microb*“, suggesting that we might be to blame! Also, only 11 of these studies used the term”MANOVA“, suggesting that the vast majority did not elaborate on the statistical procedure initiated by the &lt;code&gt;adonis&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;If I’m completely wrong on this and there is such a thing as an adonis test then please do tell me. But it seems to be that we need to be a little more careful when describing the statistical methods we use…&lt;/p&gt;
 </description>
@@ -329,10 +504,10 @@ plot_horiz.dendrogram(wellHung, side = F, xlab = &amp;quot;Jaccard Dissimilarity
     
     <item>
       <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier</title>
-      <link>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
+      <link>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
+      <guid>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
       <description>
 
 
@@ -360,10 +535,10 @@ make&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>Merging Taxonomy With Non-Qiime OTU Tables</title>
-      <link>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
+      <link>/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
+      <guid>/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
       <description>
 
 
@@ -393,10 +568,10 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
     
     <item>
       <title>Example Page</title>
-      <link>https://Dave-Clark.github.io/tutorial/example/</link>
+      <link>/tutorial/example/</link>
       <pubDate>Sun, 09 Sep 2018 00:00:00 +0100</pubDate>
       
-      <guid>https://Dave-Clark.github.io/tutorial/example/</guid>
+      <guid>/tutorial/example/</guid>
       <description>
 
 &lt;p&gt;In this tutorial, I&amp;rsquo;ll share my top 10 tips for getting started with Academic:&lt;/p&gt;
@@ -412,11 +587,21 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
     </item>
     
     <item>
+      <title>Privacy Policy</title>
+      <link>/privacy/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0100</pubDate>
+      
+      <guid>/privacy/</guid>
+      <description>&lt;p&gt;&amp;hellip;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Example Talk</title>
-      <link>https://Dave-Clark.github.io/talk/example/</link>
+      <link>/talk/example/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://Dave-Clark.github.io/talk/example/</guid>
+      <guid>/talk/example/</guid>
       <description>&lt;div class=&#34;alert alert-note&#34;&gt;
   &lt;p&gt;Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.&lt;/p&gt;
 
@@ -437,19 +622,19 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
     
     <item>
       <title>External Project</title>
-      <link>https://Dave-Clark.github.io/project/external-project/</link>
+      <link>/project/external-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0100</pubDate>
       
-      <guid>https://Dave-Clark.github.io/project/external-project/</guid>
+      <guid>/project/external-project/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Internal Project</title>
-      <link>https://Dave-Clark.github.io/project/internal-project/</link>
+      <link>/project/internal-project/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0100</pubDate>
       
-      <guid>https://Dave-Clark.github.io/project/internal-project/</guid>
+      <guid>/project/internal-project/</guid>
       <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
 
 &lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
@@ -459,209 +644,6 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
 &lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
 
 &lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A Person Re-Identification System For Mobile Devices</title>
-      <link>https://Dave-Clark.github.io/publication/person-re-id/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0100</pubDate>
-      
-      <guid>https://Dave-Clark.github.io/publication/person-re-id/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Mobile visual clothing search</title>
-      <link>https://Dave-Clark.github.io/publication/clothing-search/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0100</pubDate>
-      
-      <guid>https://Dave-Clark.github.io/publication/clothing-search/</guid>
-      <description>&lt;p&gt;More detail can easily be written here using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Slides</title>
-      <link>https://Dave-Clark.github.io/slides/example-slides/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://Dave-Clark.github.io/slides/example-slides/</guid>
-      <description>
-
-&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
-&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
-&lt;li&gt;Supports speaker notes&lt;/li&gt;
-&lt;li&gt;Mobile friendly slides&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
-
-&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Code block:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
-if porridge == &amp;quot;blueberry&amp;quot;:
-    print(&amp;quot;Eating...&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
-
-&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
-
-&lt;p&gt;Block math:&lt;/p&gt;
-
-&lt;p&gt;$$
-f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
-$$&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
-
-&lt;p&gt;Make content appear incrementally&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
-{{% fragment %}} **Two** {{% /fragment %}}
-{{% fragment %}} Three {{% /fragment %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
-
-&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
-  One
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  &lt;strong&gt;Two&lt;/strong&gt;
-&lt;/span&gt;
-&lt;span class=&#34;fragment &#34; &gt;
-  Three
-&lt;/span&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
-
-&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
-- Only the speaker can read these notes
-- Press `S` key to view
-{{% /speaker_note %}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
-
-&lt;aside class=&#34;notes&#34;&gt;
-  &lt;ul&gt;
-&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
-&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/aside&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
-&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
-&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
-&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
-&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;ul&gt;
-&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
-&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
-&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
-&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-
-&lt;section data-noprocess data-shortcode-slide
-  
-      
-      data-background-image=&#34;/img/boards.jpg&#34;
-  &gt;
-
-
-&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
-
-&lt;p&gt;Customize the slide style and background&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
-{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
-{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
-
-&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
-
-&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
-.reveal section h2,
-.reveal section h3 {
-  color: navy;
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

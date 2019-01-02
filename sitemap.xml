@@ -4,31 +4,55 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</loc>
-      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+      <loc>/post/further-testing-of-quickrarecurve/</loc>
+      <lastmod>2019-01-01T00:00:00+00:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/zoomed-maps-with-ggforce/</loc>
-      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+      <loc>/post/making-maps-with-ggplot2-and-sf/</loc>
+      <lastmod>2019-01-01T00:00:00+00:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</loc>
-      <lastmod>2018-12-15T00:00:00+00:00</lastmod>
+      <loc>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</loc>
+      <lastmod>2019-01-01T00:00:00+00:00</lastmod>
     </url>
     
   
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</loc>
+      <loc>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</loc>
+      <lastmod>2018-12-15T02:01:21+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/zoomed-maps-with-ggforce/</loc>
+      <lastmod>2018-12-15T02:01:21+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/ggplot2-from-default-to-delightful/</loc>
+      <lastmod>2018-12-15T02:01:21+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</loc>
       <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
@@ -36,7 +60,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</loc>
+      <loc>/post/does-the-adonis-test-really-exist/</loc>
       <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
@@ -44,7 +68,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</loc>
+      <loc>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</loc>
       <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
@@ -52,7 +76,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</loc>
+      <loc>/post/merging-taxonomy-with-non-qiime-otu-tables/</loc>
       <lastmod>2018-12-12T15:14:08+00:00</lastmod>
     </url>
     
@@ -60,7 +84,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tutorial/example/</loc>
+      <loc>/tutorial/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -68,7 +92,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tutorial/</loc>
+      <loc>/tutorial/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -76,7 +100,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/talk/example/</loc>
+      <loc>/privacy/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -84,7 +108,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/post/</loc>
+      <loc>/talk/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -92,7 +116,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/</loc>
+      <loc>/post/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -100,7 +124,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/talk/</loc>
+      <loc>/publication/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -108,7 +132,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/external-project/</loc>
+      <loc>/talk/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -116,7 +140,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/internal-project/</loc>
+      <loc>/project/external-project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -124,7 +148,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/person-re-id/</loc>
+      <loc>/project/internal-project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -132,7 +156,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication/clothing-search/</loc>
+      <loc>/publication/person-re-id/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -140,33 +164,15 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/1/</loc>
+      <loc>/publication/clothing-search/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
     </url>
     
   
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/2/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/categories/</loc>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>https://Dave-Clark.github.io/tags/deep-learning/</loc>
+      <loc>/publication_types/1/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -175,7 +181,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/demo/</loc>
+      <loc>/publication_types/2/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -184,7 +190,33 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/</loc>
+      <loc>/categories/</loc>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/deep-learning/</loc>
+      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/demo/</loc>
+      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/</loc>
       <lastmod>2018-12-10T20:46:02+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -193,7 +225,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/project/</loc>
+      <loc>/project/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -202,7 +234,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/publication_types/</loc>
+      <loc>/publication_types/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -211,7 +243,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/slides/</loc>
+      <loc>/slides/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
@@ -220,7 +252,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/slides/example-slides/</loc>
+      <loc>/slides/example-slides/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
     
@@ -228,7 +260,7 @@
     
     <url>
     
-      <loc>https://Dave-Clark.github.io/tags/</loc>
+      <loc>/tags/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
     </url>
