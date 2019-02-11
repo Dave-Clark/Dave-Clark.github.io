@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regionalization on Microbial Ecologist</title>
+    <link>/tags/regionalization/</link>
+    <description>Recent content in regionalization on Microbial Ecologist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-uk</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Fri, 01 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/regionalization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Biogeography at the limits of life: Do extremophilic microbial communities show biogeographical regionalization?</title>
+      <link>/publication/clark_et_al_halophiles/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/clark_et_al_halophiles/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

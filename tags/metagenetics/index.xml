@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Metagenetics on Microbial Ecologist</title>
+    <link>/tags/metagenetics/</link>
+    <description>Recent content in Metagenetics on Microbial Ecologist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-uk</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Thu, 01 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/metagenetics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Streams of data from drops of water: 21st century molecular microbial ecology</title>
+      <link>/publication/clark_et_al_wires/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/clark_et_al_wires/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -597,6 +597,24 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
     </item>
     
     <item>
+      <title>Streams of data from drops of water: 21st century molecular microbial ecology</title>
+      <link>/publication/clark_et_al_wires/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/clark_et_al_wires/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Biogeography at the limits of life: Do extremophilic microbial communities show biogeographical regionalization?</title>
+      <link>/publication/clark_et_al_halophiles/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/clark_et_al_halophiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Example Talk</title>
       <link>/talk/example/</link>
       <pubDate>Sun, 01 Jan 2017 00:00:00 +0000</pubDate>
@@ -618,24 +636,6 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
 
 &lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Soil compartment is a major determinant of the impact of simulated rainfall on desert microbiota</title>
-      <link>/publication/aslam_et_al/</link>
-      <pubDate>Thu, 01 Dec 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/aslam_et_al/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0100</pubDate>
-      
-      <guid>/project/external-project/</guid>
-      <description></description>
     </item>
     
   </channel>

@@ -108,6 +108,22 @@
     
     <url>
     
+      <loc>/publication/clark_et_al_wires/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication/clark_et_al_halophiles/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/talk/example/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
@@ -141,7 +157,15 @@
     <url>
     
       <loc>/publication/aslam_et_al/</loc>
-      <lastmod>2016-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T00:19:07+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication/dumbrell_ferguson_clark/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
     </url>
     
   
@@ -189,8 +213,80 @@
     
     <url>
     
+      <loc>/tags/16s-rrna/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/publication_types/2/</loc>
-      <lastmod>2016-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/454-pyrosequencing/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication_types/6/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/amplicon/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/archaea/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/bacteria/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/biolinux/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/bioinformatics/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -224,8 +320,89 @@
     
     <url>
     
+      <loc>/tags/eukarya/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/illumina/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/metagenetics/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/metagenomics/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/</loc>
       <lastmod>2018-12-10T20:46:02+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/microbial-ecology/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/mothur/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/next-generation-sequencing/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/next-generation-sequencing/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/omics-methods/</loc>
+      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -251,6 +428,15 @@
     
     <url>
     
+      <loc>/tags/qiime/</loc>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/slides/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
       <priority>0</priority>
@@ -269,7 +455,70 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/dispersal/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/halite/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/halophiles/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/machine-learning/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/macroecology/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/next-generation-sequencing/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/regionalization/</loc>
+      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

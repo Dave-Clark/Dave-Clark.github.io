@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Illumina on Microbial Ecologist</title>
+    <link>/tags/illumina/</link>
+    <description>Recent content in Illumina on Microbial Ecologist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-uk</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/illumina/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Microbial community analysis by single-amplicon high-throughput next generation sequencing: data analysis–from raw output to ecology</title>
+      <link>/publication/dumbrell_ferguson_clark/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/dumbrell_ferguson_clark/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

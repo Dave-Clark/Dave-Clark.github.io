@@ -7,10 +7,73 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2018</copyright>
-    <lastBuildDate>Wed, 27 Apr 2016 00:00:00 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>16S rRNA</title>
+      <link>/tags/16s-rrna/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/16s-rrna/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>454-Pyrosequencing</title>
+      <link>/tags/454-pyrosequencing/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/454-pyrosequencing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Amplicon</title>
+      <link>/tags/amplicon/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/amplicon/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Archaea</title>
+      <link>/tags/archaea/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/archaea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bacteria</title>
+      <link>/tags/bacteria/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bacteria/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>BioLinux</title>
+      <link>/tags/biolinux/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/biolinux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bioinformatics</title>
+      <link>/tags/bioinformatics/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bioinformatics/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Deep Learning</title>
@@ -27,6 +90,159 @@
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0100</pubDate>
       
       <guid>/tags/demo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eukarya</title>
+      <link>/tags/eukarya/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/eukarya/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Illumina</title>
+      <link>/tags/illumina/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/illumina/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metagenetics</title>
+      <link>/tags/metagenetics/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/metagenetics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Metagenomics</title>
+      <link>/tags/metagenomics/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/metagenomics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Microbial ecology</title>
+      <link>/tags/microbial-ecology/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/microbial-ecology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mothur</title>
+      <link>/tags/mothur/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/mothur/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Next generation sequencing</title>
+      <link>/tags/next-generation-sequencing/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/next-generation-sequencing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Next-generation sequencing</title>
+      <link>/tags/next-generation-sequencing/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/next-generation-sequencing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Omics methods</title>
+      <link>/tags/omics-methods/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/omics-methods/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>QIIME</title>
+      <link>/tags/qiime/</link>
+      <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/qiime/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dispersal</title>
+      <link>/tags/dispersal/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/dispersal/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>halite</title>
+      <link>/tags/halite/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/halite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>halophiles</title>
+      <link>/tags/halophiles/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/halophiles/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>machine learning</title>
+      <link>/tags/machine-learning/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/machine-learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>macroecology</title>
+      <link>/tags/macroecology/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/macroecology/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>next generation sequencing</title>
+      <link>/tags/next-generation-sequencing/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/next-generation-sequencing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>regionalization</title>
+      <link>/tags/regionalization/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regionalization/</guid>
       <description></description>
     </item>
     
