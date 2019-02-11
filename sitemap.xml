@@ -4,6 +4,14 @@
     
     <url>
     
+      <loc>/publication/alzahrani_et_al/</loc>
+      <lastmod>2019-01-28T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/post/further-testing-of-quickrarecurve/</loc>
       <lastmod>2019-01-02T00:00:10+00:00</lastmod>
     </url>
@@ -84,22 +92,6 @@
     
     <url>
     
-      <loc>/tutorial/example/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tutorial/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/privacy/</loc>
       <lastmod>2018-12-06T13:28:59+00:00</lastmod>
     </url>
@@ -109,7 +101,7 @@
     <url>
     
       <loc>/publication/clark_et_al_wires/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
     </url>
     
   
@@ -117,15 +109,7 @@
     <url>
     
       <loc>/publication/clark_et_al_halophiles/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/talk/example/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
     </url>
     
   
@@ -157,7 +141,7 @@
     <url>
     
       <loc>/publication/aslam_et_al/</loc>
-      <lastmod>2019-02-11T00:19:07+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
     </url>
     
   
@@ -165,48 +149,7 @@
     <url>
     
       <loc>/publication/dumbrell_ferguson_clark/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/project/external-project/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/project/internal-project/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/publication/person-re-id/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/publication/clothing-search/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/publication_types/1/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
     </url>
     
   
@@ -214,7 +157,7 @@
     <url>
     
       <loc>/tags/16s-rrna/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -223,7 +166,7 @@
     <url>
     
       <loc>/publication_types/2/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-01-28T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -232,7 +175,7 @@
     <url>
     
       <loc>/tags/454-pyrosequencing/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -241,7 +184,7 @@
     <url>
     
       <loc>/publication_types/6/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -250,7 +193,7 @@
     <url>
     
       <loc>/tags/amplicon/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -259,7 +202,7 @@
     <url>
     
       <loc>/tags/archaea/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -268,7 +211,7 @@
     <url>
     
       <loc>/tags/bacteria/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -277,7 +220,7 @@
     <url>
     
       <loc>/tags/biolinux/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -286,7 +229,7 @@
     <url>
     
       <loc>/tags/bioinformatics/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -302,26 +245,8 @@
     
     <url>
     
-      <loc>/tags/deep-learning/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/tags/demo/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
       <loc>/tags/eukarya/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -330,7 +255,7 @@
     <url>
     
       <loc>/tags/illumina/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -339,7 +264,7 @@
     <url>
     
       <loc>/tags/metagenetics/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -348,7 +273,7 @@
     <url>
     
       <loc>/tags/metagenomics/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -366,7 +291,7 @@
     <url>
     
       <loc>/tags/microbial-ecology/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -375,7 +300,7 @@
     <url>
     
       <loc>/tags/mothur/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -384,7 +309,7 @@
     <url>
     
       <loc>/tags/next-generation-sequencing/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -393,7 +318,7 @@
     <url>
     
       <loc>/tags/next-generation-sequencing/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -402,16 +327,7 @@
     <url>
     
       <loc>/tags/omics-methods/</loc>
-      <lastmod>2018-02-01T00:00:00+00:00</lastmod>
-      <priority>0</priority>
-    </url>
-    
-  
-    
-    <url>
-    
-      <loc>/project/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -420,7 +336,7 @@
     <url>
     
       <loc>/publication_types/</loc>
-      <lastmod>2018-12-06T13:28:59+00:00</lastmod>
+      <lastmod>2019-01-28T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -429,7 +345,7 @@
     <url>
     
       <loc>/tags/qiime/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -455,7 +371,7 @@
     <url>
     
       <loc>/tags/</loc>
-      <lastmod>2016-11-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -464,7 +380,7 @@
     <url>
     
       <loc>/tags/dispersal/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -473,7 +389,7 @@
     <url>
     
       <loc>/tags/halite/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -482,7 +398,7 @@
     <url>
     
       <loc>/tags/halophiles/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -491,7 +407,7 @@
     <url>
     
       <loc>/tags/machine-learning/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -500,7 +416,7 @@
     <url>
     
       <loc>/tags/macroecology/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -509,7 +425,7 @@
     <url>
     
       <loc>/tags/next-generation-sequencing/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -518,7 +434,7 @@
     <url>
     
       <loc>/tags/regionalization/</loc>
-      <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+      <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
     </url>
     
