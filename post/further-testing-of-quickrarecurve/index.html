@@ -431,22 +431,22 @@ hist(rowSums(otuTable[, -1]), xlab = &quot;Sample sizes&quot;)</code></pre>
 <p>In this example, our OTU table contains 48 samples and 5381 OTUs, plus a column with the sample names in.</p>
 <p>Now we can use <code>microbenchmark</code> again to compare the performance of the original <code>rarecurve</code> function to our faster parallel version, <code>quickRareCurve</code>. We will then plot the results using <code>ggplot2</code>. Warning: the code below will take some time to run!</p>
 <pre class="r"><code>library(microbenchmark)
-library(ggplot2)
 
 # benchmark the two functions with 3 replicates
 testResult &lt;- microbenchmark(
   rarecurve(otuTable[, -1]),
   quickRareCurve(otuTable[, -1]),
   times = 3)</code></pre>
-<p><img src="/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code># convert from nanoseconds to minutes by dividing
+<pre class="r"><code>library(ggplot2)
+
+# convert from nanoseconds to minutes by dividing
 # time by 6e+10
 ggplot(testResult, aes(x = expr, y = time/6e+10)) +
   geom_boxplot() +
   labs(x = &quot;Function&quot;, y = &quot;Time (minutes)&quot;) +
   theme(axis.text = element_text(size = 16),
     axis.title = element_text(size = 18))</code></pre>
-<p><img src="/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>There you go, on a typical OTU table, the <code>quickRareCurve</code> function is far quicker, reducing the processing time from ~25 minutes to &lt; 5 minutes. The more samples in your OTU table, and the more CPU cores available, the greater the increase in performance.</p>
 
     </div>

@@ -469,8 +469,8 @@ cropMap &lt;- gIntersection(buffMap, mapExtent, byid = TRUE)</code></pre>
     fill = &quot;lightgrey&quot;, color = &quot;lightgrey&quot;) +
   geom_point(data = locations, aes(x = long, y = lat, group = NULL),
     size = 2.5) +
-  ggsn:::scalebar(mapDf, dist = 2000, location = &quot;bottomright&quot;, model = &quot;WGS84&quot;,
-    dd2km = T, st.size = 5, anchor = c(x = 55, y = -40)) +
+  ggsn::scalebar(data = mapDf, dist = 2000, model = &quot;WGS84&quot;, st.size = 5,
+    anchor = c(x = 55, y = -40), transform  = T, dist_unit = &quot;km&quot;) +
   facet_zoom(xy = region == 1, zoom.size = 1) +
   labs(x = &quot;Latitude (decimal degrees)&quot;, y = &quot;Longitude (decimal degrees)&quot;) +
   theme_bw() +
