@@ -11,6 +11,91 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Calculating the Ecological Hydrocarbon Exposure Index in R</title>
+      <link>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
+      <description>
+
+
+&lt;p&gt;Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment &lt;span class=&#34;citation&#34;&gt;(Lozada &lt;em&gt;et al.&lt;/em&gt;, &lt;a href=&#34;#ref-lozada_2014&#34;&gt;2014&lt;/a&gt;)&lt;/span&gt;. To their credit, the authors provided &lt;code&gt;R&lt;/code&gt; code to calculate their index in a supplementary PDF on the &lt;a href=&#34;https://www.jstage.jst.go.jp/article/jsme2/advpub/0/advpub_ME14028/_article/-char/ja/&#34;&gt;journal article page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;However, the original code was designed to run using a &lt;code&gt;Mothur&lt;/code&gt; formatted taxonomy file, which is not useful for users who might prefer other taxonomy assignment pipelines. Therefore, I decided to rewrite their script into a more useful function format, that can be applied to an OTU table with any taxonomy format. The function is hosted in my GitHub based package &lt;code&gt;ecolFudge&lt;/code&gt;, and an example of how to use this function is presented below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first let&amp;#39;s import a small OTU table as an example
+otus &amp;lt;- read.csv(&amp;quot;example_OTU_table.csv&amp;quot;)
+
+# look at structure of OTU table
+# note that our genus level taxonomy assignment is in &amp;quot;Genus&amp;quot; column
+# and our samples all start with &amp;quot;THx&amp;quot;
+str(otus)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## &amp;#39;data.frame&amp;#39;:    3488 obs. of  26 variables:
+##  $ OTU              : Factor w/ 3488 levels &amp;quot;OTU_1&amp;quot;,&amp;quot;OTU_10&amp;quot;,..: 1 1103 2205 2823 2934 3045 3156 3267 3378 2 ...
+##  $ THxT1x1Bac       : int  3 3429 4653 57 1 190 555 58 0 1 ...
+##  $ THxT1x2Bac       : int  1 24761 8476 144 11 1149 10748 628 3 19 ...
+##  $ THxT1x3Bac       : int  0 1301 511 13 0 72 101 61 1 0 ...
+##  $ THxT21x1Bac      : int  9955 5 52 332 871 127 3 33 207 52 ...
+##  $ THxT21x2Bac      : int  1148 51 273 1956 2237 222 18 23 144 94 ...
+##  $ THxT21x3Bac      : int  4155 17 328 2427 6246 886 34 198 1632 113 ...
+##  $ THxT3x1Bac       : int  3 7232 972 392 4 397 496 3002 0 19 ...
+##  $ THxT3x2Bac       : int  1 10328 939 798 22 177 962 3440 1 28 ...
+##  $ THxT3x3Bac       : int  1 12733 3892 1559 15 517 1960 2511 0 61 ...
+##  $ THxT7x1Bac       : int  31 1583 913 3835 2841 689 253 1392 1789 726 ...
+##  $ THxT7x2Bac       : int  4774 1422 614 2181 3066 352 461 1351 15 2378 ...
+##  $ THxT7x3Bac       : int  2651 2689 592 6684 1862 425 210 4090 617 1226 ...
+##  $ sum              : int  572326 423114 308751 239756 239329 159273 158127 152364 137010 118647 ...
+##  $ Domain           : Factor w/ 1 level &amp;quot;Bacteria&amp;quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Confidence_domain: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Phylum           : Factor w/ 37 levels &amp;quot;Acetothermia&amp;quot;,..: 32 32 32 32 32 32 32 32 32 32 ...
+##  $ Confidence_phylum: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Class            : Factor w/ 76 levels &amp;quot;Acetothermia_genera_incertae_sedis&amp;quot;,..: 45 45 45 45 45 45 39 45 15 15 ...
+##  $ Confidence_class : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Order            : Factor w/ 142 levels &amp;quot;Acanthopleuribacterales&amp;quot;,..: 96 96 9 9 136 107 24 96 110 110 ...
+##  $ Confidence_order : num  1 1 1 0.99 1 1 1 1 1 1 ...
+##  $ Family           : Factor w/ 283 levels &amp;quot;Acanthopleuribacteraceae&amp;quot;,..: 11 183 212 64 202 214 40 183 222 222 ...
+##  $ Confidence_family: num  1 1 0.98 0.94 1 1 1 1 1 1 ...
+##  $ Genus            : Factor w/ 878 levels &amp;quot;Acanthopleuribacter&amp;quot;,..: 32 556 644 170 189 653 79 807 656 654 ...
+##  $ Confidence_genus : num  1 1 0.98 0.94 1 0.97 1 1 0.48 0.99 ...&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# we first need to create a vector of sample names that we wish to calculate
+# the index for
+samples &amp;lt;- grep(&amp;quot;THx&amp;quot;, colnames(otus), value = T)
+
+# now we can load the ecolFudge package
+# if you haven&amp;#39;t installed it, install it using the devtools package:
+# devtools::install_github(&amp;quot;dave-clark/ecolFudge&amp;quot;)
+library(ecolFudge)
+
+# now we simply run the index function, giving it the name of our OTU table
+# the vector of sample column names, and the column with the genus level
+# taxonomy assignments
+sampleExposure &amp;lt;- ehei(otus, taxonomyCol = &amp;quot;Genus&amp;quot;, sampleCols = samples)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Calculating Ecological Hydrocarbon exposure index for 12 sample(s)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# view the results
+head(sampleExposure)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##                  sample  exposure
+## THxT1x1Bac   THxT1x1Bac 0.4419401
+## THxT1x2Bac   THxT1x2Bac 0.3618828
+## THxT1x3Bac   THxT1x3Bac 0.3674791
+## THxT21x1Bac THxT21x1Bac 0.7187549
+## THxT21x2Bac THxT21x2Bac 0.3846276
+## THxT21x3Bac THxT21x3Bac 0.5097866&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;summary(sampleExposure$exposure)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.3619  0.3952  0.4759  0.4904  0.5648  0.7188&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hist(sampleExposure$exposure, xlab = &amp;quot;Ecological hydrocarbon exposure index&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2019-03-06-calculating-the-ecological-hydrocarbon-exposure-index-in-r_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Hopefully this will be useful to any oil microbiologists out there, particularly those who are forging their own bioinformatics pipelines. As always, feel free to contact me if you have any questions/comments.&lt;/p&gt;
+&lt;div id=&#34;references&#34; class=&#34;section level1 unnumbered&#34;&gt;
+&lt;h1&gt;References&lt;/h1&gt;
+&lt;div id=&#34;refs&#34; class=&#34;references&#34;&gt;
+&lt;div id=&#34;ref-lozada_2014&#34;&gt;
+&lt;p&gt;Lozada, M., Marcos, M.S., Commendatore, M.G., Gil, M.N. &amp;amp; Dionisi, H.M. (2014) The Bacterial Community Structure of Hydrocarbon-Polluted Marine Environments as the Basis for the Definition of an Ecological Index of Hydrocarbon Exposure. &lt;em&gt;Microbes and Environments&lt;/em&gt;, ME14028.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
       <title>A custom R function for transposing data.tables</title>
       <link>/post/a-custom-r-function-for-transposing-data-tables/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
@@ -788,15 +873,6 @@ write.table(otuTable, &amp;quot;archaeaOtuTableTaxonomy.txt&amp;quot;,
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/publication/clark_et_al_wires/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Biogeography at the limits of life: Do extremophilic microbial communities show biogeographical regionalization?</title>
-      <link>/publication/clark_et_al_halophiles/</link>
-      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/clark_et_al_halophiles/</guid>
       <description></description>
     </item>
     

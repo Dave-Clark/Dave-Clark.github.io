@@ -15,11 +15,10 @@
   
     
   
-  <meta name="description" content="If you use R to analyse and plot your data, then you’ve probably heard of and used the ggplot2 package, written by Hadley Wickham. ggplot2 is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.
-However, ggplot2 is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!">
+  <meta name="description" content="Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment (Lozada et al.">
 
   
-  <link rel="alternate" hreflang="en-uk" href="/post/ggplot2-from-default-to-delightful/">
+  <link rel="alternate" hreflang="en-uk" href="/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/">
 
   
 
@@ -87,7 +86,7 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
   <link rel="icon" type="image/png" href="/img/icon.png">
   <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
 
-  <link rel="canonical" href="/post/ggplot2-from-default-to-delightful/">
+  <link rel="canonical" href="/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/">
 
   <meta property="twitter:card" content="summary_large_image">
   
@@ -95,26 +94,25 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
   <meta property="twitter:creator" content="@microbeEcology">
   
   <meta property="og:site_name" content="Microbial Ecologist">
-  <meta property="og:url" content="/post/ggplot2-from-default-to-delightful/">
-  <meta property="og:title" content="ggplot2; From default to delightful | Microbial Ecologist">
-  <meta property="og:description" content="If you use R to analyse and plot your data, then you’ve probably heard of and used the ggplot2 package, written by Hadley Wickham. ggplot2 is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.
-However, ggplot2 is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!">
+  <meta property="og:url" content="/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/">
+  <meta property="og:title" content="Calculating the Ecological Hydrocarbon Exposure Index in R | Microbial Ecologist">
+  <meta property="og:description" content="Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment (Lozada et al.">
   
   
     
   <meta property="og:image" content="/img/icon-192.png">
   <meta property="og:locale" content="en-uk">
   
-  <meta property="article:published_time" content="2018-12-15T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2019-03-06T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2019-03-05T09:58:26&#43;00:00">
-  
-
+  <meta property="article:modified_time" content="2019-03-06T00:00:00&#43;00:00">
   
 
   
 
-  <title>ggplot2; From default to delightful | Microbial Ecologist</title>
+  
+
+  <title>Calculating the Ecological Hydrocarbon Exposure Index in R | Microbial Ecologist</title>
 
 </head>
 <body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" class="dark">
@@ -304,7 +302,7 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
   
   
 <div class="article-container pt-3">
-  <h1 itemprop="name">ggplot2; From default to delightful</h1>
+  <h1 itemprop="name">Calculating the Ecological Hydrocarbon Exposure Index in R</h1>
 
   
 
@@ -322,11 +320,9 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
 
   <span class="article-date">
     
-        Last updated on
-    
-    <meta content="2018-12-15 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-    <time datetime="2019-03-05 09:58:26 &#43;0000 GMT" itemprop="dateModified">
-      Mar 5, 2019
+    <meta content="2019-03-06 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+    <time datetime="2019-03-06 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+      Mar 6, 2019
     </time>
   </span>
   <span itemscope itemprop="publisher" itemtype="http://schema.org/Person">
@@ -336,7 +332,7 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    4 min read
+    5 min read
   </span>
   
 
@@ -351,35 +347,35 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=ggplot2%3b%20From%20default%20to%20delightful&amp;url=%2fpost%2fggplot2-from-default-to-delightful%2f"
+         href="https://twitter.com/intent/tweet?text=Calculating%20the%20Ecological%20Hydrocarbon%20Exposure%20Index%20in%20R&amp;url=%2fpost%2fcalculating-the-ecological-hydrocarbon-exposure-index-in-r%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
     </li>
     <li>
       <a class="facebook"
-         href="https://www.facebook.com/sharer.php?u=%2fpost%2fggplot2-from-default-to-delightful%2f"
+         href="https://www.facebook.com/sharer.php?u=%2fpost%2fcalculating-the-ecological-hydrocarbon-exposure-index-in-r%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-facebook-f"></i>
       </a>
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fggplot2-from-default-to-delightful%2f&amp;title=ggplot2%3b%20From%20default%20to%20delightful"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fcalculating-the-ecological-hydrocarbon-exposure-index-in-r%2f&amp;title=Calculating%20the%20Ecological%20Hydrocarbon%20Exposure%20Index%20in%20R"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2fggplot2-from-default-to-delightful%2f&amp;title=ggplot2%3b%20From%20default%20to%20delightful"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fcalculating-the-ecological-hydrocarbon-exposure-index-in-r%2f&amp;title=Calculating%20the%20Ecological%20Hydrocarbon%20Exposure%20Index%20in%20R"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=ggplot2%3b%20From%20default%20to%20delightful&amp;body=%2fpost%2fggplot2-from-default-to-delightful%2f">
+         href="mailto:?subject=Calculating%20the%20Ecological%20Hydrocarbon%20Exposure%20Index%20in%20R&amp;body=%2fpost%2fcalculating-the-ecological-hydrocarbon-exposure-index-in-r%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -418,55 +414,79 @@ However, ggplot2 is also known for it’s somewhat strange choice of default opt
       
 
 
-<p>If you use <code>R</code> to analyse and plot your data, then you’ve probably heard of and used the <code>ggplot2</code> package, written by Hadley Wickham. <code>ggplot2</code> is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.</p>
-<p>However, <code>ggplot2</code> is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!). Therefore, it can seem like a lot of work to go from a basic plot to something that is approaching publication quality. Whilst there are many excellent guides out there to help with this process, I thought I’d weigh in with a few tips and personal preferences which have helped me to elevate my plots to another level.</p>
-<p>Let’s begin by loading the package and simulating some data to play around with.</p>
-<pre class="r"><code>library(ggplot2)
+<p>Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment <span class="citation">(Lozada <em>et al.</em>, <a href="#ref-lozada_2014">2014</a>)</span>. To their credit, the authors provided <code>R</code> code to calculate their index in a supplementary PDF on the <a href="https://www.jstage.jst.go.jp/article/jsme2/advpub/0/advpub_ME14028/_article/-char/ja/">journal article page</a>.</p>
+<p>However, the original code was designed to run using a <code>Mothur</code> formatted taxonomy file, which is not useful for users who might prefer other taxonomy assignment pipelines. Therefore, I decided to rewrite their script into a more useful function format, that can be applied to an OTU table with any taxonomy format. The function is hosted in my GitHub based package <code>ecolFudge</code>, and an example of how to use this function is presented below.</p>
+<pre class="r"><code># first let&#39;s import a small OTU table as an example
+otus &lt;- read.csv(&quot;example_OTU_table.csv&quot;)
 
-myData &lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10, 10),
-  catVar = rep(c(1:4), times = 250))
+# look at structure of OTU table
+# note that our genus level taxonomy assignment is in &quot;Genus&quot; column
+# and our samples all start with &quot;THx&quot;
+str(otus)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3488 obs. of  26 variables:
+##  $ OTU              : Factor w/ 3488 levels &quot;OTU_1&quot;,&quot;OTU_10&quot;,..: 1 1103 2205 2823 2934 3045 3156 3267 3378 2 ...
+##  $ THxT1x1Bac       : int  3 3429 4653 57 1 190 555 58 0 1 ...
+##  $ THxT1x2Bac       : int  1 24761 8476 144 11 1149 10748 628 3 19 ...
+##  $ THxT1x3Bac       : int  0 1301 511 13 0 72 101 61 1 0 ...
+##  $ THxT21x1Bac      : int  9955 5 52 332 871 127 3 33 207 52 ...
+##  $ THxT21x2Bac      : int  1148 51 273 1956 2237 222 18 23 144 94 ...
+##  $ THxT21x3Bac      : int  4155 17 328 2427 6246 886 34 198 1632 113 ...
+##  $ THxT3x1Bac       : int  3 7232 972 392 4 397 496 3002 0 19 ...
+##  $ THxT3x2Bac       : int  1 10328 939 798 22 177 962 3440 1 28 ...
+##  $ THxT3x3Bac       : int  1 12733 3892 1559 15 517 1960 2511 0 61 ...
+##  $ THxT7x1Bac       : int  31 1583 913 3835 2841 689 253 1392 1789 726 ...
+##  $ THxT7x2Bac       : int  4774 1422 614 2181 3066 352 461 1351 15 2378 ...
+##  $ THxT7x3Bac       : int  2651 2689 592 6684 1862 425 210 4090 617 1226 ...
+##  $ sum              : int  572326 423114 308751 239756 239329 159273 158127 152364 137010 118647 ...
+##  $ Domain           : Factor w/ 1 level &quot;Bacteria&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Confidence_domain: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Phylum           : Factor w/ 37 levels &quot;Acetothermia&quot;,..: 32 32 32 32 32 32 32 32 32 32 ...
+##  $ Confidence_phylum: num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Class            : Factor w/ 76 levels &quot;Acetothermia_genera_incertae_sedis&quot;,..: 45 45 45 45 45 45 39 45 15 15 ...
+##  $ Confidence_class : num  1 1 1 1 1 1 1 1 1 1 ...
+##  $ Order            : Factor w/ 142 levels &quot;Acanthopleuribacterales&quot;,..: 96 96 9 9 136 107 24 96 110 110 ...
+##  $ Confidence_order : num  1 1 1 0.99 1 1 1 1 1 1 ...
+##  $ Family           : Factor w/ 283 levels &quot;Acanthopleuribacteraceae&quot;,..: 11 183 212 64 202 214 40 183 222 222 ...
+##  $ Confidence_family: num  1 1 0.98 0.94 1 1 1 1 1 1 ...
+##  $ Genus            : Factor w/ 878 levels &quot;Acanthopleuribacter&quot;,..: 32 556 644 170 189 653 79 807 656 654 ...
+##  $ Confidence_genus : num  1 1 0.98 0.94 1 0.97 1 1 0.48 0.99 ...</code></pre>
+<pre class="r"><code># we first need to create a vector of sample names that we wish to calculate
+# the index for
+samples &lt;- grep(&quot;THx&quot;, colnames(otus), value = T)
 
-head(myData)</code></pre>
-<pre><code>##        var1      var2 catVar
-## 1 94.171866  9.734613      1
-## 2  2.708037  7.367134      2
-## 3 25.247053  7.960860      3
-## 4 83.214722  6.690766      4
-## 5 45.488360  2.275844      1
-## 6 35.911602 -6.260026      2</code></pre>
-<p>Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.</p>
-<p>Now let’s create the most basic scatter plot possible with this data.</p>
-<pre class="r"><code>plot1 &lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
-plot1</code></pre>
-<p><img src="/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-2-1.png" width="672" /> That looks ok, but it’s not perfect. The text and points are quite small, the black points are bit abrasive on the eye and the grey background is a little distracting. Additionally, the axis labels are not informative and we are also obscuring potentially interesting trends by plotting all of the data from our different groups together. So, lets set about fixing those things.</p>
-<pre class="r"><code>ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &quot;grey&quot;) +
-  facet_wrap(~catVar)</code></pre>
-<p><img src="/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>So now the points are a little bigger and grey, which makes them easier to look at and with an aesthetically nicer muted contrast. We’ve also split the data into 4 separate panels, so that we can seen any group specific trends far easier, and without the visual clutter of lots of different colour points (ideal when there is a monetary cost to publishing color figures). But that grey background is now obscuring things, and our axis labels are still hard to read and uninformative. Let’s fix those.</p>
-<pre class="r"><code>ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &quot;grey&quot;) +
-  facet_wrap(~catVar) +
-  labs(x = &quot;Variable 1&quot;, y = &quot;Variable 2&quot;) +
-  theme_bw()</code></pre>
-<p><img src="/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>We’re starting to look quite good now, the points are now much more visible, yet not too harsh against the white background, and our axis labels now tell us something about the data (if it were real!). Now we can apply some final polish to really get this looking great!</p>
-<pre class="r"><code>finalPlot &lt;- ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &quot;grey&quot;) +
-  facet_wrap(~catVar) +
-  labs(x = &quot;Variable 1&quot;, y = &quot;Variable 2&quot;) +
-  theme_bw() +
-  theme(axis.text = element_text(size = 16),
-    axis.title = element_text(size = 18),
-    strip.text.x = element_text(size = 16),
-    panel.grid.major = element_blank())</code></pre>
-<p>Done! The text around the plot is now much easier to see, and we’ve removed the major gridlines which means less distraction from the data. Everything is far clearer and easier to read.</p>
-<pre class="r"><code>plot1</code></pre>
-<p><img src="/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>finalPlot</code></pre>
-<p><img src="/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<p>One final tip, save your graphs as pdfs. PDFs are known as vector based graphics and maintain resolution far better than bitmap based graphics such as PNGs, JPEGs or TIFs. The added bonus is that many journals also request your figures to be in a vector based format, so you’re also helping your figures become published.</p>
-<pre class="r"><code>ggsave(&quot;myPlot.pdf&quot;, finalPlot, width = 8, height = 8, device = &quot;pdf&quot;)</code></pre>
+# now we can load the ecolFudge package
+# if you haven&#39;t installed it, install it using the devtools package:
+# devtools::install_github(&quot;dave-clark/ecolFudge&quot;)
+library(ecolFudge)
+
+# now we simply run the index function, giving it the name of our OTU table
+# the vector of sample column names, and the column with the genus level
+# taxonomy assignments
+sampleExposure &lt;- ehei(otus, taxonomyCol = &quot;Genus&quot;, sampleCols = samples)</code></pre>
+<pre><code>## Calculating Ecological Hydrocarbon exposure index for 12 sample(s)</code></pre>
+<pre class="r"><code># view the results
+head(sampleExposure)</code></pre>
+<pre><code>##                  sample  exposure
+## THxT1x1Bac   THxT1x1Bac 0.4419401
+## THxT1x2Bac   THxT1x2Bac 0.3618828
+## THxT1x3Bac   THxT1x3Bac 0.3674791
+## THxT21x1Bac THxT21x1Bac 0.7187549
+## THxT21x2Bac THxT21x2Bac 0.3846276
+## THxT21x3Bac THxT21x3Bac 0.5097866</code></pre>
+<pre class="r"><code>summary(sampleExposure$exposure)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.3619  0.3952  0.4759  0.4904  0.5648  0.7188</code></pre>
+<pre class="r"><code>hist(sampleExposure$exposure, xlab = &quot;Ecological hydrocarbon exposure index&quot;)</code></pre>
+<p><img src="/post/2019-03-06-calculating-the-ecological-hydrocarbon-exposure-index-in-r_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Hopefully this will be useful to any oil microbiologists out there, particularly those who are forging their own bioinformatics pipelines. As always, feel free to contact me if you have any questions/comments.</p>
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<div id="refs" class="references">
+<div id="ref-lozada_2014">
+<p>Lozada, M., Marcos, M.S., Commendatore, M.G., Gil, M.N. &amp; Dionisi, H.M. (2014) The Bacterial Community Structure of Hydrocarbon-Polluted Marine Environments as the Basis for the Definition of an Ecological Index of Hydrocarbon Exposure. <em>Microbes and Environments</em>, ME14028.</p>
+</div>
+</div>
+</div>
 
     </div>
 

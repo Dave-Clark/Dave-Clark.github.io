@@ -13,6 +13,15 @@
     
     
     <item>
+      <title>Calculating the Ecological Hydrocarbon Exposure Index in R</title>
+      <link>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
+      <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
+      <description>Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment (Lozada et al.</description>
+    </item>
+    
+    <item>
       <title>A custom R function for transposing data.tables</title>
       <link>/post/a-custom-r-function-for-transposing-data-tables/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
