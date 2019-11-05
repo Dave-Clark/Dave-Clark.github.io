@@ -420,7 +420,7 @@
 <pre class="r"><code>library(vegan)</code></pre>
 <pre><code>## Loading required package: permute</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## This is vegan 2.5-4</code></pre>
+<pre><code>## This is vegan 2.5-6</code></pre>
 <pre class="r"><code>data(dune)  # load some dummy data
 commDist &lt;- vegdist(dune, &quot;jaccard&quot;)  # calculate the community similarity distance matrix
 plot(hclust(commDist))</code></pre>
@@ -445,9 +445,12 @@ plot(as.dendrogram(hclust(commDist)), xlab = &quot;Jaccard Similarity&quot;, lwd
 <p>I spent near enough an entire day trying to get this plot perfect without success. I went as far as exploring the <code>ggdendro</code> package which allows plotting of dendrograms in a ggplot-esque manner.</p>
 <p>Then I stumbled on a solution, enter <code>dendextend</code>! A quick peek of the package manual reveals some really awesome capabilities, I really urge you to take a <a href="https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html">look</a> as some of the figures you can create are amazing. For my humble needs, this package solved all my problems easily, and in a couple of lines I’d created exactly the figure my supervisor wanted.</p>
 <pre class="r"><code>ifelse(&quot;dendextend&quot; %in% rownames(installed.packages()) == T, library(dendextend), install.packages(dendextend))</code></pre>
+<pre><code>## Registered S3 method overwritten by &#39;dendextend&#39;:
+##   method     from 
+##   rev.hclust vegan</code></pre>
 <pre><code>## 
 ## ---------------------
-## Welcome to dendextend version 1.9.0
+## Welcome to dendextend version 1.12.0
 ## Type citation(&#39;dendextend&#39;) for how to cite the package.
 ## 
 ## Type browseVignettes(package = &#39;dendextend&#39;) for the package vignette.

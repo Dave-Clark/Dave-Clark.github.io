@@ -441,6 +441,8 @@ cropMap &lt;- st_crop(mapBase, xmin = -15, xmax = 30, ymin = 30, ymax = 60)
 <pre class="r"><code># we can fix this using the lwgeom library...
 mapBase &lt;- st_make_valid(mapBase)
 cropMap &lt;- st_crop(mapBase, xmin = -15, xmax = 30, ymin = 30, ymax = 60)</code></pre>
+<pre><code>## Warning in st_is_longlat(x): bounding box has potentially an invalid value
+## range for longlat data</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersection assumes that they are planar</code></pre>
 <pre><code>## Warning: attribute variables are assumed to be spatially constant
 ## throughout all geometries</code></pre>
@@ -498,7 +500,8 @@ pointsMap</code></pre>
 # work out which points are in the polygon of interest
 spainPoints &lt;- st_join(sfPoints, cropMap[cropMap$ID == &quot;Spain&quot;, ],
   join = st_intersects)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <pre class="r"><code>spainZoom &lt;- ggplot() +
   geom_sf(data = cropMap[cropMap$ID == &quot;Spain&quot;, ]) +
   annotation_scale(location = &quot;br&quot;, text_cex = 2) +
@@ -513,10 +516,12 @@ spainZoom</code></pre>
 <p>So, now we have our two maps sorted, we can arrange them side by side using the <code>cowplot</code> package.</p>
 <pre class="r"><code>library(cowplot)</code></pre>
 <pre><code>## 
-## Attaching package: &#39;cowplot&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     ggsave</code></pre>
+## ********************************************************</code></pre>
+<pre><code>## Note: As of version 1.0.0, cowplot does not change the</code></pre>
+<pre><code>##   default ggplot2 theme anymore. To recover the previous</code></pre>
+<pre><code>##   behavior, execute:
+##   theme_set(theme_cowplot())</code></pre>
+<pre><code>## ********************************************************</code></pre>
 <pre class="r"><code>plot_grid(spainZoom, pointsMap, labels = &quot;AUTO&quot;, rel_widths = c(0.6, 1))</code></pre>
 <pre><code>## Scale on map varies by more than 10%, scale bar may be inaccurate</code></pre>
 <p><img src="/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-9-1.png" width="1152" /></p>

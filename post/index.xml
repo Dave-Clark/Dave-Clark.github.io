@@ -70,16 +70,6 @@ That said, I’ve recently been thinking about the deluge of new algorithms for 
     </item>
     
     <item>
-      <title>Zoomed maps with ggforce!</title>
-      <link>/post/zoomed-maps-with-ggforce/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/zoomed-maps-with-ggforce/</guid>
-      <description>I was recently asked via twitter to share some code on how I implemented the facet_zoom() function, from the newly released ggforce package, to zoom in on a particular region of a map. I’ve no idea if this is the “best” way of creating these sorts of maps, but anyway, here goes…
-This way of making maps requires a number of packages, so make sure you have these installed first, then load them like so…</description>
-    </item>
-    
-    <item>
       <title>ggplot2; From default to delightful</title>
       <link>/post/ggplot2-from-default-to-delightful/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>

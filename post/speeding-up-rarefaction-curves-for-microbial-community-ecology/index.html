@@ -491,11 +491,11 @@ microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)</code></pre>
 <p><img src="/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre><code>## Unit: milliseconds
 ##                  expr      min       lq     mean   median       uq
-##       rarecurve(dune) 30.36678 70.02782 71.70115 72.24160 73.70585
-##  quickRareCurve(dune) 80.78916 84.14825 89.63666 88.72543 93.51024
+##       rarecurve(dune) 64.09247 68.40923 69.84151 70.62115 70.96949
+##  quickRareCurve(dune) 48.94792 81.51434 79.40750 82.03977 83.66148
 ##       max neval
-##  108.1103    10
-##  103.8437    10</code></pre>
+##  72.89052    10
+##  87.43058    10</code></pre>
 <p>As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&gt; 50 samples, ~ 15,000 sequences per sample), <code>quickRareCurve</code> can be around 3 times faster.</p>
 <p>Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.</p>
 

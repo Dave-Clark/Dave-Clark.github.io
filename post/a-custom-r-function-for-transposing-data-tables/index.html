@@ -423,7 +423,7 @@ library(data.table)
 library(vegan)</code></pre>
 <pre><code>## Loading required package: permute</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## This is vegan 2.5-4</code></pre>
+<pre><code>## This is vegan 2.5-6</code></pre>
 <pre class="r"><code># load the Barro Colorado Island tree dataset
 data(BCI)
 
@@ -522,7 +522,7 @@ transDT</code></pre>
 ##     transposedDt[, rowID] &lt;- newRowNames[newRowNames != transCol]
 ##     return(transposedDt)
 ## }
-## &lt;bytecode: 0x563083aa11a0&gt;
+## &lt;bytecode: 0x55a327d52c50&gt;
 ## &lt;environment: namespace:ecolFudge&gt;</code></pre>
 <p>As you can see, the function takes three arguments. The first, <code>dt</code>, is simply the data.table you wish to transpose. The second, <code>transCol</code>, is the column that you wish to become your new column names. In our example, this would be the <code>sampleName</code> column. The third argument, <code>rowID</code>, is simply the name you would like to call the column with your new row identifiers (e.g. the column names in your original data). In this example, our new row identifiers are the names of the species, and so it makes sense to call this column <code>species</code> or something similar.</p>
 <pre class="r"><code>transBci3 &lt;- transDT(bci, transCol=&quot;sampleName&quot;, rowID = &quot;species&quot;)
