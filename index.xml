@@ -220,7 +220,7 @@ transDT&lt;/code&gt;&lt;/pre&gt;
 ##     transposedDt[, rowID] &amp;lt;- newRowNames[newRowNames != transCol]
 ##     return(transposedDt)
 ## }
-## &amp;lt;bytecode: 0x55a327d52c50&amp;gt;
+## &amp;lt;bytecode: 0x563c9a12bc50&amp;gt;
 ## &amp;lt;environment: namespace:ecolFudge&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, the function takes three arguments. The first, &lt;code&gt;dt&lt;/code&gt;, is simply the data.table you wish to transpose. The second, &lt;code&gt;transCol&lt;/code&gt;, is the column that you wish to become your new column names. In our example, this would be the &lt;code&gt;sampleName&lt;/code&gt; column. The third argument, &lt;code&gt;rowID&lt;/code&gt;, is simply the name you would like to call the column with your new row identifiers (e.g. the column names in your original data). In this example, our new row identifiers are the names of the species, and so it makes sense to call this column &lt;code&gt;species&lt;/code&gt; or something similar.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;transBci3 &amp;lt;- transDT(bci, transCol=&amp;quot;sampleName&amp;quot;, rowID = &amp;quot;species&amp;quot;)
@@ -575,11 +575,11 @@ microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&l
 &lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
 ##                  expr      min       lq     mean   median       uq
-##       rarecurve(dune) 64.09247 68.40923 69.84151 70.62115 70.96949
-##  quickRareCurve(dune) 48.94792 81.51434 79.40750 82.03977 83.66148
+##       rarecurve(dune) 66.17685 68.48628 69.23183 69.31825 70.03621
+##  quickRareCurve(dune) 47.80692 82.52621 80.46054 84.06839 85.01588
 ##       max neval
-##  72.89052    10
-##  87.43058    10&lt;/code&gt;&lt;/pre&gt;
+##  71.67020    10
+##  86.31908    10&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&amp;gt; 50 samples, ~ 15,000 sequences per sample), &lt;code&gt;quickRareCurve&lt;/code&gt; can be around 3 times faster.&lt;/p&gt;
 &lt;p&gt;Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.&lt;/p&gt;
 </description>
@@ -604,12 +604,12 @@ myData &amp;lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10,
 
 head(myData)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##       var1       var2 catVar
-## 1 64.83679  9.6095642      1
-## 2 75.94520  9.2088602      2
-## 3 88.13435  0.6563641      3
-## 4 12.42986  5.1498522      4
-## 5 96.57701  3.4052591      1
-## 6 28.84965 -9.8956735      2&lt;/code&gt;&lt;/pre&gt;
+## 1 85.24026 -2.1282043      1
+## 2 37.48931 -3.9379807      2
+## 3 49.32137  0.8810468      3
+## 4 35.36416 -1.3170033      4
+## 5 88.40480 -6.7371313      1
+## 6 97.84301 -4.8468379      2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.&lt;/p&gt;
 &lt;p&gt;Now let’s create the most basic scatter plot possible with this data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()

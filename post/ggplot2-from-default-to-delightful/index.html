@@ -428,12 +428,12 @@ myData &lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10, 10)
 
 head(myData)</code></pre>
 <pre><code>##       var1       var2 catVar
-## 1 64.83679  9.6095642      1
-## 2 75.94520  9.2088602      2
-## 3 88.13435  0.6563641      3
-## 4 12.42986  5.1498522      4
-## 5 96.57701  3.4052591      1
-## 6 28.84965 -9.8956735      2</code></pre>
+## 1 85.24026 -2.1282043      1
+## 2 37.48931 -3.9379807      2
+## 3 49.32137  0.8810468      3
+## 4 35.36416 -1.3170033      4
+## 5 88.40480 -6.7371313      1
+## 6 97.84301 -4.8468379      2</code></pre>
 <p>Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.</p>
 <p>Now let’s create the most basic scatter plot possible with this data.</p>
 <pre class="r"><code>plot1 &lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
