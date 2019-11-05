@@ -418,8 +418,7 @@
 
 <p>Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment <span class="citation">(Lozada <em>et al.</em>, <a href="#ref-lozada_2014">2014</a>)</span>. To their credit, the authors provided <code>R</code> code to calculate their index in a supplementary PDF on the <a href="https://www.jstage.jst.go.jp/article/jsme2/advpub/0/advpub_ME14028/_article/-char/ja/">journal article page</a>.</p>
 <p>However, the original code was designed to run using a <code>Mothur</code> formatted taxonomy file, which is not useful for users who might prefer other taxonomy assignment pipelines. Therefore, I decided to rewrite their script into a more useful function format, that can be applied to an OTU table with any taxonomy format. The function is hosted in my GitHub based package <code>ecolFudge</code>, and an example of how to use this function is presented below.</p>
-<pre class="r"><code># first lets import a small OTU table as an example
-
+<pre class="r"><code># first let&#39;s import a small OTU table as an example
 otus &lt;- read.csv(&quot;example_OTU_table.csv&quot;)
 
 # look at structure of OTU table

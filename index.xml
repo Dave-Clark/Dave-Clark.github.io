@@ -21,7 +21,8 @@
 
 &lt;p&gt;Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment &lt;span class=&#34;citation&#34;&gt;(Lozada &lt;em&gt;et al.&lt;/em&gt;, &lt;a href=&#34;#ref-lozada_2014&#34;&gt;2014&lt;/a&gt;)&lt;/span&gt;. To their credit, the authors provided &lt;code&gt;R&lt;/code&gt; code to calculate their index in a supplementary PDF on the &lt;a href=&#34;https://www.jstage.jst.go.jp/article/jsme2/advpub/0/advpub_ME14028/_article/-char/ja/&#34;&gt;journal article page&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;However, the original code was designed to run using a &lt;code&gt;Mothur&lt;/code&gt; formatted taxonomy file, which is not useful for users who might prefer other taxonomy assignment pipelines. Therefore, I decided to rewrite their script into a more useful function format, that can be applied to an OTU table with any taxonomy format. The function is hosted in my GitHub based package &lt;code&gt;ecolFudge&lt;/code&gt;, and an example of how to use this function is presented below.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first let&amp;#39;s import a small OTU table as an example
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# first lets import a small OTU table as an example
+
 otus &amp;lt;- read.csv(&amp;quot;example_OTU_table.csv&amp;quot;)
 
 # look at structure of OTU table
@@ -61,8 +62,10 @@ samples &amp;lt;- grep(&amp;quot;THx&amp;quot;, colnames(otus), value = T)
 
 # now we can load the ecolFudge package
 # if you haven&amp;#39;t installed it, install it using the devtools package:
-# devtools::install_github(&amp;quot;dave-clark/ecolFudge&amp;quot;)
-library(ecolFudge)
+devtools::install_github(&amp;quot;dave-clark/ecolFudge&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Skipping install of &amp;#39;ecolFudge&amp;#39; from a github remote, the SHA1 (e8c16a0e) has not changed since last install.
+##   Use `force = TRUE` to force installation&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ecolFudge)
 
 # now we simply run the index function, giving it the name of our OTU table
 # the vector of sample column names, and the column with the genus level
