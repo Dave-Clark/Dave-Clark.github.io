@@ -121,7 +121,7 @@ library(data.table)
 library(vegan)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: permute&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: lattice&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# load the Barro Colorado Island tree dataset
 data(BCI)
 
@@ -220,7 +220,7 @@ transDT&lt;/code&gt;&lt;/pre&gt;
 ##     transposedDt[, rowID] &amp;lt;- newRowNames[newRowNames != transCol]
 ##     return(transposedDt)
 ## }
-## &amp;lt;bytecode: 0x563c9a12bc50&amp;gt;
+## &amp;lt;bytecode: 0xa9ac768&amp;gt;
 ## &amp;lt;environment: namespace:ecolFudge&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, the function takes three arguments. The first, &lt;code&gt;dt&lt;/code&gt;, is simply the data.table you wish to transpose. The second, &lt;code&gt;transCol&lt;/code&gt;, is the column that you wish to become your new column names. In our example, this would be the &lt;code&gt;sampleName&lt;/code&gt; column. The third argument, &lt;code&gt;rowID&lt;/code&gt;, is simply the name you would like to call the column with your new row identifiers (e.g. the column names in your original data). In this example, our new row identifiers are the names of the species, and so it makes sense to call this column &lt;code&gt;species&lt;/code&gt; or something similar.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;transBci3 &amp;lt;- transDT(bci, transCol=&amp;quot;sampleName&amp;quot;, rowID = &amp;quot;species&amp;quot;)
@@ -460,12 +460,10 @@ spainZoom&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;So, now we have our two maps sorted, we can arrange them side by side using the &lt;code&gt;cowplot&lt;/code&gt; package.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(cowplot)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
-## ********************************************************&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Note: As of version 1.0.0, cowplot does not change the&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   default ggplot2 theme anymore. To recover the previous&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##   behavior, execute:
-##   theme_set(theme_cowplot())&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## ********************************************************&lt;/code&gt;&lt;/pre&gt;
+## Attaching package: &amp;#39;cowplot&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:ggplot2&amp;#39;:
+## 
+##     ggsave&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_grid(spainZoom, pointsMap, labels = &amp;quot;AUTO&amp;quot;, rel_widths = c(0.6, 1))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Scale on map varies by more than 10%, scale bar may be inaccurate&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
@@ -575,11 +573,11 @@ microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&l
 &lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
 ##                  expr      min       lq     mean   median       uq
-##       rarecurve(dune) 66.17685 68.48628 69.23183 69.31825 70.03621
-##  quickRareCurve(dune) 47.80692 82.52621 80.46054 84.06839 85.01588
-##       max neval
-##  71.67020    10
-##  86.31908    10&lt;/code&gt;&lt;/pre&gt;
+##       rarecurve(dune) 79.70178 80.94599 83.47126 83.08141 86.01284
+##  quickRareCurve(dune) 49.67263 89.20412 89.21991 92.63656 96.96782
+##        max neval
+##   89.48703    10
+##  100.11262    10&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&amp;gt; 50 samples, ~ 15,000 sequences per sample), &lt;code&gt;quickRareCurve&lt;/code&gt; can be around 3 times faster.&lt;/p&gt;
 &lt;p&gt;Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.&lt;/p&gt;
 </description>
@@ -603,13 +601,13 @@ myData &amp;lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10,
   catVar = rep(c(1:4), times = 250))
 
 head(myData)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##       var1       var2 catVar
-## 1 85.24026 -2.1282043      1
-## 2 37.48931 -3.9379807      2
-## 3 49.32137  0.8810468      3
-## 4 35.36416 -1.3170033      4
-## 5 88.40480 -6.7371313      1
-## 6 97.84301 -4.8468379      2&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##        var1       var2 catVar
+## 1 44.959529  7.7566313      1
+## 2 53.122444 -9.0578110      2
+## 3 16.791348  5.1322110      3
+## 4 48.492723  0.4336701      4
+## 5 90.880460  7.7932742      1
+## 6  6.206295 -0.8753936      2&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.&lt;/p&gt;
 &lt;p&gt;Now let’s create the most basic scatter plot possible with this data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
@@ -659,7 +657,7 @@ plot1&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(vegan)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: permute&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Loading required package: lattice&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-6&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-4&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(dune)  # load some dummy data
 commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # calculate the community similarity distance matrix
 plot(hclust(commDist))&lt;/code&gt;&lt;/pre&gt;
@@ -684,6 +682,11 @@ plot(as.dendrogram(hclust(commDist)), xlab = &amp;quot;Jaccard Similarity&amp;qu
 &lt;p&gt;I spent near enough an entire day trying to get this plot perfect without success. I went as far as exploring the &lt;code&gt;ggdendro&lt;/code&gt; package which allows plotting of dendrograms in a ggplot-esque manner.&lt;/p&gt;
 &lt;p&gt;Then I stumbled on a solution, enter &lt;code&gt;dendextend&lt;/code&gt;! A quick peek of the package manual reveals some really awesome capabilities, I really urge you to take a &lt;a href=&#34;https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html&#34;&gt;look&lt;/a&gt; as some of the figures you can create are amazing. For my humble needs, this package solved all my problems easily, and in a couple of lines I’d created exactly the figure my supervisor wanted.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ifelse(&amp;quot;dendextend&amp;quot; %in% rownames(installed.packages()) == T, library(dendextend), install.packages(dendextend))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Registered S3 methods overwritten by &amp;#39;ggplot2&amp;#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;dendextend&amp;#39;:
 ##   method     from 
 ##   rev.hclust vegan&lt;/code&gt;&lt;/pre&gt;
