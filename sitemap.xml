@@ -4,6 +4,30 @@
     
     <url>
     
+      <loc>/publication/freeman_et_al_envint/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication/clark_et_al_sbb/</loc>
+      <lastmod>2020-01-20T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/publication/huby_et_al/</loc>
+      <lastmod>2020-01-09T00:00:00+00:00</lastmod>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/publication/macek_et_al/</loc>
       <lastmod>2019-11-05T12:35:17+00:00</lastmod>
     </url>
@@ -21,7 +45,7 @@
     <url>
     
       <loc>/post/a-custom-r-function-for-transposing-data-tables/</loc>
-      <lastmod>2019-11-05T14:40:07+00:00</lastmod>
+      <lastmod>2019-11-05T17:18:00+00:00</lastmod>
     </url>
     
   
@@ -45,7 +69,7 @@
     <url>
     
       <loc>/post/making-maps-with-ggplot2-and-sf/</loc>
-      <lastmod>2019-11-05T13:53:47+00:00</lastmod>
+      <lastmod>2019-11-05T17:18:00+00:00</lastmod>
     </url>
     
   
@@ -61,7 +85,7 @@
     <url>
     
       <loc>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</loc>
-      <lastmod>2019-11-05T14:40:07+00:00</lastmod>
+      <lastmod>2019-11-05T17:18:00+00:00</lastmod>
     </url>
     
   
@@ -69,7 +93,7 @@
     <url>
     
       <loc>/post/ggplot2-from-default-to-delightful/</loc>
-      <lastmod>2019-11-05T14:40:07+00:00</lastmod>
+      <lastmod>2019-11-05T17:18:00+00:00</lastmod>
     </url>
     
   
@@ -77,7 +101,7 @@
     <url>
     
       <loc>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</loc>
-      <lastmod>2019-11-05T13:53:47+00:00</lastmod>
+      <lastmod>2019-11-05T17:18:00+00:00</lastmod>
     </url>
     
   
@@ -182,7 +206,7 @@
     <url>
     
       <loc>/publication_types/2/</loc>
-      <lastmod>2019-11-05T12:35:17+00:00</lastmod>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -201,6 +225,24 @@
     
       <loc>/publication_types/6/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ammonia-oxidising-archaea/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/ammonia-oxidising-bacteria/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -244,6 +286,15 @@
     
     <url>
     
+      <loc>/tags/biofilm/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/bioinformatics/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
@@ -263,6 +314,15 @@
     
       <loc>/tags/eukarya/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/grasslands/</loc>
+      <lastmod>2020-01-20T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -324,6 +384,15 @@
     
     <url>
     
+      <loc>/tags/n-mineralization/</loc>
+      <lastmod>2020-01-20T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
       <loc>/tags/next-generation-sequencing/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
       <priority>0</priority>
@@ -335,6 +404,24 @@
     
       <loc>/tags/next-generation-sequencing/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/nitrification/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/nitrososphaera/</loc>
+      <lastmod>2020-01-20T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -352,7 +439,7 @@
     <url>
     
       <loc>/publication_types/</loc>
-      <lastmod>2019-11-05T12:35:17+00:00</lastmod>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -362,6 +449,15 @@
     
       <loc>/tags/qiime/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/rotating-biological-contactor/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     
@@ -388,6 +484,24 @@
     
       <loc>/tags/</loc>
       <lastmod>2019-02-11T07:24:53+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/wastewater-treatment/</loc>
+      <lastmod>2020-02-01T00:00:00+00:00</lastmod>
+      <priority>0</priority>
+    </url>
+    
+  
+    
+    <url>
+    
+      <loc>/tags/amoa-gene/</loc>
+      <lastmod>2020-01-20T00:00:00+00:00</lastmod>
       <priority>0</priority>
     </url>
     

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ammonia oxidising archaea on Microbial Ecologist</title>
+    <link>/tags/ammonia-oxidising-archaea/</link>
+    <description>Recent content in Ammonia oxidising archaea on Microbial Ecologist</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-uk</language>
+    <copyright>&amp;copy; 2018</copyright>
+    <lastBuildDate>Sat, 01 Feb 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/ammonia-oxidising-archaea/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Nitrogen oxidation consortia dynamics influence the performance of full-scale rotating biological contactors</title>
+      <link>/publication/freeman_et_al_envint/</link>
+      <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/freeman_et_al_envint/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mineralization and nitrification: Archaea dominate ammonia-oxidising communities in grassland soils</title>
+      <link>/publication/clark_et_al_sbb/</link>
+      <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/clark_et_al_sbb/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
