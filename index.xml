@@ -11,6 +11,15 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Coral microbiome composition along the northern Red Sea suggests high plasticity of bacterial and specificity of endosymbiotic dinoflagellate communities</title>
+      <link>/publication/osman_et_al/</link>
+      <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/publication/osman_et_al/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Nitrogen oxidation consortia dynamics influence the performance of full-scale rotating biological contactors</title>
       <link>/publication/freeman_et_al_envint/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
@@ -764,37 +773,6 @@ plot_horiz.dendrogram(wellHung, side = F, xlab = &amp;quot;Jaccard Dissimilarity
 &lt;p&gt;&lt;img src=&#34;/post/2018-12-12-does-the-adonis-test-really-exist_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;As it turns out, 84% of the studies that mention “adonis test” also feature the word “microb*“, suggesting that we might be to blame! Also, only 11 of these studies used the term”MANOVA“, suggesting that the vast majority did not elaborate on the statistical procedure initiated by the &lt;code&gt;adonis&lt;/code&gt; function.&lt;/p&gt;
 &lt;p&gt;If I’m completely wrong on this and there is such a thing as an adonis test then please do tell me. But it seems to be that we need to be a little more careful when describing the statistical methods we use…&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier</title>
-      <link>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
-      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
-      <description>
-
-
-&lt;p&gt;As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline &lt;code&gt;Qiime&lt;/code&gt;, making it nice and easy to apply to your own data.&lt;/p&gt;
-&lt;p&gt;But what if you are for dealing with fungal ITS sequences instead? Well a recent paper from &lt;a href=&#34;http://www.mycologia.org/content/early/2015/10/28/14-293.abstract&#34;&gt;Deshpande et al&lt;/a&gt; piqued my interest for several reasons. The paper describes a new curated database of fungal ITS sequences and demonstrates that the RDP naive Bayesian classifier does a decent job of classifying ITS sequences when trained on this database.&lt;/p&gt;
-&lt;p&gt;Unfortunately, using the RDP classifier on ITS sequences means going off piste so to speak and using the standalone classifier outside of &lt;code&gt;Qiime&lt;/code&gt;. Given that most people never use the classifier outside of &lt;code&gt;Qiime&lt;/code&gt;, I thought a brief demonstration might be useful. For all of the following, I’m assuming you’re using BioLinux and are at least somewhat familiar with the Linux terminal.&lt;/p&gt;
-&lt;p&gt;First of all, clone the RDPtools github repo like so:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;git clone https://github.com/rdpstaff/RDPTools.git&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then, enter the newly created directory and set up the RDPtools software:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;cd RDPTools
-git submodule init
-git submodule updat
-make&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You’ll get a lot of text whizzing through the terminal, don’t worry, you haven’t yet entered the Matrix! Once these processes finish the classifier has installed and is ready for use. However, we must now download some additional files which will allow the classifier to classify our fungal ITS sequences. To download these files, type:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;wget &amp;quot;http://rdp.cme.msu.edu/download/rdpclassifiertraindata/data.tgz&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This may take a few minutes depending on your connection speed. The files are packaged in what we call a tarball (kind of like a windows zip folder). To unpack them:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;tar -zxvf data.tgz&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now when we list the contents of our directory, we can see a new directory, “data”, has been created. This folder contains all the files we need to use the Warcup based classifier (and also the UNITE and LSU data handily).&lt;/p&gt;
-&lt;p&gt;I’m going to assume you’ve already clustered your ITS sequences into operational taxonomic units and picked a representative sequence for each OTU using &lt;a href=&#34;http://qiime.org/scripts/pick_rep_set.html&#34;&gt;Qiime&lt;/a&gt; or other means.&lt;/p&gt;
-&lt;p&gt;Now we simply call the classifier, tell it to use the Warcup classification files, and tell it where out data is. Simple:&lt;/p&gt;
-&lt;pre class=&#34;bash&#34;&gt;&lt;code&gt;java -Xmx1g -jar classifier.jar classify -t data/classifier/fungalits_warcup/rRNAClassifier.properties -o classifiedFungi.txt /path/to/data/fungalITS_repSet.fasta&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;A new file (“classifiedFungi.txt”) will have been created, containing the taxonomic assignments of each fungal sequence, complete with confidence values, pretty cool! You can of course train the classifier yourself on a custom database, in which case, follow the steps &lt;a href=&#34;https://github.com/rdpstaff/classifier&#34;&gt;here&lt;/a&gt; Anyway, I hope this was useful and demonstrates that venturing outside of &lt;code&gt;Qiime&lt;/code&gt; is not necessarily that difficult!&lt;/p&gt;
 </description>
     </item>
     
