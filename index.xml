@@ -11,6 +11,15 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>Relationships between nitrogen cycling microbial community abundance and composition reveal the indirect effect of soil pH on oak decline</title>
+      <link>/publication/scarlett_et_al_isme/</link>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0100</pubDate>
+      
+      <guid>/publication/scarlett_et_al_isme/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Bacterial Community Legacy Effects Following the Agia Zoni II Oil-Spill, Greece</title>
       <link>/publication/thomas_et_al_frontiers/</link>
       <pubDate>Fri, 17 Jul 2020 00:00:00 +0100</pubDate>
@@ -686,84 +695,6 @@ plot1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;One final tip, save your graphs as pdfs. PDFs are known as vector based graphics and maintain resolution far better than bitmap based graphics such as PNGs, JPEGs or TIFs. The added bonus is that many journals also request your figures to be in a vector based format, so you’re also helping your figures become published.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;myPlot.pdf&amp;quot;, finalPlot, width = 8, height = 8, device = &amp;quot;pdf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
-      <link>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
-      <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
-      <description>
-
-
-&lt;p&gt;I was recently asked by one of my PhD supervisors to help out on a paper by doing some metagenomic analyses. My mission was essentially to perform some taxonomic analyses of metagenomes and show how a metagenome generated in our lab related to these. So, naturally, I said yes, carried out the necessary analyses and proceeded to design a figure to show the result. I figured a dendrogram would be a nice way of showing compositional similarity between the community we studied and other communities. First of all, I set about creating a distance matrix and plotting the dendrogram like so:&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(vegan)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: permute&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Loading required package: lattice&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## This is vegan 2.5-4&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;data(dune)  # load some dummy data
-commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # calculate the community similarity distance matrix
-plot(hclust(commDist))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;There you go. It’s easy to generate a basic dendrogram using any sort of distance matrix. So I then started tidying it up to make it a bit more presentable.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;siteLabels &amp;lt;- paste(&amp;quot;Sample &amp;quot;, rownames(dune), sep = &amp;quot;&amp;quot;)  # create some sample labels
-plot(hclust(commDist), labels = siteLabels, main = &amp;quot;&amp;quot;, sub = &amp;quot;&amp;quot;, xlab = &amp;quot;&amp;quot;, ylab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Much nicer! We’ve gotten rid of the nonsense at the bottom, given a more informative y axis label and generally made things ‘nicer’. Except, when I saw the first draft, I saw my supervisor had rotated the plot so that the leaf tips pointed to the left. For some reason this just looked wrong to my eyes and so I opted to replot the dendrogram, in a more sensible orientation.&lt;/p&gt;
-&lt;p&gt;Note that to do this, we have to change our approach slightly. For some stupid reason, when we want to plot a dendrogram horizontally, we have to coerce the hclust output to dendrogram class. Additionally, the ‘plot’ method for a dendrogram class object no longer accepts the labels parameter, so we must rename the rows of our dataframe and recalculate the distance matrix instead.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;rownames(dune) &amp;lt;- siteLabels  # rename rows of dataframe with our sample labels created earlier
-
-commDist &amp;lt;- vegdist(dune, &amp;quot;jaccard&amp;quot;)  # recalculate the distance matrix so that it features our new sample names
-
-par(mar = c(5, 1, 1, 5))  # adjust margins to make room for tip labels
-
-# replot the dendrogram, note that we can now remove the &amp;quot;main =&amp;quot; and &amp;quot;sub =&amp;quot; arguments
-# also remember to switch the x and y labels!
-plot(as.dendrogram(hclust(commDist)), xlab = &amp;quot;Jaccard Similarity&amp;quot;, lwd = 2, cex = 1.2, horiz = T)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Perfect! Or at least I thought so. Turns out my supervisor liked the improved orientation but didn’t like the way the branches all ended at the same point. That should be easy to correct right? Wrong!&lt;/p&gt;
-&lt;p&gt;I spent near enough an entire day trying to get this plot perfect without success. I went as far as exploring the &lt;code&gt;ggdendro&lt;/code&gt; package which allows plotting of dendrograms in a ggplot-esque manner.&lt;/p&gt;
-&lt;p&gt;Then I stumbled on a solution, enter &lt;code&gt;dendextend&lt;/code&gt;! A quick peek of the package manual reveals some really awesome capabilities, I really urge you to take a &lt;a href=&#34;https://cran.r-project.org/web/packages/dendextend/vignettes/introduction.html&#34;&gt;look&lt;/a&gt; as some of the figures you can create are amazing. For my humble needs, this package solved all my problems easily, and in a couple of lines I’d created exactly the figure my supervisor wanted.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ifelse(&amp;quot;dendextend&amp;quot; %in% rownames(installed.packages()) == T, library(dendextend), install.packages(dendextend))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 methods overwritten by &amp;#39;ggplot2&amp;#39;:
-##   method         from 
-##   [.quosures     rlang
-##   c.quosures     rlang
-##   print.quosures rlang&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## Registered S3 method overwritten by &amp;#39;dendextend&amp;#39;:
-##   method     from 
-##   rev.hclust vegan&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## ---------------------
-## Welcome to dendextend version 1.12.0
-## Type citation(&amp;#39;dendextend&amp;#39;) for how to cite the package.
-## 
-## Type browseVignettes(package = &amp;#39;dendextend&amp;#39;) for the package vignette.
-## The github page is: https://github.com/talgalili/dendextend/
-## 
-## Suggestions and bug-reports can be submitted at: https://github.com/talgalili/dendextend/issues
-## Or contact: &amp;lt;tal.galili@gmail.com&amp;gt;
-## 
-##  To suppress this message use:  suppressPackageStartupMessages(library(dendextend))
-## ---------------------&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## 
-## Attaching package: &amp;#39;dendextend&amp;#39;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:permute&amp;#39;:
-## 
-##     shuffle&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## The following object is masked from &amp;#39;package:stats&amp;#39;:
-## 
-##     cutree&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;## [1] &amp;quot;dendextend&amp;quot;&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# uncomment following line if this is the fist time you&amp;#39;ve installed this package!
-# library(dendextend)
-dend1 &amp;lt;- as.dendrogram(hclust(commDist))
-wellHung &amp;lt;- hang.dendrogram(dend1)  # the cheeky variable names are absolutely essential!
-plot_horiz.dendrogram(wellHung, side = F, xlab = &amp;quot;Jaccard Dissimilarity&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-12-barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;There you go, an awesome package which save me from wasting too many more days of work!&lt;/p&gt;
 </description>
     </item>
     
