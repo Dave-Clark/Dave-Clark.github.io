@@ -2,373 +2,373 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Microbial Ecologist</title>
-    <link>/tags/</link>
+    <link>https://Dave-Clark.github.io/tags/</link>
     <description>Recent content in Tags on Microbial Ecologist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2018</copyright>
     <lastBuildDate>Tue, 01 Nov 2016 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://Dave-Clark.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>16S rRNA</title>
-      <link>/tags/16s-rrna/</link>
+      <link>https://Dave-Clark.github.io/tags/16s-rrna/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/16s-rrna/</guid>
+      <guid>https://Dave-Clark.github.io/tags/16s-rrna/</guid>
       <description></description>
     </item>
     
     <item>
       <title>454-Pyrosequencing</title>
-      <link>/tags/454-pyrosequencing/</link>
+      <link>https://Dave-Clark.github.io/tags/454-pyrosequencing/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/454-pyrosequencing/</guid>
+      <guid>https://Dave-Clark.github.io/tags/454-pyrosequencing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ammonia oxidising archaea</title>
-      <link>/tags/ammonia-oxidising-archaea/</link>
+      <link>https://Dave-Clark.github.io/tags/ammonia-oxidising-archaea/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ammonia-oxidising-archaea/</guid>
+      <guid>https://Dave-Clark.github.io/tags/ammonia-oxidising-archaea/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ammonia oxidising bacteria</title>
-      <link>/tags/ammonia-oxidising-bacteria/</link>
+      <link>https://Dave-Clark.github.io/tags/ammonia-oxidising-bacteria/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ammonia-oxidising-bacteria/</guid>
+      <guid>https://Dave-Clark.github.io/tags/ammonia-oxidising-bacteria/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Amplicon</title>
-      <link>/tags/amplicon/</link>
+      <link>https://Dave-Clark.github.io/tags/amplicon/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/amplicon/</guid>
+      <guid>https://Dave-Clark.github.io/tags/amplicon/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Archaea</title>
-      <link>/tags/archaea/</link>
+      <link>https://Dave-Clark.github.io/tags/archaea/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/archaea/</guid>
+      <guid>https://Dave-Clark.github.io/tags/archaea/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bacteria</title>
-      <link>/tags/bacteria/</link>
+      <link>https://Dave-Clark.github.io/tags/bacteria/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bacteria/</guid>
+      <guid>https://Dave-Clark.github.io/tags/bacteria/</guid>
       <description></description>
     </item>
     
     <item>
       <title>BioLinux</title>
-      <link>/tags/biolinux/</link>
+      <link>https://Dave-Clark.github.io/tags/biolinux/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/biolinux/</guid>
+      <guid>https://Dave-Clark.github.io/tags/biolinux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Biofilm</title>
-      <link>/tags/biofilm/</link>
+      <link>https://Dave-Clark.github.io/tags/biofilm/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/biofilm/</guid>
+      <guid>https://Dave-Clark.github.io/tags/biofilm/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bioinformatics</title>
-      <link>/tags/bioinformatics/</link>
+      <link>https://Dave-Clark.github.io/tags/bioinformatics/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/bioinformatics/</guid>
+      <guid>https://Dave-Clark.github.io/tags/bioinformatics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Eukarya</title>
-      <link>/tags/eukarya/</link>
+      <link>https://Dave-Clark.github.io/tags/eukarya/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/eukarya/</guid>
+      <guid>https://Dave-Clark.github.io/tags/eukarya/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Grasslands</title>
-      <link>/tags/grasslands/</link>
+      <link>https://Dave-Clark.github.io/tags/grasslands/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/grasslands/</guid>
+      <guid>https://Dave-Clark.github.io/tags/grasslands/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Illumina</title>
-      <link>/tags/illumina/</link>
+      <link>https://Dave-Clark.github.io/tags/illumina/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/illumina/</guid>
+      <guid>https://Dave-Clark.github.io/tags/illumina/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Metagenetics</title>
-      <link>/tags/metagenetics/</link>
+      <link>https://Dave-Clark.github.io/tags/metagenetics/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/metagenetics/</guid>
+      <guid>https://Dave-Clark.github.io/tags/metagenetics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Metagenomics</title>
-      <link>/tags/metagenomics/</link>
+      <link>https://Dave-Clark.github.io/tags/metagenomics/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/metagenomics/</guid>
+      <guid>https://Dave-Clark.github.io/tags/metagenomics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Microbial ecology</title>
-      <link>/tags/microbial-ecology/</link>
+      <link>https://Dave-Clark.github.io/tags/microbial-ecology/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/microbial-ecology/</guid>
+      <guid>https://Dave-Clark.github.io/tags/microbial-ecology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mothur</title>
-      <link>/tags/mothur/</link>
+      <link>https://Dave-Clark.github.io/tags/mothur/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/mothur/</guid>
+      <guid>https://Dave-Clark.github.io/tags/mothur/</guid>
       <description></description>
     </item>
     
     <item>
       <title>N mineralization</title>
-      <link>/tags/n-mineralization/</link>
+      <link>https://Dave-Clark.github.io/tags/n-mineralization/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/n-mineralization/</guid>
+      <guid>https://Dave-Clark.github.io/tags/n-mineralization/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Next generation sequencing</title>
-      <link>/tags/next-generation-sequencing/</link>
+      <link>https://Dave-Clark.github.io/tags/next-generation-sequencing/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/next-generation-sequencing/</guid>
+      <guid>https://Dave-Clark.github.io/tags/next-generation-sequencing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Next-generation sequencing</title>
-      <link>/tags/next-generation-sequencing/</link>
+      <link>https://Dave-Clark.github.io/tags/next-generation-sequencing/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/next-generation-sequencing/</guid>
+      <guid>https://Dave-Clark.github.io/tags/next-generation-sequencing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nitrification</title>
-      <link>/tags/nitrification/</link>
+      <link>https://Dave-Clark.github.io/tags/nitrification/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/nitrification/</guid>
+      <guid>https://Dave-Clark.github.io/tags/nitrification/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nitrososphaera</title>
-      <link>/tags/nitrososphaera/</link>
+      <link>https://Dave-Clark.github.io/tags/nitrososphaera/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/nitrososphaera/</guid>
+      <guid>https://Dave-Clark.github.io/tags/nitrososphaera/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Omics methods</title>
-      <link>/tags/omics-methods/</link>
+      <link>https://Dave-Clark.github.io/tags/omics-methods/</link>
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/omics-methods/</guid>
+      <guid>https://Dave-Clark.github.io/tags/omics-methods/</guid>
       <description></description>
     </item>
     
     <item>
       <title>QIIME</title>
-      <link>/tags/qiime/</link>
+      <link>https://Dave-Clark.github.io/tags/qiime/</link>
       <pubDate>Tue, 01 Nov 2016 00:00:00 +0000</pubDate>
       
-      <guid>/tags/qiime/</guid>
+      <guid>https://Dave-Clark.github.io/tags/qiime/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rotating biological contactor</title>
-      <link>/tags/rotating-biological-contactor/</link>
+      <link>https://Dave-Clark.github.io/tags/rotating-biological-contactor/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rotating-biological-contactor/</guid>
+      <guid>https://Dave-Clark.github.io/tags/rotating-biological-contactor/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Wastewater treatment</title>
-      <link>/tags/wastewater-treatment/</link>
+      <link>https://Dave-Clark.github.io/tags/wastewater-treatment/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/wastewater-treatment/</guid>
+      <guid>https://Dave-Clark.github.io/tags/wastewater-treatment/</guid>
       <description></description>
     </item>
     
     <item>
       <title>amoA gene</title>
-      <link>/tags/amoa-gene/</link>
+      <link>https://Dave-Clark.github.io/tags/amoa-gene/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/tags/amoa-gene/</guid>
+      <guid>https://Dave-Clark.github.io/tags/amoa-gene/</guid>
       <description></description>
     </item>
     
     <item>
       <title>biodiversity</title>
-      <link>/tags/biodiversity/</link>
+      <link>https://Dave-Clark.github.io/tags/biodiversity/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/biodiversity/</guid>
+      <guid>https://Dave-Clark.github.io/tags/biodiversity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>climate change</title>
-      <link>/tags/climate-change/</link>
+      <link>https://Dave-Clark.github.io/tags/climate-change/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/climate-change/</guid>
+      <guid>https://Dave-Clark.github.io/tags/climate-change/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dispersal</title>
-      <link>/tags/dispersal/</link>
+      <link>https://Dave-Clark.github.io/tags/dispersal/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dispersal/</guid>
+      <guid>https://Dave-Clark.github.io/tags/dispersal/</guid>
       <description></description>
     </item>
     
     <item>
       <title>elevated CO2</title>
-      <link>/tags/elevated-co2/</link>
+      <link>https://Dave-Clark.github.io/tags/elevated-co2/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/elevated-co2/</guid>
+      <guid>https://Dave-Clark.github.io/tags/elevated-co2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>halite</title>
-      <link>/tags/halite/</link>
+      <link>https://Dave-Clark.github.io/tags/halite/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/halite/</guid>
+      <guid>https://Dave-Clark.github.io/tags/halite/</guid>
       <description></description>
     </item>
     
     <item>
       <title>halophiles</title>
-      <link>/tags/halophiles/</link>
+      <link>https://Dave-Clark.github.io/tags/halophiles/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/halophiles/</guid>
+      <guid>https://Dave-Clark.github.io/tags/halophiles/</guid>
       <description></description>
     </item>
     
     <item>
       <title>long‐term experiments</title>
-      <link>/tags/longterm-experiments/</link>
+      <link>https://Dave-Clark.github.io/tags/longterm-experiments/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/longterm-experiments/</guid>
+      <guid>https://Dave-Clark.github.io/tags/longterm-experiments/</guid>
       <description></description>
     </item>
     
     <item>
       <title>machine learning</title>
-      <link>/tags/machine-learning/</link>
+      <link>https://Dave-Clark.github.io/tags/machine-learning/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/machine-learning/</guid>
+      <guid>https://Dave-Clark.github.io/tags/machine-learning/</guid>
       <description></description>
     </item>
     
     <item>
       <title>macroecology</title>
-      <link>/tags/macroecology/</link>
+      <link>https://Dave-Clark.github.io/tags/macroecology/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/macroecology/</guid>
+      <guid>https://Dave-Clark.github.io/tags/macroecology/</guid>
       <description></description>
     </item>
     
     <item>
       <title>microbial diversity</title>
-      <link>/tags/microbial-diversity/</link>
+      <link>https://Dave-Clark.github.io/tags/microbial-diversity/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/microbial-diversity/</guid>
+      <guid>https://Dave-Clark.github.io/tags/microbial-diversity/</guid>
       <description></description>
     </item>
     
     <item>
       <title>next generation sequencing</title>
-      <link>/tags/next-generation-sequencing/</link>
+      <link>https://Dave-Clark.github.io/tags/next-generation-sequencing/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/next-generation-sequencing/</guid>
+      <guid>https://Dave-Clark.github.io/tags/next-generation-sequencing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>next‐generation sequencing</title>
-      <link>/tags/nextgeneration-sequencing/</link>
+      <link>https://Dave-Clark.github.io/tags/nextgeneration-sequencing/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/tags/nextgeneration-sequencing/</guid>
+      <guid>https://Dave-Clark.github.io/tags/nextgeneration-sequencing/</guid>
       <description></description>
     </item>
     
     <item>
       <title>regionalization</title>
-      <link>/tags/regionalization/</link>
+      <link>https://Dave-Clark.github.io/tags/regionalization/</link>
       <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>/tags/regionalization/</guid>
+      <guid>https://Dave-Clark.github.io/tags/regionalization/</guid>
       <description></description>
     </item>
     

@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Microbial Ecologist on Microbial Ecologist</title>
-    <link>/</link>
+    <link>https://Dave-Clark.github.io/</link>
     <description>Recent content in Microbial Ecologist on Microbial Ecologist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
@@ -11,74 +11,83 @@
     <atom:link href="/" rel="self" type="application/rss+xml" />
     
     <item>
+      <title>What drives study‐dependent differences in distance–decay relationships of microbial communities?</title>
+      <link>https://Dave-Clark.github.io/publication/clark_et_al_geb_2020/</link>
+      <pubDate>Mon, 08 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://Dave-Clark.github.io/publication/clark_et_al_geb_2020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Relationships between nitrogen cycling microbial community abundance and composition reveal the indirect effect of soil pH on oak decline</title>
-      <link>/publication/scarlett_et_al_isme/</link>
+      <link>https://Dave-Clark.github.io/publication/scarlett_et_al_isme/</link>
       <pubDate>Fri, 16 Oct 2020 00:00:00 +0100</pubDate>
       
-      <guid>/publication/scarlett_et_al_isme/</guid>
+      <guid>https://Dave-Clark.github.io/publication/scarlett_et_al_isme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Bacterial Community Legacy Effects Following the Agia Zoni II Oil-Spill, Greece</title>
-      <link>/publication/thomas_et_al_frontiers/</link>
+      <link>https://Dave-Clark.github.io/publication/thomas_et_al_frontiers/</link>
       <pubDate>Fri, 17 Jul 2020 00:00:00 +0100</pubDate>
       
-      <guid>/publication/thomas_et_al_frontiers/</guid>
+      <guid>https://Dave-Clark.github.io/publication/thomas_et_al_frontiers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Coral microbiome composition along the northern Red Sea suggests high plasticity of bacterial and specificity of endosymbiotic dinoflagellate communities</title>
-      <link>/publication/osman_et_al/</link>
+      <link>https://Dave-Clark.github.io/publication/osman_et_al/</link>
       <pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/osman_et_al/</guid>
+      <guid>https://Dave-Clark.github.io/publication/osman_et_al/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nitrogen oxidation consortia dynamics influence the performance of full-scale rotating biological contactors</title>
-      <link>/publication/freeman_et_al_envint/</link>
+      <link>https://Dave-Clark.github.io/publication/freeman_et_al_envint/</link>
       <pubDate>Sat, 01 Feb 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/freeman_et_al_envint/</guid>
+      <guid>https://Dave-Clark.github.io/publication/freeman_et_al_envint/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Mineralization and nitrification: Archaea dominate ammonia-oxidising communities in grassland soils</title>
-      <link>/publication/clark_et_al_sbb/</link>
+      <link>https://Dave-Clark.github.io/publication/clark_et_al_sbb/</link>
       <pubDate>Mon, 20 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/clark_et_al_sbb/</guid>
+      <guid>https://Dave-Clark.github.io/publication/clark_et_al_sbb/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Extremely halophilic archaeal communities are resilient to short‐term entombment in halite</title>
-      <link>/publication/huby_et_al/</link>
+      <link>https://Dave-Clark.github.io/publication/huby_et_al/</link>
       <pubDate>Thu, 09 Jan 2020 00:00:00 +0000</pubDate>
       
-      <guid>/publication/huby_et_al/</guid>
+      <guid>https://Dave-Clark.github.io/publication/huby_et_al/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Impacts of Long‐Term Elevated Atmospheric CO₂ Concentrations on Communities of Arbuscular Mycorrhizal Fungi</title>
-      <link>/publication/macek_et_al/</link>
+      <link>https://Dave-Clark.github.io/publication/macek_et_al/</link>
       <pubDate>Mon, 24 Jun 2019 00:00:00 +0100</pubDate>
       
-      <guid>/publication/macek_et_al/</guid>
+      <guid>https://Dave-Clark.github.io/publication/macek_et_al/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Calculating the Ecological Hydrocarbon Exposure Index in R</title>
-      <link>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
+      <link>https://Dave-Clark.github.io/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
       <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
+      <guid>https://Dave-Clark.github.io/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
       <description>
 
 
@@ -146,7 +155,7 @@ head(sampleExposure)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.3619  0.3952  0.4759  0.4904  0.5648  0.7188&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;hist(sampleExposure$exposure, xlab = &amp;quot;Ecological hydrocarbon exposure index&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-03-06-calculating-the-ecological-hydrocarbon-exposure-index-in-r_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-03-06-calculating-the-ecological-hydrocarbon-exposure-index-in-r_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Hopefully this will be useful to any oil microbiologists out there, particularly those who are forging their own bioinformatics pipelines. As always, feel free to contact me if you have any questions/comments.&lt;/p&gt;
 &lt;div id=&#34;references&#34; class=&#34;section level1 unnumbered&#34;&gt;
 &lt;h1&gt;References&lt;/h1&gt;
@@ -161,10 +170,10 @@ head(sampleExposure)&lt;/code&gt;&lt;/pre&gt;
     
     <item>
       <title>A custom R function for transposing data.tables</title>
-      <link>/post/a-custom-r-function-for-transposing-data-tables/</link>
+      <link>https://Dave-Clark.github.io/post/a-custom-r-function-for-transposing-data-tables/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/a-custom-r-function-for-transposing-data-tables/</guid>
+      <guid>https://Dave-Clark.github.io/post/a-custom-r-function-for-transposing-data-tables/</guid>
       <description>
 
 
@@ -351,26 +360,26 @@ boxplot(time/1000 ~ expr,
   data = speedTest,
   ylab = expression(paste(&amp;quot;Time (&amp;quot;, mu, &amp;quot;S)&amp;quot;)),
   xlab = &amp;quot;Method&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-02-28-a-custom-r-function-for-transposing-data-tables_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-02-28-a-custom-r-function-for-transposing-data-tables_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There you have it, transDT gives us the same result, but in a fraction of the time compared to the &lt;code&gt;dcast/melt&lt;/code&gt; method, even on a relatively small dataset. I hope this is useful to other &lt;code&gt;R&lt;/code&gt; users other than myself, if you have any questions, do get in touch!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Are drivers of root-associated fungal community structure context specific?</title>
-      <link>/publication/alzahrani_et_al/</link>
+      <link>https://Dave-Clark.github.io/publication/alzahrani_et_al/</link>
       <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/publication/alzahrani_et_al/</guid>
+      <guid>https://Dave-Clark.github.io/publication/alzahrani_et_al/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Further testing of quickRareCurve</title>
-      <link>/post/further-testing-of-quickrarecurve/</link>
+      <link>https://Dave-Clark.github.io/post/further-testing-of-quickrarecurve/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/further-testing-of-quickrarecurve/</guid>
+      <guid>https://Dave-Clark.github.io/post/further-testing-of-quickrarecurve/</guid>
       <description>
 
 
@@ -383,7 +392,7 @@ dim(otuTable)&lt;/code&gt;&lt;/pre&gt;
 # so remember [, -1] to not include it
 # Lets inspect sample sizes with a simple histogram
 hist(rowSums(otuTable[, -1]), xlab = &amp;quot;Sample sizes&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;In this example, our OTU table contains 48 samples and 5381 OTUs, plus a column with the sample names in.&lt;/p&gt;
 &lt;p&gt;Now we can use &lt;code&gt;microbenchmark&lt;/code&gt; again to compare the performance of the original &lt;code&gt;rarecurve&lt;/code&gt; function to our faster parallel version, &lt;code&gt;quickRareCurve&lt;/code&gt;. We will then plot the results using &lt;code&gt;ggplot2&lt;/code&gt;. Warning: the code below will take some time to run!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
@@ -402,17 +411,17 @@ ggplot(testResult, aes(x = expr, y = time/6e+10)) +
   labs(x = &amp;quot;Function&amp;quot;, y = &amp;quot;Time (minutes)&amp;quot;) +
   theme(axis.text = element_text(size = 16),
     axis.title = element_text(size = 18))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-further-testing-of-quickrarecurve_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There you go, on a typical OTU table, the &lt;code&gt;quickRareCurve&lt;/code&gt; function is far quicker, reducing the processing time from ~25 minutes to &amp;lt; 5 minutes. The more samples in your OTU table, and the more CPU cores available, the greater the increase in performance.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Making maps with ggplot2 and sf</title>
-      <link>/post/making-maps-with-ggplot2-and-sf/</link>
+      <link>https://Dave-Clark.github.io/post/making-maps-with-ggplot2-and-sf/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/making-maps-with-ggplot2-and-sf/</guid>
+      <guid>https://Dave-Clark.github.io/post/making-maps-with-ggplot2-and-sf/</guid>
       <description>
 
 
@@ -448,7 +457,7 @@ cropMap &amp;lt;- st_crop(mapBase, xmin = -15, xmax = 30, ymin = 30, ymax = 60)&
 &lt;p&gt;Now that we have a valid &lt;code&gt;sf&lt;/code&gt; object to plot, we can start using the &lt;code&gt;geom_sf&lt;/code&gt; function to start making some nice maps.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# basic map to start with
 ggplot(cropMap) + geom_sf()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Cool right? Notice a few neat things? Firstly, &lt;code&gt;ggplot&lt;/code&gt; draws a nice graticule for you, complete with the correct “degrees” symbol and N, S, E, or W to denote the correct hemisphere. Secondly, go ahead and resize the map… What do you notice? Hopefully, you’ll see that the aspect ratio of the map has been fixed so that your map always projects correctly. This is a great feature and saves you some time faffing around trying to manually correct the aspect ratio.&lt;/p&gt;
 &lt;p&gt;Having explored some basic features, we can now start to tailor our map and add features to it using other packages, or data.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# let&amp;#39;s say we want to highlight the location of Spain, clarify the axes,
@@ -467,7 +476,7 @@ spainMap &amp;lt;- ggplot(cropMap,
     legend.title = element_text(size = 14))
 
 spainMap&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Pretty easy so far right? But what if we want to add some points to the map, for example to highlight sampling locations? Well, this is really easy too!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# simulate some random coordinates within the limits of our map
 locations &amp;lt;- data.frame(lat = runif(25, 30, 60), long = runif(25, -15, 30))
@@ -491,7 +500,7 @@ pointsMap &amp;lt;- ggplot() +
     legend.title = element_text(size = 14))
 
 pointsMap&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Again, super simple. Now, I’d like to create a smaller map, that just shows Spain and any points inside it, so I can make a nice panel figure with the two maps side by side. Also, don’t forget a scale bar, which we can add using the &lt;code&gt;ggspatial&lt;/code&gt; package.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggspatial)
 
@@ -510,7 +519,7 @@ spainPoints &amp;lt;- st_join(sfPoints, cropMap[cropMap$ID == &amp;quot;Spain&am
 
 spainZoom&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Scale on map varies by more than 10%, scale bar may be inaccurate&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;So, now we have our two maps sorted, we can arrange them side by side using the &lt;code&gt;cowplot&lt;/code&gt; package.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(cowplot)&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## 
@@ -520,17 +529,17 @@ spainZoom&lt;/code&gt;&lt;/pre&gt;
 ##     ggsave&lt;/code&gt;&lt;/pre&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot_grid(spainZoom, pointsMap, labels = &amp;quot;AUTO&amp;quot;, rel_widths = c(0.6, 1))&lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## Scale on map varies by more than 10%, scale bar may be inaccurate&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-making-maps-with-ggplot2-and-sf_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1152&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;There you have it, combining the &lt;code&gt;sf&lt;/code&gt; and newest &lt;code&gt;ggplot2&lt;/code&gt; packages allows you quickly and easily make some neat looking map figures!&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>The future of USEARCH: A closed source software in an open source world</title>
-      <link>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</link>
+      <link>https://Dave-Clark.github.io/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</guid>
+      <guid>https://Dave-Clark.github.io/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</guid>
       <description>
 
 
@@ -539,16 +548,16 @@ spainZoom&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Rob Edgar only made 32-bit versions of all his software freely available for users, with users having to pay $885 for a 64-bit license. A 32-bit license essentially limits the amount of RAM your computer can access whilst using this software to 4gb. So even if you had a cluster computer at your disposal, you’d still be shackled by the 4gb limit. A few years ago, when 454 pyrosequencing was the predominant sequencing platform, this wasn’t so much of a problem because the datasets were big, but not huge. However, with the rise of Illumina’s platforms such as the HiSeq and MiSeq, molecular datasets are becoming truly enormous, meaning more RAM is needed to work with them.&lt;/p&gt;
 &lt;p&gt;Furthermore, the arrival of &lt;a href=&#34;https://github.com/torognes/vsearch&#34;&gt;VSEARCH&lt;/a&gt;, a 64-bit open source work-alike of USEARCH, has meant that you now don’t need to shell out for an expensive 64-bit license to get USEARCH-esque results. This leads me to wonder, what is the future of USEARCH now that there are good, free, and open-source alternatives?&lt;/p&gt;
 &lt;p&gt;Looking at the citation rates of Edgar’s papers, there are no obvious signs of it losing popularity… Data on the plot below were downloaded using Web of Science. It will be interesting to see if the popularity of this classic piece of bioinformatics software ever declines.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2019-01-01-the-future-of-usearch-a-closed-source-software-in-an-open-source-world_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2019-01-01-the-future-of-usearch-a-closed-source-software-in-an-open-source-world_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>Speeding up rarefaction curves for microbial community ecology</title>
-      <link>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
+      <link>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
+      <guid>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
       <description>
 
 
@@ -619,12 +628,12 @@ data(dune)
 quickRareCurve(dune) # will use all cores and print how many cores you have
 
 quickRareCurve(dune, max.cores = F, nCores = 2) # use only 2 cores&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;We can compare the new function’s performance to the original using the &lt;code&gt;microbenchmark&lt;/code&gt; package, as below.&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(microbenchmark)
 
 microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Dave-Clark.github.io/post/2018-12-15-speeding-up-rarefaction-curves-for-microbial-community-ecology_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;## Unit: milliseconds
 ##                  expr      min       lq     mean   median       uq
 ##       rarecurve(dune) 79.70178 80.94599 83.47126 83.08141 86.01284
@@ -634,67 +643,6 @@ microbenchmark(rarecurve(dune), quickRareCurve(dune), times = 10)&lt;/code&gt;&l
 ##  100.11262    10&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;As you can see, for this small dataset, the original function is actually quicker. This is because it takes some time to distribute tasks among the cores. However, I’ve found for a typical OTU table (&amp;gt; 50 samples, ~ 15,000 sequences per sample), &lt;code&gt;quickRareCurve&lt;/code&gt; can be around 3 times faster.&lt;/p&gt;
 &lt;p&gt;Feel free to use it as you wish, but I’d be very grateful for any credit if you do use it.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>ggplot2; From default to delightful</title>
-      <link>/post/ggplot2-from-default-to-delightful/</link>
-      <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/ggplot2-from-default-to-delightful/</guid>
-      <description>
-
-
-&lt;p&gt;If you use &lt;code&gt;R&lt;/code&gt; to analyse and plot your data, then you’ve probably heard of and used the &lt;code&gt;ggplot2&lt;/code&gt; package, written by Hadley Wickham. &lt;code&gt;ggplot2&lt;/code&gt; is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.&lt;/p&gt;
-&lt;p&gt;However, &lt;code&gt;ggplot2&lt;/code&gt; is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!). Therefore, it can seem like a lot of work to go from a basic plot to something that is approaching publication quality. Whilst there are many excellent guides out there to help with this process, I thought I’d weigh in with a few tips and personal preferences which have helped me to elevate my plots to another level.&lt;/p&gt;
-&lt;p&gt;Let’s begin by loading the package and simulating some data to play around with.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
-
-myData &amp;lt;- data.frame(var1 =  runif(1000, 0, 100), var2 = runif(1000, -10, 10),
-  catVar = rep(c(1:4), times = 250))
-
-head(myData)&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##        var1       var2 catVar
-## 1 44.959529  7.7566313      1
-## 2 53.122444 -9.0578110      2
-## 3 16.791348  5.1322110      3
-## 4 48.492723  0.4336701      4
-## 5 90.880460  7.7932742      1
-## 6  6.206295 -0.8753936      2&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Hopefully that code should be fairly easy to understand, we’ve simulated two continuous variables (with a random distribution) and created a categorical variable.&lt;/p&gt;
-&lt;p&gt;Now let’s create the most basic scatter plot possible with this data.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1 &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) + geom_point()
-plot1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt; That looks ok, but it’s not perfect. The text and points are quite small, the black points are bit abrasive on the eye and the grey background is a little distracting. Additionally, the axis labels are not informative and we are also obscuring potentially interesting trends by plotting all of the data from our different groups together. So, lets set about fixing those things.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
-  facet_wrap(~catVar)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;So now the points are a little bigger and grey, which makes them easier to look at and with an aesthetically nicer muted contrast. We’ve also split the data into 4 separate panels, so that we can seen any group specific trends far easier, and without the visual clutter of lots of different colour points (ideal when there is a monetary cost to publishing color figures). But that grey background is now obscuring things, and our axis labels are still hard to read and uninformative. Let’s fix those.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
-  facet_wrap(~catVar) +
-  labs(x = &amp;quot;Variable 1&amp;quot;, y = &amp;quot;Variable 2&amp;quot;) +
-  theme_bw()&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;We’re starting to look quite good now, the points are now much more visible, yet not too harsh against the white background, and our axis labels now tell us something about the data (if it were real!). Now we can apply some final polish to really get this looking great!&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot &amp;lt;- ggplot(myData, aes(x = var1, y = var2)) +
-  geom_point(size = 2, color = &amp;quot;grey&amp;quot;) +
-  facet_wrap(~catVar) +
-  labs(x = &amp;quot;Variable 1&amp;quot;, y = &amp;quot;Variable 2&amp;quot;) +
-  theme_bw() +
-  theme(axis.text = element_text(size = 16),
-    axis.title = element_text(size = 18),
-    strip.text.x = element_text(size = 16),
-    panel.grid.major = element_blank())&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Done! The text around the plot is now much easier to see, and we’ve removed the major gridlines which means less distraction from the data. Everything is far clearer and easier to read.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;plot1&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;finalPlot&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/2018-12-15-ggplot2-from-default-to-delightful_files/figure-html/unnamed-chunk-6-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;One final tip, save your graphs as pdfs. PDFs are known as vector based graphics and maintain resolution far better than bitmap based graphics such as PNGs, JPEGs or TIFs. The added bonus is that many journals also request your figures to be in a vector based format, so you’re also helping your figures become published.&lt;/p&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;ggsave(&amp;quot;myPlot.pdf&amp;quot;, finalPlot, width = 8, height = 8, device = &amp;quot;pdf&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     

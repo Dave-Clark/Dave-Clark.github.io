@@ -2,116 +2,116 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Microbial Ecologist</title>
-    <link>/post/</link>
+    <link>https://Dave-Clark.github.io/post/</link>
     <description>Recent content in Posts on Microbial Ecologist</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-uk</language>
     <copyright>&amp;copy; 2018</copyright>
     <lastBuildDate>Sun, 01 Jan 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://Dave-Clark.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Calculating the Ecological Hydrocarbon Exposure Index in R</title>
-      <link>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
+      <link>https://Dave-Clark.github.io/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</link>
       <pubDate>Wed, 06 Mar 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
+      <guid>https://Dave-Clark.github.io/post/calculating-the-ecological-hydrocarbon-exposure-index-in-r/</guid>
       <description>Recently, I’ve been collaborating with several colleagues on projects focussing on the microbial ecology of hydrocarbon degradation. One of the aspects we’ve been thinking about, is whether the composition of the microbial community can reflect the level of hydrocarbon exposure. As it turns out, we aren’t the first to consider this, as Mariana Lozada and colleagues came up with an “Ecological Hydrocarbon Exposure Index”, which uses the composition and structure of the microbial community to quantify the level of hydrocarbon exposure in a given environment (Lozada et al.</description>
     </item>
     
     <item>
       <title>A custom R function for transposing data.tables</title>
-      <link>/post/a-custom-r-function-for-transposing-data-tables/</link>
+      <link>https://Dave-Clark.github.io/post/a-custom-r-function-for-transposing-data-tables/</link>
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/a-custom-r-function-for-transposing-data-tables/</guid>
+      <guid>https://Dave-Clark.github.io/post/a-custom-r-function-for-transposing-data-tables/</guid>
       <description>The data.table package has become my favourite R package for all things data handling. Unlike the “tidyverse” suite of packages, the syntax is more akin to base data.frame syntax, meaning I was able to pick it up quite quickly. It is also incredibly quick, and the parallel data import/export functions (fread &amp;amp; fwrite) are a real gift for working with larger data tables, like OTU tables, which can contain several hundred columns, and many thousands of rows.</description>
     </item>
     
     <item>
       <title>Further testing of quickRareCurve</title>
-      <link>/post/further-testing-of-quickrarecurve/</link>
+      <link>https://Dave-Clark.github.io/post/further-testing-of-quickrarecurve/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/further-testing-of-quickrarecurve/</guid>
+      <guid>https://Dave-Clark.github.io/post/further-testing-of-quickrarecurve/</guid>
       <description>After my post yesterday, documenting a faster parallelised version of the rarecurve function (quickRareCurve), I realised it’d be good to show a real world example using it on a reasonably large OTU table, to prove that it is indeed quicker than the original function. So, here we go.
 # Starting with an OTU table in which rows are samples, # Cols are OTUs/species dim(otuTable) ## [1] 48 5382 # the first column of my data is the sample names # so remember [, -1] to not include it # Lets inspect sample sizes with a simple histogram hist(rowSums(otuTable[, -1]), xlab = &amp;quot;Sample sizes&amp;quot;) In this example, our OTU table contains 48 samples and 5381 OTUs, plus a column with the sample names in.</description>
     </item>
     
     <item>
       <title>Making maps with ggplot2 and sf</title>
-      <link>/post/making-maps-with-ggplot2-and-sf/</link>
+      <link>https://Dave-Clark.github.io/post/making-maps-with-ggplot2-and-sf/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/making-maps-with-ggplot2-and-sf/</guid>
+      <guid>https://Dave-Clark.github.io/post/making-maps-with-ggplot2-and-sf/</guid>
       <description>Recently, the newest version of the popular ggplot2 graphics package was announced, and it has some nifty mapping features that I was keen to try out (read more here). Mainly, I was interested in the support for sf, or “simple features”, objects. This class of objects were created as part of a wider R package designed to make mapping and spatial analyses far easier.
 The latest update of ggplot2 not only makes plotting from sf objects trivial, but also means that some quite nice map figures can be made with relatively little effort, as you’ll hopefully see below.</description>
     </item>
     
     <item>
       <title>The future of USEARCH: A closed source software in an open source world</title>
-      <link>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</link>
+      <link>https://Dave-Clark.github.io/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</link>
       <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</guid>
+      <guid>https://Dave-Clark.github.io/post/the-future-of-usearch-a-closed-source-software-in-an-open-source-world/</guid>
       <description>Let me start off by stating that I have enormous respect for Rob Edgar (creator of USEARCH, UPARSE etc.). His contributions to the field of bioinformatics, and indirectly to the fields of molecular and microbial ecology have been huge, you only need to look at his citation rates to see that! So this post is not intended as a criticism of him or his work in any way.
 That said, I’ve recently been thinking about the deluge of new algorithms for picking Operational Taxonomic Units (OTUs) from molecular sequence datasets and wondering where, and how, USEARCH, UCLUST et al.</description>
     </item>
     
     <item>
       <title>Speeding up rarefaction curves for microbial community ecology</title>
-      <link>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
+      <link>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
+      <guid>https://Dave-Clark.github.io/post/speeding-up-rarefaction-curves-for-microbial-community-ecology/</guid>
       <description>When beginning analyses on microbial community data, it is often helpful to compute rarefaction curves. A rarefaction curve tells you about the rate at which new species/OTUs are detected as you increase the number of individuals/sequences sampled. It does this by taking random subsamples from 1, up to the size of your sample, and computing the number of species present in each subsample. Ideally, you want your rarefaction curves to be relatively flat, as this indicates that additional sampling would not likely yield further species.</description>
     </item>
     
     <item>
       <title>ggplot2; From default to delightful</title>
-      <link>/post/ggplot2-from-default-to-delightful/</link>
+      <link>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</link>
       <pubDate>Sat, 15 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/ggplot2-from-default-to-delightful/</guid>
+      <guid>https://Dave-Clark.github.io/post/ggplot2-from-default-to-delightful/</guid>
       <description>If you use R to analyse and plot your data, then you’ve probably heard of and used the ggplot2 package, written by Hadley Wickham. ggplot2 is a highly flexible plotting package allowing you to create just about any kind of plot you can think of, and customise just about any aspect of your plot.
 However, ggplot2 is also known for it’s somewhat strange choice of default options (at least, they seem strange to me!</description>
     </item>
     
     <item>
       <title>Barking up the wrong tree? Leaf your troubles behind with dendextend</title>
-      <link>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
+      <link>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
+      <guid>https://Dave-Clark.github.io/post/barking-up-the-wrong-tree-leaf-your-troubles-behind-with-dendextend/</guid>
       <description>I was recently asked by one of my PhD supervisors to help out on a paper by doing some metagenomic analyses. My mission was essentially to perform some taxonomic analyses of metagenomes and show how a metagenome generated in our lab related to these. So, naturally, I said yes, carried out the necessary analyses and proceeded to design a figure to show the result. I figured a dendrogram would be a nice way of showing compositional similarity between the community we studied and other communities.</description>
     </item>
     
     <item>
       <title>Does the Adonis test really exist?</title>
-      <link>/post/does-the-adonis-test-really-exist/</link>
+      <link>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/does-the-adonis-test-really-exist/</guid>
+      <guid>https://Dave-Clark.github.io/post/does-the-adonis-test-really-exist/</guid>
       <description>I’ve recently started a chapter for my PhD which involves a meta-analysis of microbial ecological literature. This has involved looking through the methods, or more specifically the stats sections, of lots of studies to see whether they are suitable for inclusion in my analysis. One idiosyncracy I noted whilst doing this is the number of studies that refer to an “Adonis test”. As far as I am aware, adonis is simply the name of the function that carries out a permutational MANOVA (multivariate analysis of variance) or non-parametric MANOVA as the original author of this statistical test calls it (Anderson, 2001).</description>
     </item>
     
     <item>
       <title>Know Your Fungi: A Brief Demo Of The New Fungal Classifier</title>
-      <link>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
+      <link>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
+      <guid>https://Dave-Clark.github.io/post/know-your-fungi-a-brief-demo-of-the-new-fungal-classifier/</guid>
       <description>As a microbial ecologist, part of my job is to try and assign taxonomy to all of the microbial critters living in the habitats I study. For archaeal or bacterial 16S rRNA gene sequences this is relatively easy. The Ribosomal Database Project have a naive Bayesian classifier which is trained on a large curated database of archaeal and bacterial 16S rRNA gene sequences. Best of all, it is implemented in the popular bioinformatics pipeline Qiime, making it nice and easy to apply to your own data.</description>
     </item>
     
     <item>
       <title>Merging Taxonomy With Non-Qiime OTU Tables</title>
-      <link>/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
+      <link>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</link>
       <pubDate>Wed, 12 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
+      <guid>https://Dave-Clark.github.io/post/merging-taxonomy-with-non-qiime-otu-tables/</guid>
       <description>This is a quick post more to document some useful code than anything else. When conducting bioinformatic analyses using Qiime, one of the last steps is to cluster sequences into OTUs (operational taxonomic units) and assign taxonomy to them. You can then make an OTU table which contains all your OTUs and their associated taxonomy. Bam, easy!
 But what to do if you haven’t/don’t want to use Qiime to cluster OTUs?</description>
     </item>
